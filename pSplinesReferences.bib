@@ -38,12 +38,25 @@
 	publisher = {Springer-Verlag New York},
 	address = {New York, USA},
 	edition   = {2},
-	doi = {10.1007/978-1-4419-0320-4}
+	doi = {10.1007/978-1-4419-0320-4},
+	url = {https://doi.org/10.1007/978-1-4419-0320-4}
 } 
 
 %%%%%%%
 %%% C %%%
 %%%%%%%
+
+@article{Cadonna2017,
+	title={Bayesian mixture modeling for spectral density estimation},
+	author={Cadonna, A. and Kottas, A. and Prado, R.},
+	journal={Statistics \& Probability Letters},
+	volume={125},
+	pages={189--195},
+	year={2017},
+	issn = {0167-7152},
+	doi = {https://doi.org/10.1016/j.spl.2017.02.008},
+	url = {http://www.sciencedirect.com/science/article/pii/S0167715217300573}
+}
 
 @article{Cart:1997,
 	author = {C. K. Carter and R. Kohn},
@@ -95,6 +108,21 @@
 	note = {{R package version 0.6.0}},
 	url = {https://CRAN.R-project.org/package=bsplinePsd},
   }
+
+@article{Eilers:1996,
+	author = "Eilers, Paul H. C. and Marx, Brian D.",
+	doi = "10.1214/ss/1038425655",
+	fjournal = "Statistical Science",
+	journal = "Statist. Sci.",
+	month = "05",
+	number = "2",
+	pages = "89--121",
+	publisher = "The Institute of Mathematical Statistics",
+	title = "Flexible smoothing with B -splines and penalties",
+	url = "https://doi.org/10.1214/ss/1038425655",
+	volume = "11",
+	year = "1996"
+}
 
 
 @Article{Eilers2015,
@@ -249,6 +277,19 @@
 %%% P %%%
 %%%%%%%
 
+@article{Pensky:2007,
+	URL = {http://www3.stat.sinica.edu.tw/statistica/j17n2/j17n210/j17n210.html},
+	abstract = {The problem of estimating the log-spectrum of a stationary time series by Bayesian shrinkage of empirical wavelet coefficients is studied. A model in the wavelet domain that accounts for distributional properties of the log-periodogram at levels of fine detail and approximate normality at coarse levels in the wavelet decomposition, is proposed. The smoothing procedure, called BAMS-LP (Bayesian Adaptive Multiscale Shrinker of Log-Periodogram), ensures that the reconstructed log-spectrum is sufficiently noise-free. It is also shown that the resulting Bayes estimators are asymptotically optimal (in the mean-squared error sense).},
+	author = {Pensky, Marianna and Vidakovic, Brani and and De Canditiis, Daniela},
+	journal = {Statistica Sinica},
+	number = {},
+	pages = {635--666},
+	publisher = {},
+	title = {Bayesian decision theoretic scale-adaptive estimation of a log-spectral density},
+	volume = {17},
+	year = {2007}
+}
+
 @article{Perron:2001,
 	ISSN = {0006341X, 15410420},
 	URL = {http://www.jstor.org/stable/3068361},
@@ -276,7 +317,7 @@
 	doi = {10.1111/1467-9469.00155},
 	url = {https://onlinelibrary.wiley.com/doi/abs/10.1111/1467-9469.00155},
 eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1111/1467-9469.00155},
-abstract = {Random Bernstein polynomials which are also probability distribution functions on the closed unit interval are studied. The probability law of a Bernstein polynomial so defined provides a novel prior on the space of distribution functions on [0, 1] which has full support and can easily select absolutely continuous distribution functions with a continuous and smooth derivative. In particular, the Bernstein polynomial which approximates a Dirichlet process is studied. This may be of interest in Bayesian non-parametric inference. In the second part of the paper, we study the posterior from a “Bernstein–Dirichlet” prior and suggest a hybrid Monte Carlo approximation of it. The proposed algorithm has some aspects of novelty since the problem under examination has a “changing dimension” parameter space.},,
+abstract = {Random Bernstein polynomials which are also probability distribution functions on the closed unit interval are studied. The probability law of a Bernstein polynomial so defined provides a novel prior on the space of distribution functions on [0, 1] which has full support and can easily select absolutely continuous distribution functions with a continuous and smooth derivative. In particular, the Bernstein polynomial which approximates a Dirichlet process is studied. This may be of interest in Bayesian non-parametric inference. In the second part of the paper, we study the posterior from a “Bernstein–Dirichlet” prior and suggest a hybrid Monte Carlo approximation of it. The proposed algorithm has some aspects of novelty since the problem under examination has a “changing dimension” parameter space.},
 	year = {1999}
 }
 
@@ -300,6 +341,22 @@ abstract = {Random Bernstein polynomials which are also probability distribution
 %%% R %%%
 %%%%%%%
 
+@article{Rosen:2007,
+    author = {Rosen, Ori and Stoffer, David S.},
+    title = "{Automatic estimation of multivariate spectra via smoothing splines}",
+    journal = {Biometrika},
+    volume = {94},
+    number = {2},
+    pages = {335-345},
+    year = {2007},
+    month = {02},
+    abstract = "{The classical method for estimating the spectral density of a multivariate time series is first to calculate the periodogram, and then to smooth it to obtain a consistent estimator. Typically, to ensure the estimate is positive definite, all the elements of the periodogram are smoothed the same way. There are, however, many situations for which different components of the spectral matrix have different degrees of smoothness. We propose a Bayesian approach that uses Markov chain Monte Carlo techniques to fit smoothing splines to each component, real and imaginary, of the Cholesky decomposition of the periodogram matrix. The spectral estimator is then obtained by reconstructing the spectral estimator from the smoothed Cholesky decomposition components. Our technique produces an automatically smoothed spectral matrix estimator along with samples from the posterior distributions of the parameters to facilitate inference.}",
+    issn = {0006-3444},
+    doi = {10.1093/biomet/asm022},
+    url = {https://doi.org/10.1093/biomet/asm022},
+    eprint = {http://oup.prod.sis.lan/biomet/article-pdf/94/2/335/599232/asm022.pdf},
+}
+
 @article{Ruppert2002,
 	author = {David Ruppert},
 	title = {Selecting the Number of Knots for Penalized Splines},
@@ -322,6 +379,7 @@ abstract = {Random Bernstein polynomials which are also probability distribution
 	added-at = {2009-09-10T14:36:22.000+0200},
 	author = {Sethuraman, Jayaram},
 	biburl = {https://www.bibsonomy.org/bibtex/2a7d63ad6a7d9bdcc2a6a1a3032863e7e/gregoryy},
+	URL = {http://www3.stat.sinica.edu.tw/statistica/j4n2/j4n216/j4n216.htm},
 	interhash = {4fcacac17864e008a908928ef7091141},
 	intrahash = {a7d63ad6a7d9bdcc2a6a1a3032863e7e},
 	journal = {Statistica Sinica},
@@ -330,9 +388,26 @@ abstract = {Random Bernstein polynomials which are also probability distribution
 	pages = {639-650},
 	timestamp = {2009-09-10T14:36:48.000+0200},
 	title = {A constructive definition of {Dirichlet} priors},
-	volume = 4,
-	year = 1994
+	volume = {4},
+	year = {1994}
 }
+
+@article{ShaoXiaofeng2007ASTf,
+	issn = {00905364},
+	abstract = {We consider asymptotic problems in spectral analysis of stationary causal processes. Limiting distributions of periodograms and smoothed periodogram spectral density estimates are obtained and applications to the spectral domain bootstrap are given. Instead of the commonly used strong mixing conditions, in our asymptotic spectral theory we impose conditions only involving (conditional) moments, which are easily verifiable for a variety of nonlinear time series.},
+	journal = {The Annals of Statistics},
+	pages = {1773--1801},
+	volume = {35},
+	publisher = {Institute of Mathematical Statistics},
+	number = {4},
+	year = {2007},
+	title = {Asymptotic Spectral Theory for Nonlinear Time Series},
+	language = {eng},
+	url = {http://www.jstor.org/stable/25464559},
+	author = {Shao, Xiaofeng and Wu, Wei Biao},
+keywords = {Mathematics -- Pure mathematics -- Linear algebra ; Information science -- Data products -- Datasets ; Physical sciences -- Astronomy -- Astrophysics ; Physical sciences -- Physics -- Mechanics ; Mathematics -- Mathematical expressions -- Mathematical functions ; Mathematics -- Applied mathematics -- Statistics ; Mathematics -- Pure mathematics -- Probability theory ; Mathematics -- Pure mathematics -- Probability theory ; Information science -- Information analysis -- Data analysis ; Mathematics -- Applied mathematics -- Statistics ; Mathematics -- Pure mathematics -- Linear algebra ; Information science -- Data products -- Datasets ; Physical sciences -- Astronomy -- Astrophysics ; Physical sciences -- Physics -- Mechanics ; Mathematics -- Mathematical expressions -- Mathematical functions ; Mathematics -- Applied mathematics -- Statistics ; Mathematics -- Pure mathematics -- Probability theory ; Mathematics -- Pure mathematics -- Probability theory ; Information science -- Information analysis -- Data analysis ; Mathematics -- Applied mathematics -- Statistics},
+}
+
 
 %%%%%%%
 %%% W %%%
@@ -352,3 +427,14 @@ abstract = {Random Bernstein polynomials which are also probability distribution
 	year = {1957}
 }
 
+@article{Huerta:1999,
+journal = {Journal of Time Series Analysis},
+pages = {401--416},
+volume = {20},
+publisher = {Blackwell Publishers Ltd},
+number = {4},
+year = {1999},
+title = {Bayesian Inference on Periodicities and Component Spectral Structure in Time Series},
+address = {Oxford, UK and Boston, USA},
+author = {Huerta, Gabriel and West, Mike},
+}

@@ -1,253 +1,244 @@
-%merlin.mbs apsrev4-1.bst 2010-07-25 4.21a (PWD, AO, DPC) hacked
-%Control: key (0)
-%Control: author (72) initials jnrlst
-%Control: editor formatted (1) identically to author
-%Control: production of article title (-1) disabled
-%Control: page (0) single
-%Control: year (1) truncated
-%Control: production of eprint (0) enabled
-\begin{thebibliography}{22}%
-\makeatletter
-\providecommand \@ifxundefined [1]{%
- \@ifx{#1\undefined}
-}%
-\providecommand \@ifnum [1]{%
- \ifnum #1\expandafter \@firstoftwo
- \else \expandafter \@secondoftwo
- \fi
-}%
-\providecommand \@ifx [1]{%
- \ifx #1\expandafter \@firstoftwo
- \else \expandafter \@secondoftwo
- \fi
-}%
-\providecommand \natexlab [1]{#1}%
-\providecommand \enquote  [1]{``#1''}%
-\providecommand \bibnamefont  [1]{#1}%
-\providecommand \bibfnamefont [1]{#1}%
-\providecommand \citenamefont [1]{#1}%
-\providecommand \href@noop [0]{\@secondoftwo}%
-\providecommand \href [0]{\begingroup \@sanitize@url \@href}%
-\providecommand \@href[1]{\@@startlink{#1}\@@href}%
-\providecommand \@@href[1]{\endgroup#1\@@endlink}%
-\providecommand \@sanitize@url [0]{\catcode `\\12\catcode `\$12\catcode
-  `\&12\catcode `\#12\catcode `\^12\catcode `\_12\catcode `\%12\relax}%
-\providecommand \@@startlink[1]{}%
-\providecommand \@@endlink[0]{}%
-\providecommand \url  [0]{\begingroup\@sanitize@url \@url }%
-\providecommand \@url [1]{\endgroup\@href {#1}{\urlprefix }}%
-\providecommand \urlprefix  [0]{URL }%
-\providecommand \Eprint [0]{\href }%
-\providecommand \doibase [0]{http://dx.doi.org/}%
-\providecommand \selectlanguage [0]{\@gobble}%
-\providecommand \bibinfo  [0]{\@secondoftwo}%
-\providecommand \bibfield  [0]{\@secondoftwo}%
-\providecommand \translation [1]{[#1]}%
-\providecommand \BibitemOpen [0]{}%
-\providecommand \bibitemStop [0]{}%
-\providecommand \bibitemNoStop [0]{.\EOS\space}%
-\providecommand \EOS [0]{\spacefactor3000\relax}%
-\providecommand \BibitemShut  [1]{\csname bibitem#1\endcsname}%
-\let\auto@bib@innerbib\@empty
-%</preamble>
-\bibitem [{\citenamefont {Brockwell}\ and\ \citenamefont
-  {Davis}(1991)}]{Brockwell:1986}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.~J.}\ \bibnamefont
-  {Brockwell}}\ and\ \bibinfo {author} {\bibfnamefont {R.~A.}\ \bibnamefont
-  {Davis}},\ }\href {\doibase 10.1007/978-1-4419-0320-4} {\emph {\bibinfo
-  {title} {Time Series: Theory and Methods}}},\ \bibinfo {edition} {2nd}\ ed.\
-  (\bibinfo  {publisher} {Springer-Verlag New York},\ \bibinfo {address} {New
-  York, USA},\ \bibinfo {year} {1991})\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Gangopadhyay}\ \emph {et~al.}(1999)\citenamefont
-  {Gangopadhyay}, \citenamefont {Mallick},\ and\ \citenamefont
-  {Denison}}]{Gangopadhyay:1999}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
-  {Gangopadhyay}}, \bibinfo {author} {\bibfnamefont {B.}~\bibnamefont
-  {Mallick}}, \ and\ \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
-  {Denison}},\ }\href {\doibase https://doi.org/10.1016/S0378-3758(98)00148-7}
-  {\bibfield  {journal} {\bibinfo  {journal} {Journal of Statistical Planning
-  and Inference}\ }\textbf {\bibinfo {volume} {75}},\ \bibinfo {pages} {281 }
-  (\bibinfo {year} {1999})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Green}(1995)}]{Green:1995}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.~J.}\ \bibnamefont
-  {Green}},\ }\href {\doibase 10.1093/biomet/82.4.711} {\bibfield  {journal}
-  {\bibinfo  {journal} {Biometrika}\ }\textbf {\bibinfo {volume} {82}},\
-  \bibinfo {pages} {711} (\bibinfo {year} {1995})},\ \Eprint
-  {http://arxiv.org/abs/http://oup.prod.sis.lan/biomet/article-pdf/82/4/711/699533/82-4-711.pdf}
-  {http://oup.prod.sis.lan/biomet/article-pdf/82/4/711/699533/82-4-711.pdf}
-  \BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Choudhuri}\ \emph {et~al.}(2004)\citenamefont
-  {Choudhuri}, \citenamefont {Ghosal},\ and\ \citenamefont
-  {Roy}}]{Choudhuri:2004}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {N.}~\bibnamefont
-  {Choudhuri}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Ghosal}}, \
-  and\ \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Roy}},\ }\href
-  {\doibase 10.1198/016214504000000557} {\bibfield  {journal} {\bibinfo
-  {journal} {Journal of the American Statistical Association}\ }\textbf
-  {\bibinfo {volume} {99}},\ \bibinfo {pages} {1050} (\bibinfo {year}
-  {2004})},\ \Eprint
-  {http://arxiv.org/abs/https://doi.org/10.1198/016214504000000557}
-  {https://doi.org/10.1198/016214504000000557} \BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Edwards}\ \emph
-  {et~al.}(2018{\natexlab{a}})\citenamefont {Edwards}, \citenamefont {Meyer},\
-  and\ \citenamefont {Christensen}}]{Edwards2018}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.~C.}\ \bibnamefont
-  {Edwards}}, \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Meyer}}, \
-  and\ \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont {Christensen}},\
-  }\href {\doibase 10.1007/s11222-017-9796-9} {\bibfield  {journal} {\bibinfo
-  {journal} {Statistics and Computing}\ } (\bibinfo {year}
-  {2018}{\natexlab{a}}),\ 10.1007/s11222-017-9796-9}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Whittle}(1957)}]{Whittle:1957}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.}~\bibnamefont
-  {Whittle}},\ }\href {http://www.jstor.org/stable/2983994} {\bibfield
-  {journal} {\bibinfo  {journal} {Journal of the Royal Statistical Society.
-  Series B (Methodological)}\ }\textbf {\bibinfo {volume} {19}},\ \bibinfo
-  {pages} {38} (\bibinfo {year} {1957})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Petrone}()}]{Petrone:1999a}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
-  {Petrone}},\ }\href {\doibase 10.1111/1467-9469.00155} {\bibfield  {journal}
-  {\bibinfo  {journal} {Scandinavian Journal of Statistics}\ }\textbf {\bibinfo
-  {volume} {26}},\ \bibinfo {pages} {373}},\ \Eprint
-  {http://arxiv.org/abs/https://onlinelibrary.wiley.com/doi/pdf/10.1111/1467-9469.00155}
-  {https://onlinelibrary.wiley.com/doi/pdf/10.1111/1467-9469.00155}
-  \BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Petrone}(1999)}]{Petrone:199b}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
-  {Petrone}},\ }\href {http://www.jstor.org/stable/3315494} {\bibfield
-  {journal} {\bibinfo  {journal} {The Canadian Journal of Statistics / La Revue
-  Canadienne de Statistique}\ }\textbf {\bibinfo {volume} {27}},\ \bibinfo
-  {pages} {105} (\bibinfo {year} {1999})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Perron}\ and\ \citenamefont
-  {Mengersen}(2001)}]{Perron:2001}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {F.}~\bibnamefont
-  {Perron}}\ and\ \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
-  {Mengersen}},\ }\href {http://www.jstor.org/stable/3068361} {\bibfield
-  {journal} {\bibinfo  {journal} {Biometrics}\ }\textbf {\bibinfo {volume}
-  {57}},\ \bibinfo {pages} {518} (\bibinfo {year} {2001})}\BibitemShut
-  {NoStop}%
-\bibitem [{\citenamefont {Sethuraman}(1994)}]{Sethuraman:1994}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
-  {Sethuraman}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
-  {Statistica Sinica}\ }\textbf {\bibinfo {volume} {4}},\ \bibinfo {pages}
-  {639} (\bibinfo {year} {1994})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Lang}\ and\ \citenamefont
-  {Brezger}(2004)}]{Lang:2004}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
-  {Lang}}\ and\ \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Brezger}},\
-  }\href {\doibase 10.1198/1061860043010} {\bibfield  {journal} {\bibinfo
-  {journal} {Journal of Computational and Graphical Statistics}\ }\textbf
-  {\bibinfo {volume} {13}},\ \bibinfo {pages} {183} (\bibinfo {year} {2004})},\
-  \Eprint {http://arxiv.org/abs/https://doi.org/10.1198/1061860043010}
-  {https://doi.org/10.1198/1061860043010} \BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Jullion}\ and\ \citenamefont
-  {Lambert}(2007)}]{Jullion:2007}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
-  {Jullion}}\ and\ \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont
-  {Lambert}},\ }\href {\doibase https://doi.org/10.1016/j.csda.2006.09.027}
-  {\bibfield  {journal} {\bibinfo  {journal} {Computational Statistics \& Data
-  Analysis}\ }\textbf {\bibinfo {volume} {51}},\ \bibinfo {pages} {2542 }
-  (\bibinfo {year} {2007})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Bremhorst}\ and\ \citenamefont
-  {Lambert}(2016)}]{Bremhorst:2016}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {V.}~\bibnamefont
-  {Bremhorst}}\ and\ \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont
-  {Lambert}},\ }\href {\doibase https://doi.org/10.1016/j.csda.2014.05.009}
-  {\bibfield  {journal} {\bibinfo  {journal} {Computational Statistics \& Data
-  Analysis}\ }\textbf {\bibinfo {volume} {93}},\ \bibinfo {pages} {270 }
-  (\bibinfo {year} {2016})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Lambert}(2007)}]{Lambert:2007}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.}~\bibnamefont
-  {Lambert}},\ }\href {\doibase https://doi.org/10.1016/j.csda.2007.01.018}
-  {\bibfield  {journal} {\bibinfo  {journal} {Computational Statistics \& Data
-  Analysis}\ }\textbf {\bibinfo {volume} {51}},\ \bibinfo {pages} {6307 }
-  (\bibinfo {year} {2007})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Ruppert}(2002)}]{Ruppert2002}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
-  {Ruppert}},\ }\href {\doibase 10.1198/106186002853} {\bibfield  {journal}
-  {\bibinfo  {journal} {Journal of Computational and Graphical Statistics}\
-  }\textbf {\bibinfo {volume} {11}},\ \bibinfo {pages} {735} (\bibinfo {year}
-  {2002})},\ \Eprint
-  {http://arxiv.org/abs/https://doi.org/10.1198/106186002853}
-  {https://doi.org/10.1198/106186002853} \BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Eilers}\ \emph {et~al.}(2015)\citenamefont {Eilers},
-  \citenamefont {Marx},\ and\ \citenamefont {Durb{\'a}n}}]{Eilers2015}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.~H.~C.}\
-  \bibnamefont {Eilers}}, \bibinfo {author} {\bibfnamefont {B.~D.}\
-  \bibnamefont {Marx}}, \ and\ \bibinfo {author} {\bibfnamefont
-  {M.}~\bibnamefont {Durb{\'a}n}},\ }\href {http://hdl.handle.net/2117/88526}
-  {\bibfield  {journal} {\bibinfo  {journal} {SORT: statistics and operations
-  research transactions}\ }\textbf {\bibinfo {volume} {39}} (\bibinfo {year}
-  {2015})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Kauermann}\ and\ \citenamefont
-  {Opsomer}(2011)}]{Kauermann2011}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.}~\bibnamefont
-  {Kauermann}}\ and\ \bibinfo {author} {\bibfnamefont {J.~D.}\ \bibnamefont
-  {Opsomer}},\ }\href {http://www.jstor.org/stable/29777177} {\bibfield
-  {journal} {\bibinfo  {journal} {Biometrika}\ }\textbf {\bibinfo {volume}
-  {98}},\ \bibinfo {pages} {225} (\bibinfo {year} {2011})}\BibitemShut
-  {NoStop}%
-\bibitem [{\citenamefont {Likhachev}(2017)}]{Likhachev2017}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
-  {Likhachev}},\ }\href {\doibase https://doi.org/10.1016/j.tsf.2017.06.056}
-  {\bibfield  {journal} {\bibinfo  {journal} {Thin Solid Films}\ }\textbf
-  {\bibinfo {volume} {636}},\ \bibinfo {pages} {519 } (\bibinfo {year}
-  {2017})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Edwards}\ \emph
-  {et~al.}(2018{\natexlab{b}})\citenamefont {Edwards}, \citenamefont {Meyer},\
-  and\ \citenamefont {Christensen}}]{Edwards:bsplinePsd:2018}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.~C.}\ \bibnamefont
-  {Edwards}}, \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Meyer}}, \
-  and\ \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont {Christensen}},\
-  }\href {https://CRAN.R-project.org/package=bsplinePsd} {\emph {\bibinfo
-  {title} {bsplinePsd: Bayesian Nonparametric Spectral Density Estimation Using
-  B-Spline Priors}}} (\bibinfo {year} {2018}{\natexlab{b}}),\ \bibinfo {note}
-  {{R package version 0.6.0}}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Carter}\ and\ \citenamefont
-  {Kohn}(1997)}]{Cart:1997}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.~K.}\ \bibnamefont
-  {Carter}}\ and\ \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Kohn}},\
-  }\href {\doibase 10.1111/1467-9868.00067} {\bibfield  {journal} {\bibinfo
-  {journal} {Journal of the Royal Statistical Society, Series B}\ }\textbf
-  {\bibinfo {volume} {59}},\ \bibinfo {pages} {255} (\bibinfo {year}
-  {1997})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Huerta}\ and\ \citenamefont
-  {West}(1999)}]{Huerta:1999}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.}~\bibnamefont
-  {Huerta}}\ and\ \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {West}},\
-  }\href {\doibase 10.1111/1467-9892.00145} {\bibfield  {journal} {\bibinfo
-  {journal} {Journal of Time Series Analysis}\ }\textbf {\bibinfo {volume}
-  {20}},\ \bibinfo {pages} {401} (\bibinfo {year} {1999})}\BibitemShut
-  {NoStop}%
-\bibitem [{\citenamefont {Kirch}\ \emph {et~al.}(2018)\citenamefont {Kirch},
-  \citenamefont {Edwards}, \citenamefont {Meier},\ and\ \citenamefont
-  {Meyer}}]{Kirch:2018}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
-  {Kirch}}, \bibinfo {author} {\bibfnamefont {M.~C.}\ \bibnamefont {Edwards}},
-  \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Meier}}, \ and\ \bibinfo
-  {author} {\bibfnamefont {R.}~\bibnamefont {Meyer}},\ }\href {\doibase
-  10.1214/18-BA1126} {\bibfield  {journal} {\bibinfo  {journal} {Bayesian
-  Anal.}\ } (\bibinfo {year} {2018}),\ 10.1214/18-BA1126},\ \bibinfo {note}
-  {advance publication}\BibitemShut {NoStop}%
-\end{thebibliography}%
+\begin{thebibliography}{27}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bremhorst and Lambert(2016)]{Bremhorst:2016}
+Vincent Bremhorst and Philippe Lambert.
+\newblock Flexible estimation in cure survival models using bayesian p-splines.
+\newblock \emph{Computational Statistics \& Data Analysis}, 93:\penalty0 270 --
+  284, 2016.
+\newblock ISSN 0167-9473.
+\newblock \doi{https://doi.org/10.1016/j.csda.2014.05.009}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0167947314001492}.
+
+\bibitem[Brockwell and Davis(1991)]{Brockwell:1986}
+Peter~J Brockwell and Richard~A Davis.
+\newblock \emph{Time Series: Theory and Methods}.
+\newblock Springer-Verlag New York, New York, USA, 2 edition, 1991.
+\newblock ISBN 978-0-387-97429-3.
+\newblock \doi{10.1007/978-1-4419-0320-4}.
+\newblock URL \url{https://doi.org/10.1007/978-1-4419-0320-4}.
+
+\bibitem[Cadonna et~al.(2017)Cadonna, Kottas, and Prado]{Cadonna2017}
+A.~Cadonna, A.~Kottas, and R.~Prado.
+\newblock Bayesian mixture modeling for spectral density estimation.
+\newblock \emph{Statistics \& Probability Letters}, 125:\penalty0 189--195,
+  2017.
+\newblock ISSN 0167-7152.
+\newblock \doi{https://doi.org/10.1016/j.spl.2017.02.008}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0167715217300573}.
+
+\bibitem[Carter and Kohn(1997)]{Cart:1997}
+C.~K. Carter and R.~Kohn.
+\newblock Semiparametric bayesian inference for time series with mixed spectra.
+\newblock \emph{Journal of the Royal Statistical Society, Series B},
+  59\penalty0 (1):\penalty0 255--268, 1997.
+\newblock \doi{10.1111/1467-9868.00067}.
+\newblock URL \url{https://doi.org/10.1111/1467-9868.00067}.
+
+\bibitem[Choudhuri et~al.(2004)Choudhuri, Ghosal, and Roy]{Choudhuri:2004}
+Nidhan Choudhuri, Subhashis Ghosal, and Anindya Roy.
+\newblock Bayesian estimation of the spectral density of a time series.
+\newblock \emph{Journal of the American Statistical Association}, 99\penalty0
+  (468):\penalty0 1050--1059, 2004.
+\newblock \doi{10.1198/016214504000000557}.
+\newblock URL \url{https://doi.org/10.1198/016214504000000557}.
+
+\bibitem[Edwards et~al.(2018{\natexlab{a}})Edwards, Meyer, and
+  Christensen]{Edwards2018}
+Matthew~C. Edwards, Renate Meyer, and Nelson Christensen.
+\newblock Bayesian nonparametric spectral density estimation using b-spline
+  priors.
+\newblock \emph{Statistics and Computing}, Jan 2018{\natexlab{a}}.
+\newblock ISSN 1573-1375.
+\newblock \doi{10.1007/s11222-017-9796-9}.
+\newblock URL \url{https://doi.org/10.1007/s11222-017-9796-9}.
+
+\bibitem[Edwards et~al.(2018{\natexlab{b}})Edwards, Meyer, and
+  Christensen]{Edwards:bsplinePsd:2018}
+Matthew~C. Edwards, Renate Meyer, and Nelson Christensen.
+\newblock \emph{bsplinePsd: Bayesian Nonparametric Spectral Density Estimation
+  Using B-Spline Priors}, 2018{\natexlab{b}}.
+\newblock URL \url{https://CRAN.R-project.org/package=bsplinePsd}.
+\newblock {R package version 0.6.0}.
+
+\bibitem[Eilers and Marx(1996)]{Eilers:1996}
+Paul H.~C. Eilers and Brian~D. Marx.
+\newblock Flexible smoothing with b -splines and penalties.
+\newblock \emph{Statist. Sci.}, 11\penalty0 (2):\penalty0 89--121, 05 1996.
+\newblock \doi{10.1214/ss/1038425655}.
+\newblock URL \url{https://doi.org/10.1214/ss/1038425655}.
+
+\bibitem[Eilers et~al.(2015)Eilers, Marx, and Durb{\'a}n]{Eilers2015}
+Paul H.~C. Eilers, Brian~D. Marx, and Mar{\'i}a Durb{\'a}n.
+\newblock Twenty years of p-splines.
+\newblock \emph{SORT: statistics and operations research transactions},
+  39\penalty0 (2), 2015.
+\newblock ISSN 1696-2281.
+\newblock URL \url{http://hdl.handle.net/2117/88526}.
+
+\bibitem[Gangopadhyay et~al.(1999)Gangopadhyay, Mallick, and
+  Denison]{Gangopadhyay:1999}
+A.K. Gangopadhyay, B.K. Mallick, and D.G.T. Denison.
+\newblock Estimation of spectral density of a stationary time series via an
+  asymptotic representation of the periodogram.
+\newblock \emph{Journal of Statistical Planning and Inference}, 75\penalty0
+  (2):\penalty0 281 -- 290, 1999.
+\newblock ISSN 0378-3758.
+\newblock \doi{https://doi.org/10.1016/S0378-3758(98)00148-7}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0378375898001487}.
+
+\bibitem[Green(1995)]{Green:1995}
+Peter~J. Green.
+\newblock {Reversible jump Markov chain Monte Carlo computation and Bayesian
+  model determination}.
+\newblock \emph{Biometrika}, 82\penalty0 (4):\penalty0 711--732, 12 1995.
+\newblock ISSN 0006-3444.
+\newblock \doi{10.1093/biomet/82.4.711}.
+\newblock URL \url{https://dx.doi.org/10.1093/biomet/82.4.711}.
+
+\bibitem[Huerta and West(1999)]{Huerta:1999}
+G.~Huerta and M.~West.
+\newblock Bayesian inference on periodicities and component spectral structure
+  in time series.
+\newblock \emph{Journal of Time Series Analysis}, 20\penalty0 (4):\penalty0
+  401--416, 1999.
+\newblock \doi{10.1111/1467-9892.00145}.
+\newblock URL \url{https://doi.org/10.1111/1467-9892.00145}.
+
+\bibitem[Jullion and Lambert(2007)]{Jullion:2007}
+Astrid Jullion and Philippe Lambert.
+\newblock Robust specification of the roughness penalty prior distribution in
+  spatially adaptive bayesian p-splines models.
+\newblock \emph{Computational Statistics \& Data Analysis}, 51\penalty0
+  (5):\penalty0 2542 -- 2558, 2007.
+\newblock ISSN 0167-9473.
+\newblock \doi{https://doi.org/10.1016/j.csda.2006.09.027}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0167947306003549}.
+
+\bibitem[Kauermann and Opsomer(2011)]{Kauermann2011}
+G{\"o}ran Kauermann and Jean~D. Opsomer.
+\newblock Data-driven selection of the spline dimension in penalized spline
+  regression.
+\newblock \emph{Biometrika}, 98\penalty0 (1):\penalty0 225--230, 2011.
+\newblock ISSN 00063444.
+\newblock URL \url{http://www.jstor.org/stable/29777177}.
+
+\bibitem[Kirch et~al.(2018)Kirch, Edwards, Meier, and Meyer]{Kirch:2018}
+Claudia Kirch, Matthew~C. Edwards, Alexander Meier, and Renate Meyer.
+\newblock Beyond whittle: Nonparametric correction of a parametric likelihood
+  with a focus on bayesian time series analysis.
+\newblock \emph{Bayesian Anal.}, 2018.
+\newblock \doi{10.1214/18-BA1126}.
+\newblock URL \url{https://doi.org/10.1214/18-BA1126}.
+\newblock Advance publication.
+
+\bibitem[Lambert(2007)]{Lambert:2007}
+Philippe Lambert.
+\newblock Archimedean copula estimation using bayesian splines smoothing
+  techniques.
+\newblock \emph{Computational Statistics \& Data Analysis}, 51\penalty0
+  (12):\penalty0 6307 -- 6320, 2007.
+\newblock ISSN 0167-9473.
+\newblock \doi{https://doi.org/10.1016/j.csda.2007.01.018}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0167947307000217}.
+
+\bibitem[Lang and Brezger(2004)]{Lang:2004}
+Stefan Lang and Andreas Brezger.
+\newblock Bayesian p-splines.
+\newblock \emph{Journal of Computational and Graphical Statistics}, 13\penalty0
+  (1):\penalty0 183--212, 2004.
+\newblock \doi{10.1198/1061860043010}.
+\newblock URL \url{https://doi.org/10.1198/1061860043010}.
+
+\bibitem[Likhachev(2017)]{Likhachev2017}
+D.V. Likhachev.
+\newblock Selecting the right number of knots for b-spline parameterization of
+  the dielectric functions in spectroscopic ellipsometry data analysis.
+\newblock \emph{Thin Solid Films}, 636:\penalty0 519 -- 526, 2017.
+\newblock ISSN 0040-6090.
+\newblock \doi{https://doi.org/10.1016/j.tsf.2017.06.056}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0040609017304911}.
+
+\bibitem[Pensky et~al.(2007)Pensky, Vidakovic, , and De~Canditiis]{Pensky:2007}
+Marianna Pensky, Brani Vidakovic, , and Daniela De~Canditiis.
+\newblock Bayesian decision theoretic scale-adaptive estimation of a
+  log-spectral density.
+\newblock \emph{Statistica Sinica}, 17:\penalty0 635--666, 2007.
+\newblock URL
+  \url{http://www3.stat.sinica.edu.tw/statistica/j17n2/j17n210/j17n210.html}.
+
+\bibitem[Perron and Mengersen(2001)]{Perron:2001}
+F.~Perron and K.~Mengersen.
+\newblock Bayesian nonparametric modeling using mixtures of triangular
+  distributions.
+\newblock \emph{Biometrics}, 57\penalty0 (2):\penalty0 518--528, 2001.
+\newblock ISSN 0006341X, 15410420.
+\newblock URL \url{http://www.jstor.org/stable/3068361}.
+
+\bibitem[Petrone(1999{\natexlab{a}})]{Petrone:1999a}
+Sonia Petrone.
+\newblock {Random Bernstein Polynomials}.
+\newblock \emph{Scandinavian Journal of Statistics}, 26\penalty0 (3):\penalty0
+  373--393, 1999{\natexlab{a}}.
+\newblock \doi{10.1111/1467-9469.00155}.
+\newblock URL
+  \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/1467-9469.00155}.
+
+\bibitem[Petrone(1999{\natexlab{b}})]{Petrone:199b}
+Sonia Petrone.
+\newblock Bayesian density estimation using bernstein polynomials.
+\newblock \emph{The Canadian Journal of Statistics / La Revue Canadienne de
+  Statistique}, 27\penalty0 (1):\penalty0 105--126, 1999{\natexlab{b}}.
+\newblock ISSN 03195724.
+\newblock URL \url{http://www.jstor.org/stable/3315494}.
+
+\bibitem[Rosen and Stoffer(2007)]{Rosen:2007}
+Ori Rosen and David~S. Stoffer.
+\newblock {Automatic estimation of multivariate spectra via smoothing splines}.
+\newblock \emph{Biometrika}, 94\penalty0 (2):\penalty0 335--345, 02 2007.
+\newblock ISSN 0006-3444.
+\newblock \doi{10.1093/biomet/asm022}.
+\newblock URL \url{https://doi.org/10.1093/biomet/asm022}.
+
+\bibitem[Ruppert(2002)]{Ruppert2002}
+David Ruppert.
+\newblock Selecting the number of knots for penalized splines.
+\newblock \emph{Journal of Computational and Graphical Statistics}, 11\penalty0
+  (4):\penalty0 735--757, 2002.
+\newblock \doi{10.1198/106186002853}.
+\newblock URL \url{https://doi.org/10.1198/106186002853}.
+
+\bibitem[Sethuraman(1994)]{Sethuraman:1994}
+Jayaram Sethuraman.
+\newblock A constructive definition of {Dirichlet} priors.
+\newblock \emph{Statistica Sinica}, 4:\penalty0 639--650, 1994.
+\newblock URL
+  \url{http://www3.stat.sinica.edu.tw/statistica/j4n2/j4n216/j4n216.htm}.
+
+\bibitem[Shao and Wu(2007)]{ShaoXiaofeng2007ASTf}
+Xiaofeng Shao and Wei~Biao Wu.
+\newblock Asymptotic spectral theory for nonlinear time series.
+\newblock \emph{The Annals of Statistics}, 35\penalty0 (4):\penalty0
+  1773--1801, 2007.
+\newblock ISSN 00905364.
+\newblock URL \url{http://www.jstor.org/stable/25464559}.
+
+\bibitem[Whittle(1957)]{Whittle:1957}
+P.~Whittle.
+\newblock Curve and periodogram smoothing.
+\newblock \emph{Journal of the Royal Statistical Society. Series B
+  (Methodological)}, 19\penalty0 (1):\penalty0 38--63, 1957.
+\newblock ISSN 00359246.
+\newblock URL \url{http://www.jstor.org/stable/2983994}.
+
+\end{thebibliography}
