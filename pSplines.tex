@@ -58,7 +58,7 @@ As the periodogram fluctuates around the true spectral density, most  nonparamet
 \begin{align*}
 I_n(\lambda) = \dfrac{1}{2 \pi n} \left| \sum_{t=1}^{n} Y_t \exp \left( -i t \lambda\right)\right|^2,
 \end{align*}
-in one way or another, where $-\pi < \lambda \leq \pi$ is the angular frequency and $\bm{Y}=(Y_1,\ldots,Y_n)$ is a stationary time series of length $n$. The periodogram has interesting features, for instance, it is asymptotically unbiased and follows an exponential distribution with mean $f(\lambda)$.  However, it is not consistent \citep{Brockwell:1986}.
+in one way or another, where $-\pi < \lambda \leq \pi$ is the angular frequency and $\bm{Y}=(Y_1,\ldots,Y_n)$ is a stationary time series of length $n$. The periodogram has interesting features (***).  For instance, the periodogram evaluated at the Fourier frequencies $\lambda_i$  are asymptotically independent and follow an exponential distribution with mean $f(\lambda_i)$.  Thus, they are unbiased estimates of $f(\lambda_i)$  but not consistent \citep{Brockwell:1986}.
 
 
 Most Bayesian approaches to psd estimation use the so-called Whittle likelihood, introduced by \citep{Whittle:1957} as an approximation to the likelihood of a Gaussian stationary time series.  Based on the  limiting independent exponential distribution of the periodogram, the Whittle likelihood for a mean centred weakly stationary time series $\bm{Y}$ of length $n$ is defined as
@@ -317,7 +317,7 @@ We can update $\bm{v}$ by modifying $\bm{\beta}$ according to a proposal distrib
 \bm{v}^{*} &= \textbf{S}^{1/2}\bm{\beta}^{*} + \overline{\bm{v}}, 
 \end{align*}
 where $\bm{\beta}^{*}= (\beta_1, \dots, \beta_{k}^{*} ,\dots, \beta_{K-1})^\top$, $z \sim \text{Normal}(0,1)$, and $\sigma$ controls the length of the proposals.  We vary $\sigma$ across iterations in order to get an acceptance rate between 0.3 and 0.5.  Note that even though the proposal is univariate on $\bm{\beta}$, it is multivariate on $\bm{v}^*$.
-Alternatively to the Metropolis step used for \bm{v}, a data augmentation step based on Polya-Gamma auxiliary variables can be used which would allow for a full Gibbs sampler \citep{Polson:2013}. 
+Alternatively to the Metropolis step used for \bm{v}, a data augmentation step based on P\'olya-Gamma auxiliary variables can be used which would allow for a full Gibbs sampler \citep{Polson:2013}. 
 
 The $m^{\text{th}}$ cycle of the Gibbs sampler is given by
 \begin{itemize}
