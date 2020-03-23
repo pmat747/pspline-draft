@@ -88,18 +88,24 @@
 %%% E %%%
 %%%%%%%
 
-@Article{Edwards2018,
-	author={Edwards, Matthew C. and Meyer, Renate and Christensen, Nelson},
-	title={Bayesian nonparametric spectral density estimation using B-spline priors},
-	journal={Statistics and Computing},
-	year={2018},
-	month={Jan},
-	day={12},
-	abstract={We present a new Bayesian nonparametric approach to estimating the spectral density of a stationary time series. A nonparametric prior based on a mixture of B-spline distributions is specified and can be regarded as a generalization of the Bernstein polynomial prior of Petrone (Scand J Stat 26:373--393, 1999a; Can J Stat 27:105--126, 1999b) and Choudhuri et al. (J Am Stat Assoc 99(468):1050--1059, 2004). Whittle's likelihood approximation is used to obtain the pseudo-posterior distribution. This method allows for a data-driven choice of the number of mixture components and the location of knots. Posterior samples are obtained using a Metropolis-within-Gibbs Markov chain Monte Carlo algorithm, and mixing is improved using parallel tempering. We conduct a simulation study to demonstrate that for complicated spectral densities, the B-spline prior provides more accurate Monte Carlo estimates in terms of {\$}{\$}L{\_}1{\$}{\$}L1-error and uniform coverage probabilities than the Bernstein polynomial prior. We apply the algorithm to annual mean sunspot data to estimate the solar cycle. Finally, we demonstrate the algorithm's ability to estimate a spectral density with sharp features, using real gravitational wave detector data from LIGO's sixth science run, recoloured to match the Advanced LIGO target sensitivity.},
-	issn={1573-1375},
-	doi={10.1007/s11222-017-9796-9},
-	url={https://doi.org/10.1007/s11222-017-9796-9}
+
+@article{Edwards2019,
+pages = {67--78},
+volume = {29},
+publisher = {Springer US},
+number = {1},
+year = {2019},
+title = {Bayesian nonparametric spectral density estimation using B-spline priors},
+language = {eng},
+address = {New York},
+author = {Edwards, Matthew and Meyer, Renate and Christensen, Nelson},
+keywords = {B-spline prior ; Bernstein polynomial prior ; Whittle likelihood ; Spectral density estimation ; Bayesian nonparametrics ; LIGO ; Gravitational waves ; Sunspot cycle},
+issn = {0960-3174},
+abstract = {We present a new Bayesian nonparametric approach to estimating the spectral density of a stationary time series. A nonparametric prior based on a mixture of B-spline distributions is specified and can be regarded as a generalization of the Bernstein polynomial prior of Petrone (Scand J Stat 26:373–393, 1999a; Can J Stat 27:105–126, 1999b) and Choudhuri et al. (J Am Stat Assoc 99(468):1050–1059, 2004). Whittle’s likelihood approximation is used to obtain the pseudo-posterior distribution. This method allows for a data-driven choice of the number of mixture components and the location of knots. Posterior samples are obtained using a Metropolis-within-Gibbs Markov chain Monte Carlo algorithm, and mixing is improved using parallel tempering. We conduct a simulation study to demonstrate that for complicated spectral densities, the B-spline prior provides more accurate Monte Carlo estimates in terms of $$L_1$$ L 1 -error and uniform coverage probabilities than the Bernstein polynomial prior. We apply the algorithm to annual mean sunspot data to estimate the solar cycle. Finally, we demonstrate the algorithm’s ability to estimate a spectral density with sharp features, using real gravitational wave detector data from LIGO’s sixth science run, recoloured to match the Advanced LIGO target sensitivity.},
+journal = {Statistics and Computing},
 }
+
+
 
 @Manual{Edwards:bsplinePsd:2018,
 	title = {bsplinePsd: Bayesian Nonparametric Spectral Density Estimation Using B-Spline Priors},
@@ -468,3 +474,93 @@ title = {Bayesian Inference on Periodicities and Component Spectral Structure in
 address = {Oxford, UK and Boston, USA},
 author = {Huerta, Gabriel and West, Mike},
 }
+
+@article{Rodriguez,
+pages = {483--500},
+volume = {29},
+publisher = {Springer US},
+number = {3},
+title = {On the estimation of variance parameters in non-standard generalised linear mixed models: application to penalised smoothing},
+language = {eng},
+address = {New York},
+author = {Rodríguez-Álvarez, María and Durban, Maria and Lee, Dae-Jin and Eilers, Paul},
+keywords = {Generalised linear mixed models ; Generalised additive models ; Variance parameters ; Smoothing parameters ; REML ; Effective degrees of freedom},
+issn = {0960-3174},
+abstract = {We present a novel method for the estimation of variance parameters in generalised linear mixed models. The method has its roots in Harville (J Am Stat Assoc 72(358):320–338, 1977)’s work, but it is able to deal with models that have a precision matrix for the random effect vector that is linear in the inverse of the variance parameters (i.e., the precision parameters). We call the method SOP (separation of overlapping precision matrices). SOP is based on applying the method of successive approximations to easy-to-compute estimate updates of the variance parameters. These estimate updates have an appealing form: they are the ratio of a (weighted) sum of squares to a quantity related to effective degrees of freedom. We provide the sufficient and necessary conditions for these estimates to be strictly positive. An important application field of SOP is penalised regression estimation of models where multiple quadratic penalties act on the same regression coefficients. We discuss in detail two of those models: penalised splines for locally adaptive smoothness and for hierarchical curve data. Several data examples in these settings are presented.},
+journal = {Statistics and Computing},
+}
+
+
+@article{WoodSimon2017Pwdb,
+pages = {985--989},
+volume = {27},
+publisher = {Springer US},
+number = {4},
+year = {2017},
+title = {P-splines with derivative based penalties and tensor product smoothing of unevenly distributed data},
+language = {eng},
+address = {New York},
+author = {Wood, Simon},
+keywords = {Reduced rank spline ; P-spline ; Smoothing spline ; Derivative penalty ; Tensor product smooth},
+issn = {0960-3174},
+abstract = {The P-splines of Eilers and Marx (Stat Sci 11:89–121, 1996) combine a B-spline basis with a discrete quadratic penalty on the basis coefficients, to produce a reduced rank spline like smoother. P-splines have three properties that make them very popular as reduced rank smoothers: (i) the basis and the penalty are sparse, enabling efficient computation, especially for Bayesian stochastic simulation; (ii) it is possible to flexibly ‘mix-and-match’ the order of B-spline basis and penalty, rather than the order of penalty controlling the order of the basis as in spline smoothing; (iii) it is very easy to set up the B-spline basis functions and penalties. The discrete penalties are somewhat less interpretable in terms of function shape than the traditional derivative based spline penalties, but tend towards penalties proportional to traditional spline penalties in the limit of large basis size. However part of the point of P-splines is not to use a large basis size. In addition the spline basis functions arise from solving functional optimization problems involving derivative based penalties, so moving to discrete penalties for smoothing may not always be desirable. The purpose of this note is to point out that the three properties of basis-penalty sparsity, mix-and-match penalization and ease of setup are readily obtainable with B-splines subject to derivative based penalization. The penalty setup typically requires a few lines of code, rather than the two lines typically required for P-splines, but this one off disadvantage seems to be the only one associated with using derivative based penalties. As an example application, it is shown how basis-penalty sparsity enables efficient computation with tensor product smoothers of scattered data.},
+journal = {Statistics and Computing},
+}
+
+@article{Wood2017,
+pages = {1071--1081},
+volume = {73},
+number = {4},
+year = {2017},
+title = {A generalized Fellner‐Schall method for smoothing parameter optimization with application to Tweedie location, scale and shape models},
+author = {Wood, Simon N. and Fasiolo, Matteo},
+keywords = {Fisheries ; Smoothing Parameter ; Reml ; Gamlss ; Sparse Additive Model},
+issn = {0006-341X},
+journal = {Biometrics},
+}
+
+@article{Meier2020,
+volume = {175},
+publisher = {Elsevier Inc},
+year = {2020},
+title = {Bayesian nonparametric analysis of multivariate time series: A matrix Gamma Process approach},
+language = {eng},
+author = {Meier, Alexander and Kirch, Claudia and Meyer, Renate},
+keywords = {Bayesian Nonparametrics Completely Random Measures ; Spectral Density ; Stationary Multivariate Time Series ; Mathematics},
+issn = {0047-259X},
+abstract = {<p>Many Bayesian nonparametric approaches to multivariate time series rely on Whittle’s Likelihood, involving the second order structure of a stationary time series by means of its spectral density matrix. In this work, we model the spectral density matrix by means of random measures that are constructed in such a way that positive definiteness is ensured. This is in line with existing approaches for the univariate case, where the normalized spectral density is modeled similar to a probability density, e.g. with a Dirichlet process mixture of Beta densities. We present a related approach for multivariate time series, with matrix-valued mixture weights induced by a Hermitian positive definite Gamma process. The latter has not been considered in the literature, allows to include prior knowledge and possesses a series representation that will be used in MCMC methods. We establish posterior consistency and contraction rates and small sample performance of the proposed procedure is shown...},
+journal = {Journal of Multivariate Analysis},
+}
+
+@article{Krivobokova,
+pages = {443--459},
+volume = {47},
+publisher = {Springer-Verlag},
+number = {3},
+year = {2006},
+title = {Estimating the term structure of interest rates using penalized splines},
+language = {eng},
+address = {Berlin/Heidelberg},
+author = {Krivobokova, Tatyana and Kauermann, Göran and Archontakis, Theofanis},
+keywords = {Interest Rates;},
+issn = {0932-5026},
+journal = {Statistical Papers},
+}
+
+@article{Wegener,
+pages = {557},
+volume = {58},
+publisher = {Springer},
+number = {3},
+year = {2017},
+title = {Forecasting in nonlinear univariate time series using penalized splines.(Report)},
+language = {eng},
+author = {Wegener, Michael and Kauermann, Goran},
+keywords = {Splines ; Mathematical Models ; Time Series ; Economic Models ; Autoregressive Processes ; Forecasting ; Time Series ; Computer Simulation ; Convergence ; Economic Forecasting ; Time Series ; Penalized Splines ; Model Selection ; Eonia-Rate ; 62g08 ; 62m10;},
+issn = {0932-5026},
+abstract = {To access, purchase, authenticate, or subscribe to the full-text of this article, please visit this link: http://dx.doi.org/10.1007/s00362-015-0711-1 Byline: Michael Wegener (1), Goran Kauermann (2) Keywords: Time series; Penalized splines; Model selection; EONIA-rate; 62G08; 62M10 Abstract: In this article we discuss penalized splines for fitting and forecasting univariate nonlinear time series models. While penalized splines have been excessively used in smooth regression, their use in nonlinear time series models is less far developed. This paper focuses on univariate autoregressive processes and discuss different nonlinear (functional) time series models including parsimonious estimation and model selection ideas. Furthermore, in simulations and an application we show how this approach compares to common parametric nonlinear models. Author Affiliation: (1) Quantitative Products, DEKA Investment GmbH, Mainzer Landstrasse 16, Frankfurt (Main), Germany (2) Department of Statistics, Ludwigs-Maximilians-University Munich, Munich, Germany Article History: Registration Date: 27/08/2015 Received Date: 09/02/2015 Online Date: 15/09/2015},
+journal = {Statistical Papers},
+}
+
+
+
