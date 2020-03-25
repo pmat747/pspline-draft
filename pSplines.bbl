@@ -1,4 +1,4 @@
-\begin{thebibliography}{27}
+\begin{thebibliography}{34}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -49,21 +49,19 @@ Nidhan Choudhuri, Subhashis Ghosal, and Anindya Roy.
 \newblock \doi{10.1198/016214504000000557}.
 \newblock URL \url{https://doi.org/10.1198/016214504000000557}.
 
-\bibitem[Edwards et~al.(2018{\natexlab{a}})Edwards, Meyer, and
-  Christensen]{Edwards2018}
-Matthew~C. Edwards, Renate Meyer, and Nelson Christensen.
+\bibitem[Edwards et~al.(2019)Edwards, Meyer, and Christensen]{Edwards2019}
+Matthew Edwards, Renate Meyer, and Nelson Christensen.
 \newblock Bayesian nonparametric spectral density estimation using b-spline
   priors.
-\newblock \emph{Statistics and Computing}, Jan 2018{\natexlab{a}}.
-\newblock ISSN 1573-1375.
-\newblock \doi{10.1007/s11222-017-9796-9}.
-\newblock URL \url{https://doi.org/10.1007/s11222-017-9796-9}.
+\newblock \emph{Statistics and Computing}, 29\penalty0 (1):\penalty0 67--78,
+  2019.
+\newblock ISSN 0960-3174.
 
-\bibitem[Edwards et~al.(2018{\natexlab{b}})Edwards, Meyer, and
+\bibitem[Edwards et~al.(2018)Edwards, Meyer, and
   Christensen]{Edwards:bsplinePsd:2018}
 Matthew~C. Edwards, Renate Meyer, and Nelson Christensen.
 \newblock \emph{bsplinePsd: Bayesian Nonparametric Spectral Density Estimation
-  Using B-Spline Priors}, 2018{\natexlab{b}}.
+  Using B-Spline Priors}, 2018.
 \newblock URL \url{https://CRAN.R-project.org/package=bsplinePsd}.
 \newblock {R package version 0.6.0}.
 
@@ -140,6 +138,14 @@ Claudia Kirch, Matthew~C. Edwards, Alexander Meier, and Renate Meyer.
 \newblock URL \url{https://doi.org/10.1214/18-BA1126}.
 \newblock Advance publication.
 
+\bibitem[Krivobokova et~al.(2006)Krivobokova, Kauermann, and
+  Archontakis]{Krivobokova}
+Tatyana Krivobokova, Göran Kauermann, and Theofanis Archontakis.
+\newblock Estimating the term structure of interest rates using penalized
+  splines.
+\newblock \emph{Statistical Papers}, 47\penalty0 (3):\penalty0 443--459, 2006.
+\newblock ISSN 0932-5026.
+
 \bibitem[Lambert(2007)]{Lambert:2007}
 Philippe Lambert.
 \newblock Archimedean copula estimation using bayesian splines smoothing
@@ -168,6 +174,13 @@ D.V. Likhachev.
 \newblock \doi{https://doi.org/10.1016/j.tsf.2017.06.056}.
 \newblock URL
   \url{http://www.sciencedirect.com/science/article/pii/S0040609017304911}.
+
+\bibitem[Meier et~al.(2020)Meier, Kirch, and Meyer]{Meier2020}
+Alexander Meier, Claudia Kirch, and Renate Meyer.
+\newblock Bayesian nonparametric analysis of multivariate time series: A matrix
+  gamma process approach.
+\newblock \emph{Journal of Multivariate Analysis}, 175, 2020.
+\newblock ISSN 0047-259X.
 
 \bibitem[Pensky et~al.(2007)Pensky, Vidakovic, , and De~Canditiis]{Pensky:2007}
 Marianna Pensky, Brani Vidakovic, , and Daniela De~Canditiis.
@@ -202,13 +215,32 @@ Sonia Petrone.
 \newblock ISSN 03195724.
 \newblock URL \url{http://www.jstor.org/stable/3315494}.
 
-\bibitem[Rosen and Stoffer(2007)]{Rosen:2007}
-Ori Rosen and David~S. Stoffer.
-\newblock {Automatic estimation of multivariate spectra via smoothing splines}.
-\newblock \emph{Biometrika}, 94\penalty0 (2):\penalty0 335--345, 02 2007.
-\newblock ISSN 0006-3444.
-\newblock \doi{10.1093/biomet/asm022}.
-\newblock URL \url{https://doi.org/10.1093/biomet/asm022}.
+\bibitem[Polson et~al.(2013)Polson, Scott, and Windle]{Polson:2013}
+Nicholas~G. Polson, James~G. Scott, and Jesse Windle.
+\newblock Bayesian inference for logistic models using pólya–gamma latent
+  variables.
+\newblock \emph{Journal of the American Statistical Association}, 108\penalty0
+  (504):\penalty0 1339--1349, 2013.
+\newblock \doi{10.1080/01621459.2013.829001}.
+\newblock URL \url{https://doi.org/10.1080/01621459.2013.829001}.
+
+\bibitem[Rodríguez-Álvarez et~al.()Rodríguez-Álvarez, Durban, Lee, and
+  Eilers]{Rodriguez}
+María Rodríguez-Álvarez, Maria Durban, Dae-Jin Lee, and Paul Eilers.
+\newblock On the estimation of variance parameters in non-standard generalised
+  linear mixed models: application to penalised smoothing.
+\newblock \emph{Statistics and Computing}, 29\penalty0 (3):\penalty0 483--500.
+\newblock ISSN 0960-3174.
+
+\bibitem[Rosen et~al.(2012)Rosen, Wood, and Stoffer]{Rosen:2012}
+Ori Rosen, Sally Wood, and David~S. Stoffer.
+\newblock Adaptspec: Adaptive spectral estimation for nonstationary time
+  series.
+\newblock \emph{Journal of the American Statistical Association}, 107\penalty0
+  (500):\penalty0 1575--1589, 2012.
+\newblock ISSN 0162-1459.
+\newblock \doi{10.1080/01621459.2012.716340}.
+\newblock URL \url{https://doi.org/10.1080/01621459.2012.716340}.
 
 \bibitem[Ruppert(2002)]{Ruppert2002}
 David Ruppert.
@@ -233,6 +265,13 @@ Xiaofeng Shao and Wei~Biao Wu.
 \newblock ISSN 00905364.
 \newblock URL \url{http://www.jstor.org/stable/25464559}.
 
+\bibitem[Wegener and Kauermann(2017)]{Wegener}
+Michael Wegener and Goran Kauermann.
+\newblock Forecasting in nonlinear univariate time series using penalized
+  splines.(report).
+\newblock \emph{Statistical Papers}, 58\penalty0 (3):\penalty0 557, 2017.
+\newblock ISSN 0932-5026.
+
 \bibitem[Whittle(1957)]{Whittle:1957}
 P.~Whittle.
 \newblock Curve and periodogram smoothing.
@@ -240,5 +279,20 @@ P.~Whittle.
   (Methodological)}, 19\penalty0 (1):\penalty0 38--63, 1957.
 \newblock ISSN 00359246.
 \newblock URL \url{http://www.jstor.org/stable/2983994}.
+
+\bibitem[Wood(2017)]{WoodSimon2017Pwdb}
+Simon Wood.
+\newblock P-splines with derivative based penalties and tensor product
+  smoothing of unevenly distributed data.
+\newblock \emph{Statistics and Computing}, 27\penalty0 (4):\penalty0 985--989,
+  2017.
+\newblock ISSN 0960-3174.
+
+\bibitem[Wood and Fasiolo(2017)]{Wood2017}
+Simon~N. Wood and Matteo Fasiolo.
+\newblock A generalized fellner‐schall method for smoothing parameter
+  optimization with application to tweedie location, scale and shape models.
+\newblock \emph{Biometrics}, 73\penalty0 (4):\penalty0 1071--1081, 2017.
+\newblock ISSN 0006-341X.
 
 \end{thebibliography}

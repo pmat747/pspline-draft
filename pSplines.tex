@@ -62,7 +62,7 @@ As the periodogram fluctuates around the true spectral density, most  nonparamet
 \begin{align*}
 I_n(\lambda) = \dfrac{1}{2 \pi n} \left| \sum_{t=1}^{n} Y_t \exp \left( -i t \lambda\right)\right|^2,
 \end{align*}
-in one way or another, where $-\pi < \lambda \leq \pi$ is the angular frequency and $\bm{Y}=(Y_1,\ldots,Y_n)$ is a stationary time series of length $n$. The periodogram has interesting features \textcolor{red}{(***)?why is that here?}.  For instance, the periodogram evaluated at the Fourier frequencies $\lambda_i$  are asymptotically independent and follow an exponential distribution with mean $f(\lambda_i)$.  Thus, they are unbiased estimates of $f(\lambda_i)$  but not consistent \citep{Brockwell:1986}.
+in one way or another, where $-\pi < \lambda \leq \pi$ is the angular frequency and $\bm{Y}=(Y_1,\ldots,Y_n)$ is a stationary time series of length $n$. The periodogram ordinates evaluated at the Fourier frequencies $\lambda_i$  are asymptotically independent and follow an exponential distribution with mean $f(\lambda_i)$.  Thus, they are unbiased estimates of $f(\lambda_i)$  but not consistent \citep{Brockwell:1986}.
 
 
 Most Bayesian approaches to psd estimation use the so-called Whittle likelihood, introduced by \citep{Whittle:1957} as an approximation to the likelihood of a Gaussian stationary time series.  Based on the  limiting independent exponential distribution of the periodogram \textcolor{red}{values}, the Whittle likelihood for a mean centred weakly stationary time series $\bm{Y}$ of length $n$ is defined as
@@ -91,7 +91,7 @@ Unlike the beta densities  which have global support on the interval [0,1], B-sp
 %<<<<<<< HEAD
 With the aim of reducing the computational cost of the BspDP prior approach,  we suggest to use the idea of P-splines of \cite{Eilers:1996} that \textcolor{red}{combines} a large but fixed number of  B-splines with a simple difference penalty that controls the degree of  smoothness of the spectral density. P-splines, i.e.\  equally-spaced B-splines,  have been successfully implemented for frequentist nonparametric regression but to the best of our knowledge not yet for Bayesian spectral density estimation. We suggest two novel Bayesian  approaches in this paper, both based on the Whittle likelihood and on a mixture of B-spline densities. Both approaches fix the  number of B-spline densities.  The first approach uses equally spaced knots with a P-spline prior which we define in Section III. We demonstrate that this approach yields significant savings in computational time without sacrificing accuracy over the BspDP prior approach for simple spectral structures.  The second approach has a particular  focus on spectral densities with sharp peaks. Instead of an equidistant spacing, the knots are spread based on the distribution of peaks in the periodogram. Thus the knot allocation is also data-driven as with the BspDP prior but the knots  remain fixed once allocated. This novel knot allocation scheme avoids the computational complexity of the BspDP prior.  We show that with this knot allocation scheme, the estimates of spectral densities with spikes and abrupt changes improves significantly without an increase in computing time.
 =======
-With the aim of reducing the computational cost of the BspDP prior approach,  we suggest to use the idea of P-splines \cite{Eilers:1996} that combine a large but fixed number of  B-splines with a simple difference penalty that controls the degree of  smoothness of the spectral density. P-splines, i.e.\  equally-spaced B-splines,  have been successfully implemented for frequentist nonparametric regression but to the best of our knowledge not yet for Bayesian spectral density estimation. We suggest 
+With the aim of reducing the computational cost of the BspDP prior approach,  we suggest to use the idea of P-splines \cite{Eilers:1996} that combines a large but fixed number of  B-splines with a simple difference penalty that controls the degree of  smoothness of the spectral density. P-splines, i.e.\  equally-spaced B-splines,  have been successfully implemented for frequentist nonparametric regression but to the best of our knowledge not yet for Bayesian spectral density estimation. We suggest 
 two novel Bayesian  approaches in this paper, both based on the Whittle likelihood and on a mixture of B-spline densities. Both approaches fix the  number of B-spline densities. 
 The first approach uses equally spaced knots with a P-spline prior which we define in Section III. We demonstrate that this approach yields significant savings in computational time without sacrificing accuracy over the BspDP prior approach for simple spectral structures.  The second approach has a particular  focus on spectral densities with sharp peaks. Instead of an equidistant spacing, the knots are spread based on the distribution of peaks in the periodogram. Thus the knot allocation is also data-driven as with the BspDP prior but the knots  remain fixed once
 allocated. This novel knot allocation scheme avoids the computational complexity of the BspDP prior.  We show that with this knot allocation scheme, the estimates of spectral densities with spikes and abrupt changes improves significantly without an increase in computing time.
@@ -270,38 +270,42 @@ Then, an indirect prior is placed on the weights via
 \delta &\sim \text{Gamma}(\alpha_{\delta}, \beta_{\delta})
 \end{align*}
 where $\bm{v} = (v_1,\dots,v_{K-1})^\top$ is a $K-1$ dimensional parameter vector, $\phi$ is the smoothing or penalty parameter, $\textbf{P} = \textbf{D}^\top \textbf{D} +\epsilon \textbf{I}_{K-1}$ is the penalty matrix (which is a full matrix rank matrix for any small quantity $\epsilon$, for instance, $10^{-6}$) with $\textbf{D}$ the $d^{\text{th}}$ order difference matrix ($d=1,2,\ldots, K-2)$, $\alpha_{\phi}$ and $\alpha_{\delta}$ are shape parameters, $\delta \beta_{\phi}$ and $\beta_{\delta}$ are rate parameters, and $\text{Gamma}(a,b)$ denotes a gamma distribution with mean $a/b$ and variance $a/b^2$.
-We used first, second and third order difference penalties in the simulation study.
-The $1^{\text{st}}$ order difference matrix \textbf{D} is defined as
-\begin{align*}
+We used \textcolor{red}{first and second}  order difference penalties in the simulation study.
+The $1^{\text{st}}$ order difference matrix \textbf{D} $\in \mathbb{R}^{(K-2)\times (K-1)}$  is defined as
+\begin{equation}\label{eq:D1}
+%\begin{align*}
 \begin{bmatrix}
 -1 & 1   & 0  & 0 & \cdots & & & 0 \\
 0  &  -1 & 1  & 0 & \cdots & & & 0 \\
 \vdots  &    & \ddots & \ddots   & &&& \vdots \\   
 0 &    &    &   & \cdots & 0 &  -1 & 1 \\
 \end{bmatrix}
-\in \mathbb{R}^{(K-2)\times (K-1)},
-\end{align*}
-for the $2^{\text{nd}}$ order is
-\begin{align*}
+%\end{align*}
+\end{equation}
+\textcolor{red}{and} the $2^{\text{nd}}$ order difference matrix $\in \mathbb{R}^{(K-3)\times (K-1)} $ as
+\begin{equation}\label{eq:D2}
+%\begin{align*}
 \begin{bmatrix}
 1 & -2 &  1 & 0 & 0 & \cdots & & & & 0 \\
 0 & 1  & -2 & 1 & 0 & \cdots & & & & 0 \\
 \vdots & & \ddots & \ddots & \ddots &&&&& \vdots \\
 0 & &&&& \cdots & 0 & 1 & -2 & 1 
-\end{bmatrix}
-\in \mathbb{R}^{(K-3)\times (K-1)},
-\end{align*}
-and for the $3^{\text{rd}}$ order is
-\begin{align*}
-\setcounter{MaxMatrixCols}{12} % to include more than 10 columns in bmatrix enviroment
-\begin{bmatrix}
-1 & -3 &  3 & -1 &  0 & 0 & \cdots & & & & & 0 \\
-0 &  1 & -3 &  3 & -1 & 0 & \cdots & & & & & 0 \\
-\vdots &    & \ddots &  \ddots & \ddots & \ddots & &  & & & & \vdots \\
-0 &   &  &   &  &  & \cdots & 0 & 1 & -3 & 3 & -1  
-\end{bmatrix}
-\end{align*}
-$\in \mathbb{R}^{(K-4)\times (K-1)}$.  
+\end{bmatrix}.
+%\end{align*}
+\end{equation}
+%and for the $3^{\text{rd}}$ order is
+%\begin{align*}
+%\setcounter{MaxMatrixCols}{12} % to include more than 10 columns in bmatrix enviroment
+%\begin{bmatrix}
+%1 & -3 &  3 & -1 &  0 & 0 & \cdots & & & & & 0 \\
+%0 &  1 & -3 &  3 & -1 & 0 & \cdots & & & & & 0 \\
+%\vdots &    & \ddots &  \ddots & \ddots & \ddots & &  & & & & \vdots \\
+%0 &   &  &   &  &  & \cdots & 0 & 1 & -3 & 3 & -1  
+%\end{bmatrix}
+%\end{align*}
+%$\in \mathbb{R}^{(K-4)\times (K-1)}$.  
+\textcolor{red}{The rationale for using discrete second order roughness penalties as an approximation to the usual continuous roughness measure based on the integral over the second derivatives is given
+in \cite{Eilers:1996}.}
 
 The parameter vector for the P-spline prior is $\bm{\theta} = (\bm{v}^\top, \phi, \delta, \tau)^\top$.
 We use a robust specification for the  prior distribution of the penalty parameters as suggested by \cite{Jullion:2007} by choosing small values for $\alpha_{\delta}$ and $\beta_{\delta}$, for instance, $10^{-4}$. The  choice of $\alpha_{\phi}$ and $\beta_{\phi}$ do not affect the spectral density estimate. Here we set $\alpha_{\phi}$ and $\beta_{\phi}$ equal to 1 as used by \cite{Bremhorst:2016}. The scale parameter $\tau$ is given by an inverse Gamma($\alpha_{\tau},\beta_{\tau}$) prior.  These are also the prior specifications used in the simulations and examples in Section \ref{sec:application}.
@@ -385,7 +389,7 @@ the Bayesian Information Criterion.
 
 The knots are often equally spaced in P-spline methods.  This scheme works quite well  for smooth psds without any abrupt changes.  However, for spectral densities with spikes, the algorithm will require a large number of knots to adequately estimate the peaks.  The B-spline prior method is able to handle abrupt changes because the knot location is variable and  driven by the data.  We propose \textcolor{red}{an adaptive} method that allocates the knots according to the periodogram but once allocated, the knots stay fixed.  The idea is to concentrate more effort in those regions that have potential peaks as detected by the periodogram.  
 
-Our\textcolor{red}{adaptive} knot location proposal works as follow.  We calculate the periodogram and apply a square root transformation in order to have more regular magnitudes and eliminate a potential trend.  Second, we standardize these values and apply the absolute value function.  We treat this transformed periodogram as a density function $\widetilde{f}$ and calculate its distribution function $F$.  Finally, the knots are allocated according to the quantiles of the inverse distribution function of $\widetilde{f}$.  Thus, in those areas in which the periodogram has sharp and abrupt changes, our procedure will assign more knots in proportion to their magnitudes. Hereafter, we will refer to this scheme as \textcolor{red}{\em adaptive knots}.%\textit{periodogram-spaced knots} or short \textit{P-spaced knots}.
+Our \textcolor{red}{adaptive} knot location proposal works as follow.  We calculate the periodogram and apply a square root transformation in order to have more regular magnitudes and eliminate a potential trend.  Second, we standardize these values and apply the absolute value function.  We treat this transformed periodogram as a density function $\widetilde{f}$ and calculate its distribution function $F$.  Finally, the knots are allocated according to the quantiles of the inverse distribution function of $\widetilde{f}$.  Thus, in those areas in which the periodogram has sharp and abrupt changes, our procedure will assign more knots in proportion to their magnitudes. Hereafter, we will refer to this scheme as \textcolor{red}{\em adaptive knots}.%\textit{periodogram-spaced knots} or short \textit{P-spaced knots}.
 %REMARK: HOW ABOUT "PERIODOGRAM-SPACED KNOTS"	OR 'P-SPACED KNOTS'  INSTEAD OF DISTRIBUTED KNOTS?
 
 The procedure can be summarized as follows:
@@ -397,7 +401,10 @@ The procedure can be summarized as follows:
 	
 \end{enumerate}
 
-The \textcolor{red}{adaptive}  knot allocation can be regarded as an empirical Bayes prior as the data are used to specify the prior distribution.  However, only the locations of the B-splines are determined by the data, not the parameters of the prior distribution which in this case are the weights $w_k$ associated with each B-spline $b_{k,r}$.  The main criticism of an empirical Bayes approach is that the data are being used twice, once to specify the prior and then again to update the prior to the posterior. Here, the data are used only once to specify the knot locations but not again to update these through the likelihood.
+\textcolor{red}{For non-equidistant knots, it does not make sense any longer to base the definition of the covariance matrix of the Gaussian prior  on the  difference matrices as defined in (\ref{eq:D1}) and (\ref{eq:D2}) because this is an adequate approximation of the derivative-based roughness measures -- defined as the integral of the first and second order derivatives of the P-splines -- 
+for equally spaced knots only. The definition of the difference matrices could be adjusted using divided differences, but here we use the derivative-based penalties as described by \cite{WoodSimon2017Pwdb}. We make use of the implementation of the derivative-based penalty matrix  by the function {\tt bsplinepen} in the R-package {\tt fda}. This penalty matrix contains the inner products of the respective first and second order derivatives of the basis functions.}
+
+The \textcolor{red}{adaptive}  knot allocation can be regarded as an empirical Bayes prior since the data are used to specify the prior distribution.  However, only the locations of the B-splines are determined by the data, not the parameters of the prior distribution which in this case are the weights $w_k$ associated with each B-spline $b_{k,r}$.  The main criticism of an empirical Bayes approach is that the data are being used twice, once to specify the prior and then again to update the prior to the posterior. Here, the data are used only once to specify the knot locations but not again to update these through the likelihood.
 
 
 %REMARK: CAN YOU PLEASE INSERT EXPLICIT FORMULAE.
@@ -667,12 +674,12 @@ five times more efficient.
 
 \subsection{Variable star S. Carinae data analysis}
 
-This dataset contains 1189 visual observations of the {\it S.\ Carinae}, a variable star in the southern hemisphere sky.  These are daily observations collected by the Royal Astronomical Society of New Zealand, which correspond to 10 day averages of light intensities over several years.  This data set has been analysed in the literature previously (see for instance \cite{Cart:1997,Huerta:1999,Kirch:2018}).  It contains 40 missing observations that in this work have been replaced by the mean, thus not affecting the general features of the data.  In addition, the data has been squared root transformed and mean centred.  {\pmr The first 150 observations are displayed in Figure~\ref{fig:carinae_data}, where the missing values are replaced by the mean.}  
+This dataset contains 1189 visual observations of the {\it S.\ Carinae}, a variable star in the southern hemisphere sky.  These are daily observations collected by the Royal Astronomical Society of New Zealand, which correspond to 10 day averages of light intensities over several years.  This data set has been analysed in the literature previously (see for instance \cite{Cart:1997,Huerta:1999,Kirch:2018}).  It contains 40 missing observations that in this work have been replaced by the mean, thus not affecting the general features of the data.  In addition, the data has been squared root transformed and mean centred.  \textcolor{red}{ The first 150 observations are displayed in Figure~\ref{fig:carinae_data}, where the missing values are replaced by the mean.}  
 
 \begin{figure}[]
 	\centering
 	\includegraphics[scale=0.4,clip=true,angle=0]{carinae_data.pdf}
-	\caption{{\pmr First 150 observations from the \textit{S. Carinae} data.}}
+	\caption{ \textcolor{red}{First 150 observations of the \textit{S. Carinae} data.}}
 	\label{fig:carinae_data}
 \end{figure}
 
@@ -709,6 +716,10 @@ We also assessed our proposal in the classic sunspot dataset, in which the \text
 Finally, we assess the \textcolor{red}{ fit of the posterior distribution based on the} P-spline prior a under two different knot location schemes: equally spaced and periodogram-spaced knots.  For this, we estimated the psd for the {\it S.\ Carinae} time series which has a spectral density with several sharp peaks.  Equidistant knots failed to capture the peaks of this spectral density whereas  \textcolor{red}{adpative} knots significantly improved  the results without affecting the computational time.
 
 The number of B-spline densities was selected according to the criterion proposed by \cite{Ruppert2002}.  It seems to work well for simple spectral densities.  However, more complex functions could require larger number of B-spline densities.  This can be evaluated studying the peaks of the periodogram.  Our knot location proposal is very useful in these situations.  Future research will explore whether the choice of the number of knots can be related to the entropy of the periodogram.
+
+\textcolor{red}{As already reviewed in the introduction, many Bayesian nonparametric approaches to spectral density estimation propose to put a prior on the log-spectral density. This could be easily implemented by modifying (\ref{eq:ps_prior}) to
+ \[ \log f(\pi \omega)=\sum_{k=1}^K v_k b_{k,r}(\omega,{\bm \xi})\]
+and it could be interesting to examine for what class of spectral densities this prior specification would yield better posterior inference. }
 
 \textcolor{red}{Another interesting question is whether the P-spline prior can be extended to enable a Bayesian analysis of multivariate time series. In this case, the spectral density is a 
 Hermitian positive definite  matrix-valued function. A novel Bayesain nonparametric approach to multivariate spectral density estimation was proposed by
