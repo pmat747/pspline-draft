@@ -402,7 +402,7 @@ The procedure can be summarized as follows:
 \end{enumerate}
 
 \textcolor{red}{For non-equidistant knots, it does not make sense any longer to base the definition of the covariance matrix of the Gaussian prior  on the  difference matrices as defined in (\ref{eq:D1}) and (\ref{eq:D2}) because this is an adequate approximation of the derivative-based roughness measures -- defined as the integral of the first and second order derivatives of the P-splines -- 
-for equally spaced knots only. The definition of the difference matrices could be adjusted using divided differences, but here we use the derivative-based penalties as described by \cite{WoodSimon2017Pwdb}. We make use of the implementation of the derivative-based penalty matrix  by the function {\tt bsplinepen} in the R-package {\tt fda}. This penalty matrix contains the inner products of the respective first and second order derivatives of the basis functions.}
+for equally spaced knots only. The definition of the difference matrices could be adjusted using divided differences, but here we use the derivative-based penalties as described by \cite{WoodSimon2017Pwdb}. We make use of the implementation of the derivative-based penalty matrix  by the function {\tt bsplinepen} in the R-package {\tt fda}. This penalty matrix contains the inner products of the respective first and second order derivatives of the basis functions.} {\pmr In addition, we normalise this matrix by dividing it by the maximum absolute column sum.}
 
 The \textcolor{red}{adaptive}  knot allocation can be regarded as an empirical Bayes prior since the data are used to specify the prior distribution.  However, only the locations of the B-splines are determined by the data, not the parameters of the prior distribution which in this case are the weights $w_k$ associated with each B-spline $b_{k,r}$.  The main criticism of an empirical Bayes approach is that the data are being used twice, once to specify the prior and then again to update the prior to the posterior. Here, the data are used only once to specify the knot locations but not again to update these through the likelihood.
 
@@ -425,9 +425,9 @@ For the AR(1) model, the  first  order autocorrelation $\rho_1 = 0.9$ was chosen
 We estimated the spectral density functions using the BspDP and P-spline priors.  The BspDP-based  analysis was performed via the \texttt{gibbs\_bspline} function in the \textsf{R} package \texttt{bsplinePsd} \cite{Edwards:bsplinePsd:2018}.  The algorithm was executed for 100,000 iterations with a burn-in period of 25,000 and thinning factor of 10, resulting in 7,500 samples used for posterior inference.  Pilot analyses showed that these specifications are suitable in these examples in terms of convergence (results not shown).  
 
 The P-spline analysis was performed using the \texttt{gibbs\_pspline} function implemented in the \textsf{R} package \texttt{psplinePsd}.  A total of 100,000 MCMC samples were generated
-using  a pilot run of 25,000 iterations with a burn-in period of 5,000 to calibrate the proposals.  The final sample consisted of 75,000 samples with a burn-in period of 5,000 and thinning factor of 10, resulting in 7,000 samples used for posterior inferences.  
+using  a pilot run of 20,000 iterations with a burn-in period of 5,000 and thinning factor of 10 to calibrate the proposals.  The final sample consisted of 80,000 samples with a burn-in period of 5,000 and thinning factor of 10, resulting in 7,500 samples used for posterior inferences.  
 %Therefore, the number of iterations equate the B-spline analysis.  
-This procedure was replicated for both equidistant and \textcolor{red}{adaptive} knots. 
+This procedure was replicated for both equidistant and \textcolor{red}{adaptive} knots{\pmr considering first and second order penalties.}
 
 The theoretical spectral density for an AR($p$) model is given by
 \begin{align*}
@@ -467,23 +467,19 @@ For the AR(4) time series, the \textcolor{red}{fit based on the P-spline prior w
 			AR(1)     &  &  &  \\ 
 			B-spline &  0.825 & 0.769 & 0.609  \\
 			\textit{Equidistant knots}& & &   \\
-			\hspace{0.5em}P-spline $d=1$ &  0.729 & 0.632 & 0.517  \\
-			\hspace{0.5em}P-spline $d=2$&  0.844 & 0.612 & 0.638  \\
-			\hspace{0.5em}P-spline $d=3$&  0.727 & 0.728 & 0.769  \\
+			\hspace{0.5em}P-spline $d=1$ &  0.772 & 0.644 & 0.527 \\
+			\hspace{0.5em}P-spline $d=2$&  0.708 & 0.604 & 0.629 \\
 			\textit{\textcolor{red}{Adaptive} knots}& & &   \\
-			\hspace{0.5em}P-spline $d=1$ & 0.910 & 0.769 & 0.595 \\
-			\hspace{0.5em}P-spline $d=2$ & 0.994 & 0.867 & 0.731 \\
-			\hspace{0.5em}P-spline $d=3$ & 1.059 & 0.829 & 0.610 \\ \hline
+			\hspace{0.5em}P-spline $d=1$ & 0.874 & 0.783 & 0.610 \\
+			\hspace{0.5em}P-spline $d=2$ & 0.874 & 0.815 & 0.640 \\ \hline
 			AR(4)     &  &  &  \\ 
 			B-spline & 3.019 & 2.250 & 1.832   \\
 			\textit{Equidistant knots}& & &   \\
-			\hspace{0.5em}P-spline $d=1$ & 3.014 & 2.462 & 2.335  \\
-			\hspace{0.5em}P-spline $d=2$& 3.247 & 2.619 & 2.399 \\
-			\hspace{0.5em}P-spline $d=3$& 3.438 & 2.786 & 2.510  \\	
+			\hspace{0.5em}P-spline $d=1$ &  2.914 & 2.389 & 2.307\\
+			\hspace{0.5em}P-spline $d=2$&  3.150 & 2.569 & 2.388\\
 			\textit{\textcolor{red}{Adaptive} knots}& & &   \\
-			\hspace{0.5em}P-spline $d=1$ & 2.659 & 1.884 & 1.465 \\
-			\hspace{0.5em}P-spline $d=2$ & 2.627 & 1.849 & 1.411 \\
-			\hspace{0.5em}P-spline $d=3$ & 2.625 & 1.835 & 1.410 \\
+			\hspace{0.5em}P-spline $d=1$ & 2.495 & 1.830 & 1.489\\
+			\hspace{0.5em}P-spline $d=2$ &  2.696 & 2.003 & 1.677\\
 			\bottomrule
 		\end{tabular}
 %	\end{ruledtabular}
@@ -524,7 +520,8 @@ where $\widehat{f}(\lambda)$ is the pointwise posterior median spectral density,
 The idea is to measure the proportion of times that the true spectral density is fully contained by the uniform credible band in the 300 replications.  The results are displayed in Table~\ref{table:sim_covPbb}.  In addition, we calculate the proportion of times that the uniform credible band contains the value of the true psd
 at each of the Fourier frequencies.  The median of these pointwise coverage proportions are displayed in Table~\ref{table:sim_covPbb_median}.
 
-For the AR(1) model, the BspDP and first order penalty P-spline 90\% credible bands cover the whole true spectral density function, i.e.\ for all frequencies $\lambda$, in all the 300 independent analyses.  In general, the latter method shows diminishing  performance as the penalty degree increases.  For the AR(4) model, the P-spline method with equidistant knots performs poorly.  On the other hand, the \textcolor{red}{adaptive} knot scheme yields evidently much better results, which are comparable (in the case of the first order penalty) to those obtained via the BspDP algorithm.  For $n=\{128,256\}$, the latter has higher coverage probabilities than our proposal, except for $n=512$.  For the P-spline priors, the coverage probabilities decrease as the penalty degree order increases, which can be explained by the forced smoothness imposed by the higher penalty order.  As shown by \cite{Edwards2019}, the BspDP algorithm produces better results than the BDP prior in the AR(4) case, which coverage probability is zero across $n=\{128,256,512\}$. Consequently, our P-spline algorithm with \textcolor{red}{adaptive} knots outperforms the BDP method in this case.
+For the AR(1) model, the BspDP and first order penalty P-spline 90\% credible bands cover the whole true spectral density function, i.e.\ for all frequencies $\lambda$, in {\pmr almost} all the 300 independent analyses.  In general, the latter method shows diminishing  performance as the penalty degree increases.  For the AR(4) model, the P-spline method with equidistant knots performs poorly.  On the other hand, the \textcolor{red}{adaptive} knot scheme yields evidently much better results, which are comparable (in the case of the first order penalty) to those obtained via the BspDP algorithm.  %For $n=\{128,256\}$, the latter has higher coverage probabilities than our proposal, except for $n=512$.  
+For the P-spline priors, the coverage probabilities decrease as the penalty degree order increases, which can be explained by the forced smoothness imposed by the higher penalty order.  As shown by \cite{Edwards2019}, the BspDP algorithm produces better results than the BDP prior in the AR(4) case, which coverage probability is zero across $n=\{128,256,512\}$. Consequently, our P-spline algorithm with \textcolor{red}{adaptive} knots outperforms the BDP method in this case.
 
 Even though the P-spline method with equidistant knots for the AR(4) case performs poorly in terms of uniform coverage, i.e. the proportion of times that the credible band covers  the true psd {\em completely} in the 300 runs, it is important to note that this is only because the uniform band does not cover
 the psd for  just very few frequencies. As is evident from 
@@ -542,23 +539,19 @@ the psd for  just very few frequencies. As is evident from
 			AR(1)     &  &  &  \\ 
 			B-spline &  1.000 & 1.000 & 1.000 \\
 			\textit{Equidistant}& & &   \\
-			\hspace{0.5em}P-spline $d=1$& 1.000 & 1.000 & 1.000  \\
-			\hspace{0.5em}P-spline $d=2$& 0.987 & 0.993 & 1.000  \\
-			\hspace{0.5em}P-spline $d=3$& 0.943 & 0.877 & 0.870  \\
+			\hspace{0.5em}P-spline $d=1$&  1.000 & 1.000 & 0.997\\
+			\hspace{0.5em}P-spline $d=2$& 0.993 & 1.000 & 0.993  \\
 			\textit{\textcolor{red}{Adaptive} knots}& & &   \\
-			\hspace{0.5em}P-spline $d=1$ & 1.000 & 1.000 & 1.000 \\
-			\hspace{0.5em}P-spline $d=2$ & 0.993 & 0.980 & 0.990 \\
-			\hspace{0.5em}P-spline $d=3$ & 0.947 & 0.840 & 0.957 \\ \hline		       
+			\hspace{0.5em}P-spline $d=1$ & 0.997 & 1.000 & 0.997 \\
+			\hspace{0.5em}P-spline $d=2$ & 0.973 & 0.740 & 0.770 \\ \hline		       
 			AR(4)     &  &  &  \\ 
 			B-spline &  0.933 & 0.967 & 0.897  \\
 			\textit{Equidistant knots}& & &   \\
-			\hspace{0.5em}P-spline $d=1$ & 0.400 & 0.353 & 0.010 \\
-			\hspace{0.5em}P-spline $d=2$ & 0.200 & 0.167 & 0.003 \\
-			\hspace{0.5em}P-spline $d=3$ & 0.053 & 0.023 & 0.000 \\
+			\hspace{0.5em}P-spline $d=1$ &  0.527 & 0.353 & 0.007 \\
+			\hspace{0.5em}P-spline $d=2$ & 0.323 & 0.167 & 0.007\\
 			\textit{\textcolor{red}{Adaptive} knots}& & &   \\	
-			\hspace{0.5em}P-spline $d=1$ & 0.820 & 0.887 & 0.920 \\
-			\hspace{0.5em}P-spline $d=2$ & 0.637 & 0.700 & 0.773 \\
-			\hspace{0.5em}P-spline $d=3$ & 0.470 & 0.600 & 0.583 \\	
+			\hspace{0.5em}P-spline $d=1$ & 0.790 & 0.847 & 0.813 \\
+			\hspace{0.5em}P-spline $d=2$ & 0.337 & 0.387 & 0.270 \\
 			\bottomrule
 		\end{tabular}
 %	\end{ruledtabular}
@@ -575,17 +568,15 @@ the psd for  just very few frequencies. As is evident from
 			B-spline &  1.000 & 1.000 & 1.000 \\
 			\textit{Equidistant \&}& & &   \\
 			\textit{\textcolor{red}{Adaptive} knots}& & &   \\
-			\hspace{0.5em}P-spline $d=1,2,3$ & 1.000 & 1.000 & 1.000  \\ \hline	 		      
+			\hspace{0.5em}P-spline $d=1,2$ & 1.000 & 1.000 & 1.000  \\ \hline	 		      
 			AR(4)     &  &  &  \\ 
 			B-spline &  1.000 & 1.000 & 1.000 \\
 			\textit{Equidistant knots}& & &   \\
-			\hspace{0.5em}P-spline $d=1$ & 0.984 & 0.992 & 0.984 \\
-			\hspace{0.5em}P-spline $d=2$& 0.984 & 0.984 & 0.980  \\
-			\hspace{0.5em}P-spline $d=3$& 0.968 & 0.976 & 0.969  \\	
+			\hspace{0.5em}P-spline $d=1$ &  1.000 & 0.992 & 0.984 \\
+			\hspace{0.5em}P-spline $d=2$&  0.984 & 0.984 & 0.980 \\
 			\textit{\textcolor{red}{Adaptive} knots}& & &   \\	
-			\hspace{0.5em}P-spline $d=1$ & 1.000 &  1.000 &  1.000 \\
-			\hspace{0.5em}P-spline $d=2$ & 1.000 &  1.000 &  1.000 \\
-			\hspace{0.5em}P-spline $d=3$ & 0.984 &  1.000 &  1.000 \\		
+			\hspace{0.5em}P-spline $d=1$ & 1.000 & 1.000 & 1.000 \\
+			\hspace{0.5em}P-spline $d=2$ & 0.984 & 0.992 & 0.992\\	
 			\bottomrule
 		\end{tabular}
 	\caption{Median of the pointwise  proportions that the true psd at each Fourier frequency is contained within the $90\%$ uniform credible bands.}
@@ -597,7 +588,7 @@ the psd for  just very few frequencies. As is evident from
 %%% TIME %%%
 %%%%%%%%%%%%
 
-As \cite{Edwards2019} noted, one of the drawbacks of the BspDP prior  is its computational complexity relative to the BDP.  This is directly reflected in the run-time, which is approximately 2-3 times higher in this example (see Table~3 in \cite{Edwards2019}).  The median run-time in our analyses for the BspDP prior and the P-spline with \textcolor{red}{adaptive} knots are displayed in Table~\ref{table:sim_time}.  Note that the P-spline method based on equidistant knots has similar run-times to the \textcolor{red}{adapative} knots.  The P-spline method is approximately 3-6 times faster than BspDP approach in these examples.  This is due to a reduced number of calculations  per iteration because the B-spline densities are calculated only  once at the start of the algorithm and there are no Dirichlet process approximations via the stick-breaking method.  
+As \cite{Edwards2019} noted, one of the drawbacks of the BspDP prior  is its computational complexity relative to the BDP.  This is directly reflected in the run-time, which is approximately 2-3 times higher in this example (see Table~3 in \cite{Edwards2019}).  The median run-time in our analyses for the BspDP prior and the P-spline with \textcolor{red}{adaptive} knots are displayed in Table~\ref{table:sim_time}.  Note that the P-spline method based on equidistant knots has similar run-times to the \textcolor{red}{adapative} knots.  The P-spline method is approximately {\pmr 4-7} times faster than BspDP approach in these examples.  This is due to a reduced number of calculations  per iteration because the B-spline densities are calculated only  once at the start of the algorithm and there are no Dirichlet process approximations via the stick-breaking method.  
 
 % TIME Table
 \begin{table}
@@ -609,17 +600,15 @@ As \cite{Edwards2019} noted, one of the drawbacks of the BspDP prior  is its com
 			AR(1)     &  &  &  \\ 
 			B-spline &   29.497 & 32.423 & 37.896 \\
 			\textit{\textcolor{red}{Adaptive} knots}& & &   \\
-			\hspace{0.5em}P-spline $d=1$& 5.629 & 8.291 & 10.507 \\
-			\hspace{0.5em}P-spline $d=2$& 5.650 & 8.374 & 10.512 \\
-			\hspace{0.5em}P-spline $d=3$& 5.587 & 8.301 & 10.427 \\ 
-			B-spline/P-spline &  5.247 & 3.896 & 3.615 \\ \hline
+			\hspace{0.5em}P-spline $d=1$&  4.859 & 7.450 & 9.606\\
+			\hspace{0.5em}P-spline $d=2$&  4.538 & 6.863 & 8.783\\
+			B-spline/P-spline &  6.278 & 4.531 & 4.122 \\ \hline
 			AR(4)     &  &  & \\ 
 			B-spline & 30.111 & 34.126 & 40.875  \\
 			\textit{\textcolor{red}{Adaptive} knots}& & &   \\
-			\hspace{0.5em}P-spline $d=1$ & 5.621 & 8.240 & 10.462 \\
-			\hspace{0.5em}P-spline $d=2$& 5.641 & 8.372 & 10.549 \\
-			\hspace{0.5em}P-spline $d=3$& 5.611 & 8.327 & 10.686 \\
-			B-spline/P-spline & 5.354 & 4.105 & 3.869 \\	
+			\hspace{0.5em}P-spline $d=1$ & 4.883 & 7.453 & 9.665 \\
+			\hspace{0.5em}P-spline $d=2$& 4.543 & 6.887 & 8.827 \\
+			B-spline/P-spline & 6.389 & 4.760 & 4.421 \\	
 			\bottomrule
 		\end{tabular}
 %	\end{ruledtabular}
@@ -631,8 +620,8 @@ As \cite{Edwards2019} noted, one of the drawbacks of the BspDP prior  is its com
 In general terms, the P-spline algorithm with our novel knot allocation scheme, the periodogram-spaced knots, offers the best trade-off between accuracy and computation cost.  The  rule-of-thumb criterion,  $K=\min\left\{n/4, 40\right\}$, for the number of B-spline densities in the P-spline prior algorithm worked perfectly well in this example. 
 
 %Overall, the P-spline prior outperforms the B-spline prior in this example in terms of IAE, coverage probability and run-time.  Particularly, our novel knot allocation scheme, the periodogram-spaced knots, yield the best results in the case of peaked spectral densities.  The  rule-of-thumb criterion,  $K=\min\left\{n/4, 40\right\}$, for the number of 
-\textcolor{red}{P-splines} %B-spline densities in the P-spline prior algorithm
- worked perfectly well in this example. 
+%\textcolor{red}{P-splines} B-spline densities in the P-spline prior algorithm
+% worked perfectly well in this example. 
 
 \subsection{Sunspot data analysis}
 Sunspots are regions of reduced surface temperature that are visible as darker spots on the sun's photosphere.
