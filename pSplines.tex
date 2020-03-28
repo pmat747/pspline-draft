@@ -21,7 +21,7 @@
 \newcommand{\w}{{\bf w}}
 % Define author, title, and date
 
-\title{Bayesian spectral density estimation using P-spline priors}
+\title{\textcolor{red}{Bayesian spectral density estimation using P-splines}}
 \author{Patricio Maturana-Russel \and Renate Meyer}
 
 \institute{Patricio Maturana-Russel \at Department of Statistics, University of Auckland, Auckland, New Zealand \\ \email{p.russel@auckland.ac.nz} 
@@ -402,7 +402,7 @@ The procedure can be summarized as follows:
 \end{enumerate}
 
 \textcolor{red}{For non-equidistant knots, it does not make sense any longer to base the definition of the covariance matrix of the Gaussian prior  on the  difference matrices as defined in (\ref{eq:D1}) and (\ref{eq:D2}) because this is an adequate approximation of the derivative-based roughness measures -- defined as the integral of the first and second order derivatives of the P-splines -- 
-for equally spaced knots only. The definition of the difference matrices could be adjusted using divided differences, but here we use the derivative-based penalties as described by \cite{WoodSimon2017Pwdb}. We make use of the implementation of the derivative-based penalty matrix  by the function {\tt bsplinepen} in the R-package {\tt fda}. This penalty matrix contains the inner products of the respective first and second order derivatives of the basis functions.} {\pmr In addition, we normalise this matrix by dividing it by the maximum absolute column sum.}
+for equally spaced knots only. The definition of the difference matrices could be adjusted using divided differences, but here we use the derivative-based penalties as described by \cite{WoodSimon2017Pwdb}. We make use of the implementation of the derivative-based penalty matrix  by the function {\tt bsplinepen} in the R-package {\tt fda}. This penalty matrix contains the inner products of the respective first and second order derivatives of the basis functions. In addition, we normalise this matrix by dividing it by the maximum absolute column sum.}
 
 The \textcolor{red}{adaptive}  knot allocation can be regarded as an empirical Bayes prior since the data are used to specify the prior distribution.  However, only the locations of the B-splines are determined by the data, not the parameters of the prior distribution which in this case are the weights $w_k$ associated with each B-spline $b_{k,r}$.  The main criticism of an empirical Bayes approach is that the data are being used twice, once to specify the prior and then again to update the prior to the posterior. Here, the data are used only once to specify the knot locations but not again to update these through the likelihood.
 
@@ -424,10 +424,10 @@ For the AR(1) model, the  first  order autocorrelation $\rho_1 = 0.9$ was chosen
 
 We estimated the spectral density functions using the BspDP and P-spline priors.  The BspDP-based  analysis was performed via the \texttt{gibbs\_bspline} function in the \textsf{R} package \texttt{bsplinePsd} \cite{Edwards:bsplinePsd:2018}.  The algorithm was executed for 100,000 iterations with a burn-in period of 25,000 and thinning factor of 10, resulting in 7,500 samples used for posterior inference.  Pilot analyses showed that these specifications are suitable in these examples in terms of convergence (results not shown).  
 
-The P-spline analysis was performed using the \texttt{gibbs\_pspline} function implemented in the \textsf{R} package \texttt{psplinePsd}.  A total of 100,000 MCMC samples were generated
+The P-spline analysis was performed using the \texttt{gibbs\_pspline} function implemented in the \textsf{R} package \texttt{psplinePsd} \cite{psplinepackage}.  A total of 100,000 MCMC samples were generated
 using  a pilot run of 20,000 iterations with a burn-in period of 5,000 and thinning factor of 10 to calibrate the proposals.  The final sample consisted of 80,000 samples with a burn-in period of 5,000 and thinning factor of 10, resulting in 7,500 samples used for posterior inferences.  
 %Therefore, the number of iterations equate the B-spline analysis.  
-This procedure was replicated for both equidistant and \textcolor{red}{adaptive} knots{\pmr considering first and second order penalties.}
+This procedure was replicated for both equidistant and \textcolor{red}{adaptive} knots \textcolor{red}{ considering first and second order penalties.}
 
 The theoretical spectral density for an AR($p$) model is given by
 \begin{align*}
@@ -520,7 +520,8 @@ where $\widehat{f}(\lambda)$ is the pointwise posterior median spectral density,
 The idea is to measure the proportion of times that the true spectral density is fully contained by the uniform credible band in the 300 replications.  The results are displayed in Table~\ref{table:sim_covPbb}.  In addition, we calculate the proportion of times that the uniform credible band contains the value of the true psd
 at each of the Fourier frequencies.  The median of these pointwise coverage proportions are displayed in Table~\ref{table:sim_covPbb_median}.
 
-For the AR(1) model, the BspDP and first order penalty P-spline 90\% credible bands cover the whole true spectral density function, i.e.\ for all frequencies $\lambda$, in {\pmr almost} all the 300 independent analyses.  In general, the latter method shows diminishing  performance as the penalty degree increases.  For the AR(4) model, the P-spline method with equidistant knots performs poorly.  On the other hand, the \textcolor{red}{adaptive} knot scheme yields evidently much better results, which are comparable (in the case of the first order penalty) to those obtained via the BspDP algorithm.  %For $n=\{128,256\}$, the latter has higher coverage probabilities than our proposal, except for $n=512$.  
+For the AR(1) model, the BspDP and first order penalty P-spline 90\% credible bands cover the whole true spectral density function, i.e.\ for all frequencies $\lambda$, in 
+\textcolor{red}{almost} all the 300 independent analyses.  In general, the latter method shows diminishing  performance as the penalty degree increases.  For the AR(4) model, the P-spline method with equidistant knots performs poorly.  On the other hand, the \textcolor{red}{adaptive} knot scheme yields evidently much better results, which are comparable (in the case of the first order penalty) to those obtained via the BspDP algorithm.  %For $n=\{128,256\}$, the latter has higher coverage probabilities than our proposal, except for $n=512$.  
 For the P-spline priors, the coverage probabilities decrease as the penalty degree order increases, which can be explained by the forced smoothness imposed by the higher penalty order.  As shown by \cite{Edwards2019}, the BspDP algorithm produces better results than the BDP prior in the AR(4) case, which coverage probability is zero across $n=\{128,256,512\}$. Consequently, our P-spline algorithm with \textcolor{red}{adaptive} knots outperforms the BDP method in this case.
 
 Even though the P-spline method with equidistant knots for the AR(4) case performs poorly in terms of uniform coverage, i.e. the proportion of times that the credible band covers  the true psd {\em completely} in the 300 runs, it is important to note that this is only because the uniform band does not cover
@@ -588,7 +589,7 @@ the psd for  just very few frequencies. As is evident from
 %%% TIME %%%
 %%%%%%%%%%%%
 
-As \cite{Edwards2019} noted, one of the drawbacks of the BspDP prior  is its computational complexity relative to the BDP.  This is directly reflected in the run-time, which is approximately 2-3 times higher in this example (see Table~3 in \cite{Edwards2019}).  The median run-time in our analyses for the BspDP prior and the P-spline with \textcolor{red}{adaptive} knots are displayed in Table~\ref{table:sim_time}.  Note that the P-spline method based on equidistant knots has similar run-times to the \textcolor{red}{adapative} knots.  The P-spline method is approximately {\pmr 4-7} times faster than BspDP approach in these examples.  This is due to a reduced number of calculations  per iteration because the B-spline densities are calculated only  once at the start of the algorithm and there are no Dirichlet process approximations via the stick-breaking method.  
+As \cite{Edwards2019} noted, one of the drawbacks of the BspDP prior  is its computational complexity relative to the BDP.  This is directly reflected in the run-time, which is approximately 2-3 times higher in this example (see Table~3 in \cite{Edwards2019}).  The median run-time in our analyses for the BspDP prior and the P-spline with \textcolor{red}{adaptive} knots are displayed in Table~\ref{table:sim_time}.  Note that the P-spline method based on equidistant knots has similar run-times to the \textcolor{red}{adapative} knots.  The P-spline method is approximately \textcolor{red}{4-7} times faster than BspDP approach in these examples.  This is due to a reduced number of calculations  per iteration because the B-spline densities are calculated only  once at the start of the algorithm and there are no Dirichlet process approximations via the stick-breaking method.  
 
 % TIME Table
 \begin{table}
@@ -718,7 +719,8 @@ Cholesky decomposition of the spectral density matrix.}
 
 In conclusion, the P-spline prior with the \textcolor{red}{adaptive} knot scheme offers a more computationally viable alternative to the BspDP prior for spectral density estimation.  As shown in this work, it can handle spectral densities with several peaks in a reasonable run-time.
 
-The \textsf{R} package \texttt{psplinePsd} will be available on CRAN in due course.  In the meanwhile, it can be downloaded from \href{https://github.com/pmat747/psplinePsd}{GitHub}. 
+\textcolor{red}{The \textsf{R} package \texttt{psplinePsd} can be downloaded from \href{https://github.com/pmat747/psplinePsd}{GitHub}.}
+%The \textsf{R} package \texttt{psplinePsd} will be available on CRAN in due course.  In the meanwhile, it can be downloaded from \href{https://github.com/pmat747/psplinePsd}{GitHub}. 
 
 \begin{acknowledgements}
 	We thank the New Zealand eScience Infrastructure (NeSI) for their high performance computing facilities, and the Centre for eResearch at the University of Auckland for their technical support. PM's and RM's work is supported by Grant 3714568 from the University of Auckland Faculty Research Development Fund and the DFG Grant KI 1443/3-1. RM gratefully acknowledges support by a James Cook Fellowship from Government funding, administered by teh Royal Society Te Ap\={a}rangi.  All analysis was conducted in \textsf{R}, an open-source statistical software available on \textsf{CRAN} (cran.r-project.org).
