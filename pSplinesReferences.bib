@@ -1,6 +1,34 @@
-%%%%%%%
+%%%%%%%%%%%%%%%%%%
+%%% R packages %%%
+%%%%%%%%%%%%%%%%%%
+
+@Manual{Edwards:bsplinePsd:2018,
+	title  = {bsplinePsd: Bayesian Nonparametric Spectral Density Estimation Using B-Spline Priors},
+	author = {Matthew C. Edwards and Renate Meyer and Nelson Christensen},
+	year   = {2018},
+	note   = {{R package version 0.6.0}},
+	url    =  {https://CRAN.R-project.org/package=bsplinePsd},
+ }
+
+ @Manual{fda,
+  title  = {fda: Functional Data Analysis},
+  author = {J. O. Ramsay and Hadley Wickham and Spencer Graves and Giles Hooker},
+  year   = {2020},
+  note   = {R package version 2.4.8.1},
+  url    = {https://CRAN.R-project.org/package=fda},
+}
+
+@Manual{psplinepackage,
+	title  = {psplinePsd: P-splines for spectral density estimation},
+	author = {Patricio Maturana-Russel and Renate Meyer},
+	year   = {2020},
+	url    = {https://github.com/pmat747/psplinePsd},
+ }
+
+
+%%%%%%%%%
 %%% B %%%
-%%%%%%%
+%%%%%%%%%
 
 @article{Lang:2004,
 	author = {Stefan Lang and Andreas Brezger},
@@ -42,9 +70,9 @@
 	url = {https://doi.org/10.1007/978-1-4419-0320-4}
 } 
 
-%%%%%%%
+%%%%%%%%%
 %%% C %%%
-%%%%%%%
+%%%%%%%%%
 
 @article{Cadonna2017,
 	title={Bayesian mixture modeling for spectral density estimation},
@@ -84,9 +112,9 @@
 	eprint = {https://doi.org/10.1198/016214504000000557}
 }
 
-%%%%%%%
+%%%%%%%%%
 %%% E %%%
-%%%%%%%
+%%%%%%%%%
 
 
 @article{Edwards2019,
@@ -104,26 +132,6 @@ issn = {0960-3174},
 abstract = {We present a new Bayesian nonparametric approach to estimating the spectral density of a stationary time series. A nonparametric prior based on a mixture of B-spline distributions is specified and can be regarded as a generalization of the Bernstein polynomial prior of Petrone (Scand J Stat 26:373–393, 1999a; Can J Stat 27:105–126, 1999b) and Choudhuri et al. (J Am Stat Assoc 99(468):1050–1059, 2004). Whittle’s likelihood approximation is used to obtain the pseudo-posterior distribution. This method allows for a data-driven choice of the number of mixture components and the location of knots. Posterior samples are obtained using a Metropolis-within-Gibbs Markov chain Monte Carlo algorithm, and mixing is improved using parallel tempering. We conduct a simulation study to demonstrate that for complicated spectral densities, the B-spline prior provides more accurate Monte Carlo estimates in terms of $$L_1$$ L 1 -error and uniform coverage probabilities than the Bernstein polynomial prior. We apply the algorithm to annual mean sunspot data to estimate the solar cycle. Finally, we demonstrate the algorithm’s ability to estimate a spectral density with sharp features, using real gravitational wave detector data from LIGO’s sixth science run, recoloured to match the Advanced LIGO target sensitivity.},
 journal = {Statistics and Computing},
 }
-
-
-
-@Manual{Edwards:bsplinePsd:2018,
-	title = {bsplinePsd: Bayesian Nonparametric Spectral Density Estimation Using B-Spline Priors},
-	author = {Matthew C. Edwards and Renate Meyer and Nelson Christensen},
-	year = {2018},
-	note = {{R package version 0.6.0}},
-	url = {https://CRAN.R-project.org/package=bsplinePsd},
-  }
-
-@Manual{psplinepackage,
-	title = {psplinePsd: P-splines for spectral density estimation},
-	author = {Patiricio Maturana-Russel and Renate Meyer},
-	year = {2020},
-	url = {https://github.com/pmat747/psplinePsd},
-  }
-
-
-
 
 @article{Eilers:1996,
 	author = "Eilers, Paul H. C. and Marx, Brian D.",
@@ -152,9 +160,9 @@ journal = {Statistics and Computing},
 	year={2015}
 }
 
-%%%%%%%
+%%%%%%%%%
 %%% G %%%
-%%%%%%%
+%%%%%%%%%
 
 @article{Gangopadhyay:1999,
 	title = "Estimation of spectral density of a stationary time series via an asymptotic representation of the periodogram",
@@ -187,9 +195,9 @@ journal = {Statistics and Computing},
 	eprint = {http://oup.prod.sis.lan/biomet/article-pdf/82/4/711/699533/82-4-711.pdf},
 }
 
-%%%%%%%
+%%%%%%%%%
 %%% H %%%
-%%%%%%%
+%%%%%%%%%
 
 @article{Huerta:1999,
 	author = {G. Huerta and M. West},
@@ -203,9 +211,9 @@ journal = {Statistics and Computing},
 	pages = {401-416}
 }
 
-%%%%%%%
+%%%%%%%%%
 %%% J %%%
-%%%%%%%
+%%%%%%%%%
 
 @article{Jullion:2007,
 	title = "Robust specification of the roughness penalty prior distribution in spatially adaptive Bayesian P-splines models",
@@ -222,9 +230,9 @@ journal = {Statistics and Computing},
 	abstract = "The potential important role of the prior distribution of the roughness penalty parameter in the resulting smoothness of Bayesian P-splines models is considered. The recommended specification for that distribution yields models that can lack flexibility in specific circumstances. In such instances, these are shown to correspond to a frequentist P-splines model with a predefined and severe roughness penalty parameter, an obviously undesirable feature. It is shown that the specification of a hyperprior distribution for one parameter of that prior distribution provides the desired flexibility. Alternatively, a mixture prior can also be used. An extension of these two models by enabling adaptive penalties is provided. The posterior of all the proposed models can be quickly explored using the convenient Gibbs sampler."
 }
 
-%%%%%%%
+%%%%%%%%%
 %%% k %%%
-%%%%%%%
+%%%%%%%%%
 
 @article{Kauermann2011,
 	ISSN = {00063444},
@@ -256,9 +264,9 @@ journal = {Statistics and Computing},
 
 
 
-%%%%%%%
+%%%%%%%%%
 %%% L %%%
-%%%%%%%
+%%%%%%%%%
 
 @article{Lambert:2007,
 	title = "Archimedean copula estimation using Bayesian splines smoothing techniques",
@@ -289,9 +297,9 @@ journal = {Statistics and Computing},
 	abstract = {B-spline representation of the dielectric functions provides many theoretical and practical benefits for material modeling in spectroscopic ellipsometry. However, the number of knots (and their locations, in general) defines actual performance of B-splines in ellipsometric data analysis. On the one hand, too large number of knots can result in serious overfitting of the experimental data. On the other hand, this number should be sufficient to fit all essential spectral features. Selection of the right number of knots is, in practice, a very subjective and empirically-driven task. In this paper, we discuss the choice of the number of knots utilizing three well-established versions of statistical information criteria in form of Akaike, corrected Akaike and Bayesian Information Criteria (AIC, AICc and BIC, respectively). The criteria establish a compromise between over- and underfitting of experimental data and allow formalized selection of the right number of knots. Effectiveness of the proposed methodology is illustrated using a few real-data examples.}
 }
 
-%%%%%%%
+%%%%%%%%%
 %%% P %%%
-%%%%%%%
+%%%%%%%%%
 
 @article{Pensky:2007,
 	URL = {http://www3.stat.sinica.edu.tw/statistica/j17n2/j17n210/j17n210.html},
@@ -365,9 +373,9 @@ abstract = {Random Bernstein polynomials which are also probability distribution
 	eprint = {https://doi.org/10.1080/01621459.2013.829001}
 }
 
-%%%%%%%
+%%%%%%%%%
 %%% R %%%
-%%%%%%%
+%%%%%%%%%
 
 @article{Rosen:2012,
 issn = {0162-1459},
@@ -417,9 +425,9 @@ keywords = {Electroencephalogram ; El Niño Southern Oscillation ; Locally Stati
 	eprint = {https://doi.org/10.1198/106186002853}
 }
 
-%%%%%%%
+%%%%%%%%%
 %%% S %%%
-%%%%%%%
+%%%%%%%%%
 
 @article{Sethuraman:1994,
 	added-at = {2009-09-10T14:36:22.000+0200},
@@ -455,9 +463,9 @@ keywords = {Mathematics -- Pure mathematics -- Linear algebra ; Information scie
 }
 
 
-%%%%%%%
+%%%%%%%%%
 %%% W %%%
-%%%%%%%
+%%%%%%%%%
 
 @article{Whittle:1957,
 	ISSN = {00359246},
