@@ -27,7 +27,7 @@
 \newcommand{\w}{{\bf w}}
 % Define author, title, and date
 
-\title{\textcolor{red}{Bayesian spectral density estimation using P-splines}}
+\title{Bayesian spectral density estimation using P-splines}
 \author{Patricio Maturana-Russel \and Renate Meyer}
 
 \institute{Patricio Maturana-Russel \at Department of Mathematical Sciences, Auckland
@@ -48,11 +48,11 @@
 
 \begin{abstract}
 
-This article  proposes a Bayesian approach to estimating the spectral density of a stationary time series using a prior based on a mixture of P-spline distributions.  Our proposal is motivated by the B-spline Dirichlet process prior of \cite{Edwards2019} in combination  with Whittle's likelihood and aims at  reducing the high computational complexity of its posterior computations. The strength of the B-spline Dirichlet process prior over the Bernstein-Dirichlet process prior of \cite{Choudhuri:2004}  lies in its ability to estimate spectral densities with sharp peaks and abrupt changes due to the flexibility of B-splines with variable number and location of knots. Here, we suggest to use P-splines of \cite{Eilers:1996} that combine a B-spline basis with a discrete penalty on the basis coefficients. We demonstrate in a simulation study and two real  case studies that this approach retains the flexibility of the B-splines, achieves \textcolor{red}{similar} ability to accurately estimate peaks due to a new data-driven knot allocation scheme but significantly reduces the computational costs.
+This article  proposes a Bayesian approach to estimating the spectral density of a stationary time series using a prior based on a mixture of P-spline distributions.  Our proposal is motivated by the B-spline Dirichlet process prior of \cite{Edwards2019} in combination  with Whittle's likelihood and aims at  reducing the high computational complexity of its posterior computations. The strength of the B-spline Dirichlet process prior over the Bernstein-Dirichlet process prior of \cite{Choudhuri:2004}  lies in its ability to estimate spectral densities with sharp peaks and abrupt changes due to the flexibility of B-splines with variable number and location of knots. Here, we suggest to use P-splines of \cite{Eilers:1996} that combine a B-spline basis with a discrete penalty on the basis coefficients. We demonstrate in a simulation study and two real  case studies that this approach retains the flexibility of the B-splines, achieves similar ability to accurately estimate peaks due to a new data-driven knot allocation scheme but significantly reduces the computational costs.
 
 \end{abstract}
 
-\keywords{P-splines \and B-splines \and \textcolor{red}{Bernstein-Dirichlet process prior}  \and spectral density estimation \and Whittle likelihood}
+\keywords{P-splines \and B-splines \and Bernstein-Dirichlet process prior  \and spectral density estimation \and Whittle likelihood}
 
 \section{Introduction}
 The power spectral density (psd), or simply spectral density, describes the distribution of the power or variance over the individual frequency components of a time series.  It embodies useful information for the study of stationary time series.  For a zero-mean weakly stationary time series, an absolutely summable autocovariance function, i.e.\ $\sum_{h=-\infty}^{\infty} |\gamma(h)| <\infty$, guarantees the existence of a continuous and bounded spectral density function given by
@@ -72,22 +72,20 @@ I_n(\lambda) = \dfrac{1}{2 \pi n} \left| \sum_{t=1}^{n} Y_t \exp \left( -i t \la
 in one way or another, where $-\pi < \lambda \leq \pi$ is the angular frequency and $\bm{Y}=(Y_1,\ldots,Y_n)$ is a stationary time series of length $n$. The periodogram ordinates evaluated at the Fourier frequencies $\lambda_i$  are asymptotically independent and follow an exponential distribution with mean $f(\lambda_i)$.  Thus, they are unbiased estimates of $f(\lambda_i)$  but not consistent \citep{Brockwell:1986}.
 
 
-Most Bayesian approaches to psd estimation use the so-called Whittle likelihood, introduced by \cite{Whittle:1957} as an approximation to the likelihood of a Gaussian stationary time series.  Based on the  limiting independent exponential distribution of the periodogram \textcolor{red}{values}, the Whittle likelihood for a mean centred weakly stationary time series $\bm{Y}$ of length $n$ is defined as
+Most Bayesian approaches to psd estimation use the so-called Whittle likelihood, introduced by \cite{Whittle:1957} as an approximation to the likelihood of a Gaussian stationary time series.  Based on the  limiting independent exponential distribution of the periodogram values, the Whittle likelihood for a mean centred weakly stationary time series $\bm{Y}$ of length $n$ is defined as
 \begin{align}
 L(\bm{Y} | f) &= \prod_{l=1}^{\nu}\dfrac{1}{f(\lambda_{l})} e^{-I_n(\lambda_l)/f(\lambda_l)}  \nonumber \\
 &\propto \exp \left( - \sum_{l=1}^{\nu} \log f(\lambda_l) + \dfrac{I_{n}(\lambda_l)}{f(\lambda_l)} \right),\label{eq:whittle_like}
 \end{align}
-where $\lambda_l = 2\pi l / n$ are the Fourier frequencies, $f(\cdot)$ spectral density of $\bm{Y}$, and $\nu = \left\lfloor (n-1)/2 \right\rfloor$ is the greatest integer value less than or equal to $(n-1)/2$. Advantages of this approximation \textcolor{red}{are} that it depends directly on the spectral density, unlike the true Gaussian likelihood function, and gives a good approximation for non-Gaussian time series under certain conditions as shown by \cite{ShaoXiaofeng2007ASTf}.
+where $\lambda_l = 2\pi l / n$ are the Fourier frequencies, $f(\cdot)$ spectral density of $\bm{Y}$, and $\nu = \left\lfloor (n-1)/2 \right\rfloor$ is the greatest integer value less than or equal to $(n-1)/2$. Advantages of this approximation are that it depends directly on the spectral density, unlike the true Gaussian likelihood function, and gives a good approximation for non-Gaussian time series under certain conditions as shown by \cite{ShaoXiaofeng2007ASTf}.
 
 
 Bayesian nonparametric prior specifications for the psd include \cite{Cart:1997}
 who used a smoothing prior on the log psd.  \cite{Rosen:2012} decompose the log psd into a linear and nonlinear component and  put a Gaussian process prior on the nonlinear part, \cite{Pensky:2007} propose Bayesian wavelet-smoothing of the log psd and recently, \cite{Cadonna2017} modelled the log psd  as a mixture of Gaussian distributions with frequency-dependent weights and mean functions.
 %
-\cite{Gangopadhyay:1999} modelled the log-spectral density function by  piecewise polynomials of low order between strategically placed knots on the support of the psd,  allowing the data to select the number and location of the knots.  A reversible jump Markov chain Monte Carlo \citep[RJMCMC;][]{Green:1995} algorithm was implemented to sample from the posterior distribution. \textcolor{red}{Similarly, frequentist approaches such as \cite{Rodriguez} and \cite{Wood2017} model the log spectral density by a linear
-combination of splines with variable knots and combine these with adaptive smoothing. }
+\cite{Gangopadhyay:1999} modelled the log-spectral density function by  piecewise polynomials of low order between strategically placed knots on the support of the psd,  allowing the data to select the number and location of the knots.  A reversible jump Markov chain Monte Carlo \citep[RJMCMC;][]{Green:1995} algorithm was implemented to sample from the posterior distribution.  Similarly, frequentist approaches such as \cite{Rodriguez} and \cite{Wood2017} model the log spectral density by a linear combination of splines with variable knots and combine these with adaptive smoothing. 
 
-\textcolor{red}{Penalized splines have been used for a time-domain analysis of time series data e.g.\ to model the mean as a smooth function of time by
-\cite{Krivobokova}  or for fitting and  forecasting univariate  nonlinear time series by \cite{Wegener}, but not in the frequency domain for estimating the spectral density.}
+Penalized splines have been used for a time-domain analysis of time series data e.g.\ to model the mean as a smooth function of time by \cite{Krivobokova}  or for fitting and  forecasting univariate  nonlinear time series by \cite{Wegener}, but not in the frequency domain for estimating the spectral density.
 The P-spline prior on the spectral density function that we are going to propose is related to the 
 Bernstein-Dirichlet process (BDP) prior  introduced by \cite{Choudhuri:2004} and combined with the Whittle likelihood.  The BDP prior  is a mixture of beta densities with weights induced by a Dirichlet process.  The number of components, which is a smoothing parameter, is given a discrete prior.  \cite{Edwards2019} extended the method by replacing the beta densities with B-spline densities. Similar to 
 \cite{Gangopadhyay:1999}, the specification of the number and location of the B-spline densities is data-driven, however it avoids a RJMCMC algorithm by putting a second Dirichlet process prior  on the cdf that induces the inter-knot distances. 
@@ -95,12 +93,12 @@ Unlike the beta densities  which have global support on the interval [0,1], B-sp
 
 %The Bernstein polynomial and the B-spline methods make use of Whittle's approximation to the Gaussian likelihood, known simply as Whittle likelihood \citep{Whittle:1957}.  
 
-With the aim of reducing the computational cost of the BspDP prior approach,  we suggest to use the idea of P-splines of \cite{Eilers:1996} that \textcolor{red}{combines} a large but fixed number of  B-splines with a simple difference penalty that controls the degree of  smoothness of the spectral density. P-splines, i.e.\  equally-spaced B-splines,  have been successfully implemented for frequentist nonparametric regression but to the best of our knowledge not yet for Bayesian spectral density estimation. We suggest two novel Bayesian  approaches in this paper, both based on the Whittle likelihood and on a mixture of B-spline densities. Both approaches fix the  number of B-spline densities.  The first approach uses equally spaced knots with a P-spline prior which we define in Section III. We demonstrate that this approach yields significant savings in computational time without sacrificing accuracy over the BspDP prior approach for simple spectral structures.  The second approach has a particular  focus on spectral densities with sharp peaks. Instead of an equidistant spacing, the knots are spread based on the distribution of peaks in the periodogram. Thus the knot allocation is also data-driven as with the BspDP prior but the knots  remain fixed once allocated. This novel knot allocation scheme avoids the computational complexity of the BspDP prior.  We show that with this knot allocation scheme, the estimates of spectral densities with spikes and abrupt changes improves significantly without an increase in computing time.
+With the aim of reducing the computational cost of the BspDP prior approach,  we suggest to use the idea of P-splines of \cite{Eilers:1996} that combines a large but fixed number of  B-splines with a simple difference penalty that controls the degree of  smoothness of the spectral density. P-splines, i.e.\  equally-spaced B-splines,  have been successfully implemented for frequentist nonparametric regression but to the best of our knowledge not yet for Bayesian spectral density estimation. We suggest two novel Bayesian  approaches in this paper, both based on the Whittle likelihood and on a mixture of B-spline densities. Both approaches fix the  number of B-spline densities.  The first approach uses equally spaced knots with a P-spline prior which we define in Section III. We demonstrate that this approach yields significant savings in computational time without sacrificing accuracy over the BspDP prior approach for simple spectral structures.  The second approach has a particular  focus on spectral densities with sharp peaks. Instead of an equidistant spacing, the knots are spread based on the distribution of peaks in the periodogram. Thus the knot allocation is also data-driven as with the BspDP prior but the knots  remain fixed once allocated. This novel knot allocation scheme avoids the computational complexity of the BspDP prior.  We show that with this knot allocation scheme, the estimates of spectral densities with spikes and abrupt changes improves significantly without an increase in computing time.
 
 %Motivated by the flexibility of the B-spline prior and its associated high computational cost, in this work, we implement and test a particular case of the B-spline prior.  For this, we fix the %number of B-spline densities and place a P-spline prior on the spectral density instead.  This approach allows to penalize automatically the inclusion of B-spline densities and save significantly %computational time without sacrificing accuracy.  Actually, as will show, it outperforms the B-spline prior in our tests.  In addition, we propose a knot location scheme based on the %periodogram, which aims to deal with psd shapes that possess  abrupt peaks, without increasing computational time.  We show in an example how this scheme improves significantly the %estimates.
 
 The paper is organized as follows: In order to set notation and allow for a direct comparison, we start by
-reviewing the B-spline densities and the BspDP prior in Section II. Section III specifies the P-spline prior for the psd, the novel knot allocations scheme and the Gibbs sampler used to sample from the posterior distribution based on the P-spline prior and Whittle likelihood.  In Section IV, we test our P-spline-based approaches to spectral density estimation and compare results to those based on the BspDP prior in a simulation study and the application to two real time series. The paper concludes with a discussion of the relative merits of the new approaches \textcolor{red}{and avenues for future research.}
+reviewing the B-spline densities and the BspDP prior in Section II. Section III specifies the P-spline prior for the psd, the novel knot allocations scheme and the Gibbs sampler used to sample from the posterior distribution based on the P-spline prior and Whittle likelihood.  In Section IV, we test our P-spline-based approaches to spectral density estimation and compare results to those based on the BspDP prior in a simulation study and the application to two real time series. The paper concludes with a discussion of the relative merits of the new approaches and avenues for future research.
 
 \section{Notation and review of the B-spline--Dirichlet process prior}
 
@@ -221,7 +219,7 @@ This has prompted us to explore the performance of two new algorithms, both base
 %%%%%%%%%%%%%%%%%
 
 \section{P-spline prior}
-\textcolor{red}{
+
 As the spectral density function $f(\cdot)$ is defined on the interval $[0,\pi]$, it is reparametrized and defined as
 \begin{align*}
 f(\pi \omega) =\tau \times s_r(\omega;\bm{w}, \bm{\xi}), \quad \omega \in [0,1], %\tau \times s_r(\omega;K,G,H), \quad \omega \in [0,1],
@@ -231,7 +229,7 @@ where $\tau = \int_{0}^{1}f(\tau \omega)\text{d}\omega$ is the normalizing const
 s_r(\omega; \bm{w}, \bm{\xi}) = \sum_{k=1}^{K} w_k b_{k,r}(\omega;\bm{\xi}),
 \label{eq:ps_prior}	
 \end{align}
-with  {\em fixed} number $K$ of B-spline densities  $b_{k,r}(\cdot)$ of fixed degree $r$, weight vector $\bm{w}=(w_1,\cdots, w_K)$, and knot sequence $\bm{\xi}$.}
+with  {\em fixed} number $K$ of B-spline densities  $b_{k,r}(\cdot)$ of fixed degree $r$, weight vector $\bm{w}=(w_1,\cdots, w_K)$, and knot sequence $\bm{\xi}$.
 
 %Fixing the number of B-spline densities $K$ in Eq. \eqref{eq:bs_prior}, the prior for the unit interval $[0,1]$ is defined as
 %\begin{align*}
@@ -239,7 +237,7 @@ with  {\em fixed} number $K$ of B-spline densities  $b_{k,r}(\cdot)$ of fixed de
 %\end{align*}
 %where $\bm{w} = (w_1,\dots,w_K)$.
 
-$\bm{\xi}$ contains fixed equidistant internal knots on $[0,1]$ in our basic P-spline prior. A different  allotment of knots is described in  section ``\textcolor{red}{Adaptive knots}".
+$\bm{\xi}$ contains fixed equidistant internal knots on $[0,1]$ in our basic P-spline prior. A different  allotment of knots is described in  section ``Adaptive knots".
 %Therefore, the P-spline prior on the spectral density function is given by
 %\begin{align*}
 %f(\pi \omega) = \tau \times s_r(\omega;\bm{w}, \bm{\xi}), \quad \omega \in [0,1],
@@ -269,7 +267,7 @@ Then, an indirect prior is placed on the weights via
 \delta &\sim \text{Gamma}(\alpha_{\delta}, \beta_{\delta})
 \end{align*}
 where $\bm{v} = (v_1,\dots,v_{K-1})^\top$ is a $K-1$ dimensional parameter vector, $\phi$ is the smoothing or penalty parameter, $\textbf{P} = \textbf{D}^\top \textbf{D} +\epsilon \textbf{I}_{K-1}$ is the penalty matrix (which is a full matrix rank matrix for any small quantity $\epsilon$, for instance, $10^{-6}$) with $\textbf{D}$ the $d^{\text{th}}$ order difference matrix ($d=1,2,\ldots, K-2)$, $\alpha_{\phi}$ and $\alpha_{\delta}$ are shape parameters, $\delta \beta_{\phi}$ and $\beta_{\delta}$ are rate parameters, and $\text{Gamma}(a,b)$ denotes a gamma distribution with mean $a/b$ and variance $a/b^2$.
-We used \textcolor{red}{first and second}  order difference penalties in the simulation study.
+We used first and second order difference penalties in the simulation study.
 The $1^{\text{st}}$ order difference matrix \textbf{D} $\in \mathbb{R}^{(K-2)\times (K-1)}$  is defined as
 \begin{equation}\label{eq:D1}
 %\begin{align*}
@@ -281,7 +279,7 @@ The $1^{\text{st}}$ order difference matrix \textbf{D} $\in \mathbb{R}^{(K-2)\ti
 \end{bmatrix}
 %\end{align*}
 \end{equation}
-\textcolor{red}{and} the $2^{\text{nd}}$ order difference matrix $\in \mathbb{R}^{(K-3)\times (K-1)} $ as
+and the $2^{\text{nd}}$ order difference matrix $\in \mathbb{R}^{(K-3)\times (K-1)} $ as
 \begin{equation}\label{eq:D2}
 %\begin{align*}
 \begin{bmatrix}
@@ -303,8 +301,8 @@ The $1^{\text{st}}$ order difference matrix \textbf{D} $\in \mathbb{R}^{(K-2)\ti
 %\end{bmatrix}
 %\end{align*}
 %$\in \mathbb{R}^{(K-4)\times (K-1)}$.  
-\textcolor{red}{The rationale for using discrete second order roughness penalties as an approximation to the usual continuous roughness measure based on the integral over the second derivatives is given
-in \cite{Eilers:1996}.}
+The rationale for using discrete second order roughness penalties as an approximation to the usual continuous roughness measure based on the integral over the second derivatives is given
+in \cite{Eilers:1996}.
 
 The parameter vector for the P-spline prior is $\bm{\theta} = (\bm{v}^\top, \phi, \delta, \tau)^\top$.
 We use a robust specification for the  prior distribution of the penalty parameters as suggested by \cite{Jullion:2007} by choosing small values for $\alpha_{\delta}$ and $\beta_{\delta}$, for instance, $10^{-4}$. The  choice of $\alpha_{\phi}$ and $\beta_{\phi}$ do not affect the spectral density estimate. Here we set $\alpha_{\phi}$ and $\beta_{\phi}$ equal to 1 as used by \cite{Bremhorst:2016}. The scale parameter $\tau$ is given by an inverse Gamma($\alpha_{\tau},\beta_{\tau}$) prior.  These are also the prior specifications used in the simulations and examples in Section \ref{sec:application}.
@@ -386,9 +384,9 @@ the Bayesian Information Criterion.
 %\subsection*{Knot allocation strategy}
 \subsection*{Adaptive knots}
 
-The knots are often equally spaced in P-spline methods.  This scheme works quite well  for smooth psds without any abrupt changes.  However, for spectral densities with spikes, the algorithm will require a large number of knots to adequately estimate the peaks.  The B-spline prior method is able to handle abrupt changes because the knot location is variable and  driven by the data.  We propose \textcolor{red}{an adaptive} method that allocates the knots according to the periodogram but once allocated, the knots stay fixed.  The idea is to concentrate more effort in those regions that have potential peaks as detected by the periodogram.  
+The knots are often equally spaced in P-spline methods.  This scheme works quite well  for smooth psds without any abrupt changes.  However, for spectral densities with spikes, the algorithm will require a large number of knots to adequately estimate the peaks.  The B-spline prior method is able to handle abrupt changes because the knot location is variable and  driven by the data.  We propose an adaptive method that allocates the knots according to the periodogram but once allocated, the knots stay fixed.  The idea is to concentrate more effort in those regions that have potential peaks as detected by the periodogram.  
 
-Our \textcolor{red}{adaptive} knot location proposal works as follow.  We calculate the periodogram and apply a square root transformation in order to have more regular magnitudes and eliminate a potential trend.  Second, we standardize these values and apply the absolute value function.  We treat this transformed periodogram as a density function $\widetilde{f}$ and calculate its distribution function $F$.  Finally, the knots are allocated according to the quantiles of the inverse distribution function of $\widetilde{f}$.  Thus, in those areas in which the periodogram has sharp and abrupt changes, our procedure will assign more knots in proportion to their magnitudes. Hereafter, we will refer to this scheme as \textcolor{red}{\em adaptive knots}.%\textit{periodogram-spaced knots} or short \textit{P-spaced knots}.
+Our adaptive knot location proposal works as follow.  We calculate the periodogram and apply a square root transformation in order to have more regular magnitudes and eliminate a potential trend.  Second, we standardize these values and apply the absolute value function.  We treat this transformed periodogram as a density function $\widetilde{f}$ and calculate its distribution function $F$.  Finally, the knots are allocated according to the quantiles of the inverse distribution function of $\widetilde{f}$.  Thus, in those areas in which the periodogram has sharp and abrupt changes, our procedure will assign more knots in proportion to their magnitudes. Hereafter, we will refer to this scheme as {\em adaptive knots}.%\textit{periodogram-spaced knots} or short \textit{P-spaced knots}.
 %REMARK: HOW ABOUT "PERIODOGRAM-SPACED KNOTS"	OR 'P-SPACED KNOTS'  INSTEAD OF DISTRIBUTED KNOTS?
 
 The procedure can be summarized as follows:
@@ -396,14 +394,14 @@ The procedure can be summarized as follows:
 	\item Let $\bm{x} = \left (\sqrt{I_n(\lambda_1)}, \dots, \sqrt{I_n(\lambda_{\nu})} \right)$ be the square root of the periodogram values for each angular frequency.
 	\item Define $z_i = \left|\dfrac{x_i - \bar{x}}{S_x} \right|$ where $\bar{x}$ denotes the average and $S_x$ the standard deviation of ${\bm x}$ and calculate its distribution function $F_z = P(z \leq z_i)$.
 	\item Let $\bm{\xi}^* = \left(\xi_1^*,\dots,\xi_{K^*}^* \right)$ be a vector of $K^*$ equally spaced values in $[0,1]$.
-	\item The \textcolor{red}{adaptive} knot vector is given by $\bm{\xi} = \left(F_{z}^{-1}(\xi^*_1),\dots, F_{z}^{-1}(\xi^*_{K^*}) \right)$.
+	\item The adaptive knot vector is given by $\bm{\xi} = \left(F_{z}^{-1}(\xi^*_1),\dots, F_{z}^{-1}(\xi^*_{K^*}) \right)$.
 	
 \end{enumerate}
 
-\textcolor{red}{For non-equidistant knots, it does not make sense any longer to base the definition of the covariance matrix of the Gaussian prior  on the  difference matrices as defined in (\ref{eq:D1}) and (\ref{eq:D2}) because this is an adequate approximation of the derivative-based roughness measures -- defined as the integral of the first and second order derivatives of the P-splines -- 
-for equally spaced knots only. The definition of the difference matrices could be adjusted using divided differences, but here we use the derivative-based penalties as described by \cite{WoodSimon2017Pwdb}. We make use of the implementation of the derivative-based penalty matrix  by the function {\tt bsplinepen} in the R-package {\tt fda} \citep{fda}. This penalty matrix contains the inner products of the respective first and second order derivatives of the basis functions. In addition, we normalise this matrix by dividing it by the maximum absolute column sum.}
+For non-equidistant knots, it does not make sense any longer to base the definition of the covariance matrix of the Gaussian prior  on the  difference matrices as defined in (\ref{eq:D1}) and (\ref{eq:D2}) because this is an adequate approximation of the derivative-based roughness measures -- defined as the integral of the first and second order derivatives of the P-splines -- 
+for equally spaced knots only. The definition of the difference matrices could be adjusted using divided differences, but here we use the derivative-based penalties as described by \cite{WoodSimon2017Pwdb}. We make use of the implementation of the derivative-based penalty matrix  by the function {\tt bsplinepen} in the R-package {\tt fda} \citep{fda}. This penalty matrix contains the inner products of the respective first and second order derivatives of the basis functions. In addition, we normalise this matrix by dividing it by the maximum absolute column sum.
 
-The \textcolor{red}{adaptive}  knot allocation can be regarded as an empirical Bayes prior since the data are used to specify the prior distribution.  However, only the locations of the B-splines are determined by the data, not the parameters of the prior distribution which in this case are the weights $w_k$ associated with each B-spline $b_{k,r}$.  The main criticism of an empirical Bayes approach is that the data are being used twice, once to specify the prior and then again to update the prior to the posterior. Here, the data are used only once to specify the knot locations but not again to update these through the likelihood.
+The adaptive knot allocation can be regarded as an empirical Bayes prior since the data are used to specify the prior distribution.  However, only the locations of the B-splines are determined by the data, not the parameters of the prior distribution which in this case are the weights $w_k$ associated with each B-spline $b_{k,r}$.  The main criticism of an empirical Bayes approach is that the data are being used twice, once to specify the prior and then again to update the prior to the posterior. Here, the data are used only once to specify the knot locations but not again to update these through the likelihood.
 
 
 %REMARK: CAN YOU PLEASE INSERT EXPLICIT FORMULAE.
@@ -424,9 +422,9 @@ For the AR(1) model, the  first  order autocorrelation $\rho_1 = 0.9$ was chosen
 We estimated the spectral density functions using the BspDP and P-spline priors.  The BspDP-based  analysis was performed via the \texttt{gibbs\_bspline} function in the \textsf{R} package \texttt{bsplinePsd} \cite{Edwards:bsplinePsd:2018}.  The algorithm was executed for 100,000 iterations with a burn-in period of 25,000 and thinning factor of 10, resulting in 7,500 samples used for posterior inference.  Pilot analyses showed that these specifications are suitable in these examples in terms of convergence (results not shown).  
 
 The P-spline analysis was performed using the \texttt{gibbs\_pspline} function implemented in the \textsf{R} package \texttt{psplinePsd} \citep{psplinepackage}.  A total of 100,000 MCMC samples were generated
-using  a pilot run of \textcolor{red}{20,000} iterations with a burn-in period of 5,000 and thinning factor of 10 to calibrate the proposals.  The final sample consisted of \textcolor{red}{80,000} samples with a burn-in period of 5,000 and thinning factor of 10, resulting in \textcolor{red}{7,500} samples used for posterior inferences.  
+using  a pilot run of 20,000 iterations with a burn-in period of 5,000 and thinning factor of 10 to calibrate the proposals.  The final sample consisted of 80,000 samples with a burn-in period of 5,000 and thinning factor of 10, resulting in 7,500 samples used for posterior inferences.  
 %Therefore, the number of iterations equate the B-spline analysis.  
-This procedure was replicated for both equidistant and \textcolor{red}{adaptive} knots \textcolor{red}{ considering first and second order penalties.}
+This procedure was replicated for both equidistant and adaptive knots considering first and second order penalties.
 
 The theoretical spectral density for an AR($p$) model is given by
 \begin{align*}
@@ -440,15 +438,15 @@ where $\widehat{f}(\cdot)$ is the pointwise posterior median of the spectral den
 The results are displayed in Table~\ref{table:sim_IAE}.
 
 For the AR(1) time series, the P-spline prior with equidistant knots and penalty order $d=1$ yields better psd estimates than the BspDP prior.
-A larger penalty order does not necessarily result in more accurate psd estimates. In this case of a relatively smooth spectral density, the \textcolor{red}{adaptive} knots do not yield an improvement over the equidistant knots and the BspDP prior.
+A larger penalty order does not necessarily result in more accurate psd estimates. In this case of a relatively smooth spectral density, the adaptive knots do not yield an improvement over the equidistant knots and the BspDP prior.
 
 
 
 % yields more accurate results than the B-spline prior for $n=128$.  Slightly better results are obtained for $n=256$ with equidistant knots.  However, the distributed knot scheme yields %slightly higher values.  For $n=512$ and both knot schemes, only the first order penalty P-splines yield better results, whereas the second and third order penalty P-splines yield marginally %higher median IAE values.  In general, the equidistant knot scheme yield lower IAE values than the distributed knots.
 
-For the AR(4) time series, the \textcolor{red}{fit based on the P-spline prior with \textcolor{red}{adaptive} knots is better than the fit based on the B-spline Dirichlet process prior and the one based on the P-spline prior with equidistant knots}.
+For the AR(4) time series, the fit based on the P-spline prior with adaptive knots is better than the fit based on the B-spline Dirichlet process prior and the one based on the P-spline prior with equidistant knots.
 % categorically outperforms the BspDP algorithm.   It also outperforms the equidistant knot scheme. 
- In general, the BspDP algorithm achieves higher accuracy than the P-spline method with equidistant knots.  As shown by \cite{Edwards2019}, the \textcolor{red}{posterior distribution based on the BspDP prior} yields better results than \textcolor{red}{posterior based on } the BDP in terms of median IAE in this example.  Consequently, our P-spline algorithm with \textcolor{red}{adaptive} knots outperforms the BDP method as well.
+ In general, the BspDP algorithm achieves higher accuracy than the P-spline method with equidistant knots.  As shown by \cite{Edwards2019}, the posterior distribution based on the BspDP prior yields better results than posterior based on the BDP in terms of median IAE in this example.  Consequently, our P-spline algorithm with adaptive knots outperforms the BDP method as well.
 
 
 %The latter yields more accurate results than the BspDP prior for $n=\{128, 256\}$.  For $n=512$, the third order penalty P-splines has a slightly higher median IAE, but overall, this approach achieves higher accuracy.  
@@ -468,7 +466,7 @@ For the AR(4) time series, the \textcolor{red}{fit based on the P-spline prior w
 			\textit{Equidistant knots}& & &   \\
 			\hspace{0.5em}P-spline $d=1$ &  0.772 & 0.644 & 0.527 \\
 			\hspace{0.5em}P-spline $d=2$&  0.708 & 0.604 & 0.629 \\
-			\textit{\textcolor{red}{Adaptive} knots}& & &   \\
+			\textit{Adaptive knots}& & &   \\
 			\hspace{0.5em}P-spline $d=1$ & 0.874 & 0.783 & 0.610 \\
 			\hspace{0.5em}P-spline $d=2$ & 0.874 & 0.815 & 0.640 \\ \hline
 			AR(4)     &  &  &  \\ 
@@ -476,7 +474,7 @@ For the AR(4) time series, the \textcolor{red}{fit based on the P-spline prior w
 			\textit{Equidistant knots}& & &   \\
 			\hspace{0.5em}P-spline $d=1$ &  2.914 & 2.389 & 2.307\\
 			\hspace{0.5em}P-spline $d=2$&  3.150 & 2.569 & 2.388\\
-			\textit{\textcolor{red}{Adaptive} knots}& & &   \\
+			\textit{Adaptive knots}& & &   \\
 			\hspace{0.5em}P-spline $d=1$ & 2.495 & 1.830 & 1.489\\
 			\hspace{0.5em}P-spline $d=2$ &  2.696 & 2.003 & 1.677\\
 			\bottomrule
@@ -520,12 +518,12 @@ The idea is to measure the proportion of times that the true spectral density is
 at each of the Fourier frequencies.  The median of these pointwise coverage proportions are displayed in Table~\ref{table:sim_covPbb_median}.
 
 For the AR(1) model, the BspDP and first order penalty P-spline 90\% credible bands cover the whole true spectral density function, i.e.\ for all frequencies $\lambda$, in 
-\textcolor{red}{almost} all the 300 independent analyses.  In general, the latter method shows diminishing  performance as the penalty degree increases.  For the AR(4) model, the P-spline method with equidistant knots performs poorly.  On the other hand, the \textcolor{red}{adaptive} knot scheme yields evidently much better results, which are comparable (in the case of the first order penalty) to those obtained via the BspDP algorithm.  %For $n=\{128,256\}$, the latter has higher coverage probabilities than our proposal, except for $n=512$.  
-For the P-spline priors, the coverage probabilities decrease as the penalty degree order increases, which can be explained by the forced smoothness imposed by the higher penalty order.  As shown by \cite{Edwards2019}, the BspDP algorithm produces better results than the BDP prior in the AR(4) case, which coverage probability is zero across $n=\{128,256,512\}$. Consequently, our P-spline algorithm with \textcolor{red}{adaptive} knots outperforms the BDP method in this case.
+almost all the 300 independent analyses.  In general, the latter method shows diminishing  performance as the penalty degree increases.  For the AR(4) model, the P-spline method with equidistant knots performs poorly.  On the other hand, the adaptive knot scheme yields evidently much better results, which are comparable (in the case of the first order penalty) to those obtained via the BspDP algorithm.  %For $n=\{128,256\}$, the latter has higher coverage probabilities than our proposal, except for $n=512$.  
+For the P-spline priors, the coverage probabilities decrease as the penalty degree order increases, which can be explained by the forced smoothness imposed by the higher penalty order.  As shown by \cite{Edwards2019}, the BspDP algorithm produces better results than the BDP prior in the AR(4) case, which coverage probability is zero across $n=\{128,256,512\}$. Consequently, our P-spline algorithm with adaptive knots outperforms the BDP method in this case.
 
 Even though the P-spline method with equidistant knots for the AR(4) case performs poorly in terms of uniform coverage, i.e. the proportion of times that the credible band covers  the true psd {\em completely} in the 300 runs, it is important to note that this is only because the uniform band does not cover
 the psd for  just very few frequencies. As is evident from 
-  Table~\ref{table:sim_covPbb_median},  only for a small fraction of the frequencies the psd is not covered by the uniform credible band.  In this context, BspDP and \textcolor{red}{adaptive} knot P-spline algorithms perform equally well.  
+Table~\ref{table:sim_covPbb_median},  only for a small fraction of the frequencies the psd is not covered by the uniform credible band.  In this context, BspDP and adaptive knot P-spline algorithms perform equally well.  
 
 %For the AR(4) model, the P-spline prior with P-spaced knots has the best coverage across the different specifications. For the equidistant knots the coverage is always greater than 90\%.  For the first penalty order P-splines, the coverage probabilities are all higher than the ones produced by the BspDP prior algorithm.  For the second order penalty, it has a better performance, except for $n=512$, where the values are equal.  For the third order penalty, we see a mix of results, that is equal, higher and lower values for the increasing sequence of $n$, respectively.  For the P-spline priors, in particular for $n=512$, the coverage probabilities decrease as the penalty degree order increases, which can be explained by the forced smoothness imposed by the higher penalty order.  In general, P-spline priors have a better coverage probability than the BspDP method which as shown by  \cite{Edwards2019} have better coverage probabilities than the BDP prior in the AR(4) case.
 
@@ -541,7 +539,7 @@ the psd for  just very few frequencies. As is evident from
 			\textit{Equidistant}& & &   \\
 			\hspace{0.5em}P-spline $d=1$&  1.000 & 1.000 & 0.997\\
 			\hspace{0.5em}P-spline $d=2$& 0.993 & 1.000 & 0.993  \\
-			\textit{\textcolor{red}{Adaptive} knots}& & &   \\
+			\textit{Adaptive knots}& & &   \\
 			\hspace{0.5em}P-spline $d=1$ & 0.997 & 1.000 & 0.997 \\
 			\hspace{0.5em}P-spline $d=2$ & 0.973 & 0.740 & 0.770 \\ \hline		       
 			AR(4)     &  &  &  \\ 
@@ -549,7 +547,7 @@ the psd for  just very few frequencies. As is evident from
 			\textit{Equidistant knots}& & &   \\
 			\hspace{0.5em}P-spline $d=1$ &  0.527 & 0.353 & 0.007 \\
 			\hspace{0.5em}P-spline $d=2$ & 0.323 & 0.167 & 0.007\\
-			\textit{\textcolor{red}{Adaptive} knots}& & &   \\	
+			\textit{Adaptive knots}& & &   \\	
 			\hspace{0.5em}P-spline $d=1$ & 0.790 & 0.847 & 0.813 \\
 			\hspace{0.5em}P-spline $d=2$ & 0.337 & 0.387 & 0.270 \\
 			\bottomrule
@@ -567,14 +565,14 @@ the psd for  just very few frequencies. As is evident from
 			AR(1)     &  &  &  \\ 
 			B-spline &  1.000 & 1.000 & 1.000 \\
 			\textit{Equidistant \&}& & &   \\
-			\textit{\textcolor{red}{Adaptive} knots}& & &   \\
+			\textit{Adaptive knots}& & &   \\
 			\hspace{0.5em}P-spline $d=1,2$ & 1.000 & 1.000 & 1.000  \\ \hline	 		      
 			AR(4)     &  &  &  \\ 
 			B-spline &  1.000 & 1.000 & 1.000 \\
 			\textit{Equidistant knots}& & &   \\
 			\hspace{0.5em}P-spline $d=1$ &  1.000 & 0.992 & 0.984 \\
 			\hspace{0.5em}P-spline $d=2$&  0.984 & 0.984 & 0.980 \\
-			\textit{\textcolor{red}{Adaptive} knots}& & &   \\	
+			\textit{Adaptive knots}& & &   \\	
 			\hspace{0.5em}P-spline $d=1$ & 1.000 & 1.000 & 1.000 \\
 			\hspace{0.5em}P-spline $d=2$ & 0.984 & 0.992 & 0.992\\	
 			\bottomrule
@@ -588,7 +586,7 @@ the psd for  just very few frequencies. As is evident from
 %%% TIME %%%
 %%%%%%%%%%%%
 
-As \cite{Edwards2019} noted, one of the drawbacks of the BspDP prior  is its computational complexity relative to the BDP.  This is directly reflected in the run-time, which is approximately 2-3 times higher in this example (see Table~3 in \cite{Edwards2019}).  The median run-time in our analyses for the BspDP prior and the P-spline with \textcolor{red}{adaptive} knots are displayed in Table~\ref{table:sim_time}.  Note that the P-spline method based on equidistant knots has similar run-times to the \textcolor{red}{adapative} knots.  The P-spline method is approximately \textcolor{red}{4-7} times faster than BspDP approach in these examples.  This is due to a reduced number of calculations  per iteration because the B-spline densities are calculated only  once at the start of the algorithm and there are no Dirichlet process approximations via the stick-breaking method.  
+As \cite{Edwards2019} noted, one of the drawbacks of the BspDP prior  is its computational complexity relative to the BDP.  This is directly reflected in the run-time, which is approximately 2-3 times higher in this example (see Table~3 in \cite{Edwards2019}).  The median run-time in our analyses for the BspDP prior and the P-spline with adaptive knots are displayed in Table~\ref{table:sim_time}.  Note that the P-spline method based on equidistant knots has similar run-times to the adaptive knots.  The P-spline method is approximately 4-7 times faster than BspDP approach in these examples.  This is due to a reduced number of calculations  per iteration because the B-spline densities are calculated only  once at the start of the algorithm and there are no Dirichlet process approximations via the stick-breaking method.  
 
 % TIME Table
 \begin{table}
@@ -599,13 +597,13 @@ As \cite{Edwards2019} noted, one of the drawbacks of the BspDP prior  is its com
 			& $n=128$ & $n=256$ & $n=512$ \\ \hline
 			AR(1)     &  &  &  \\ 
 			B-spline &   29.497 & 32.423 & 37.896 \\
-			\textit{\textcolor{red}{Adaptive} knots}& & &   \\
+			\textit{Adaptive knots}& & &   \\
 			\hspace{0.5em}P-spline $d=1$&  4.859 & 7.450 & 9.606\\
 			\hspace{0.5em}P-spline $d=2$&  4.538 & 6.863 & 8.783\\
 			B-spline/P-spline &  6.278 & 4.531 & 4.122 \\ \hline
 			AR(4)     &  &  & \\ 
 			B-spline & 30.111 & 34.126 & 40.875  \\
-			\textit{\textcolor{red}{Adaptive} knots}& & &   \\
+			\textit{Adaptive knots}& & &   \\
 			\hspace{0.5em}P-spline $d=1$ & 4.883 & 7.453 & 9.665 \\
 			\hspace{0.5em}P-spline $d=2$& 4.543 & 6.887 & 8.827 \\
 			B-spline/P-spline & 6.389 & 4.760 & 4.421 \\	
@@ -617,7 +615,7 @@ As \cite{Edwards2019} noted, one of the drawbacks of the BspDP prior  is its com
 \end{table}
 
 
-In general terms, the P-spline algorithm with our novel knot allocation scheme, the \textcolor{red}{adaptive} knots, offers the best trade-off between accuracy and computation cost.  The  rule-of-thumb criterion,  $K=\min\left\{n/4, 40\right\}$, for the number of B-spline densities in the P-spline prior algorithm worked perfectly well in this example. 
+In general terms, the P-spline algorithm with our novel knot allocation scheme, the adaptive knots, offers the best trade-off between accuracy and computation cost.  The  rule-of-thumb criterion,  $K=\min\left\{n/4, 40\right\}$, for the number of B-spline densities in the P-spline prior algorithm worked perfectly well in this example. 
 
 %Overall, the P-spline prior outperforms the B-spline prior in this example in terms of IAE, coverage probability and run-time.  Particularly, our novel knot allocation scheme, the periodogram-spaced knots, yield the best results in the case of peaked spectral densities.  The  rule-of-thumb criterion,  $K=\min\left\{n/4, 40\right\}$, for the number of 
 %\textcolor{red}{P-splines} B-spline densities in the P-spline prior algorithm
@@ -627,21 +625,21 @@ In general terms, the P-spline algorithm with our novel knot allocation scheme, 
 Sunspots are regions of reduced surface temperature that are visible as darker spots on the sun's photosphere.
 We analyse the average annual mean sunspot numbers for the year 1700-1987 consisting of  288 observations.  This is a classic dataset used to assess spectral density estimation methods.  A square root transformation is applied in order to make the observations more symmetrical and stationary. 
 
-As in \cite{Edwards2019}, the MCMC algorithm based on the BspDP prior  is run for 100,000 iterations, with a burn-in period of 50,000 and thinning factor of 10.  Thus, 5,000 samples are used for the estimation.  This took about \textcolor{red}{22} minutes.  The other specifications are the same as those used in the simulation study.
+As in \cite{Edwards2019}, the MCMC algorithm based on the BspDP prior  is run for 100,000 iterations, with a burn-in period of 50,000 and thinning factor of 10.  Thus, 5,000 samples are used for the estimation.  This took about 22 minutes.  The other specifications are the same as those used in the simulation study.
 
-The MCMC algorithm based on the P-spline prior is run in two stages.  In  the first stage, the proposal  is calibrated for the final run.  It consists of 25,000 iterations with a burn-in period of 10,000 and thinning factor of 10, resulting in 1,500 samples.  Then the algorithm is run for 75,000 iterations with a burn-in period of 25,000 and thinning factor of 10, resulting in 5,000 samples.  The analysis is performed using the first order penalty for equidistant and \textcolor{red}{adaptive} knots.   All other specifications are the same as those used in the simulation study.  A single analysis takes about \textcolor{red}{4.5} minutes.
+The MCMC algorithm based on the P-spline prior is run in two stages.  In  the first stage, the proposal  is calibrated for the final run.  It consists of 25,000 iterations with a burn-in period of 10,000 and thinning factor of 10, resulting in 1,500 samples.  Then the algorithm is run for 75,000 iterations with a burn-in period of 25,000 and thinning factor of 10, resulting in 5,000 samples.  The analysis is performed using the first order penalty for equidistant and adaptive knots.   All other specifications are the same as those used in the simulation study.  A single analysis takes about 4.5 minutes.
 
 \begin{figure}[]
 	\centering
 	\includegraphics[scale=0.40,clip=true,angle=0]{sunspot.pdf}
-	\caption{Log-spectral density estimate for the sunspot data. The continuous grey line represents the periodogram.  The continuous and dashed lines stand for the posterior median log psd obtained using the B-spline and P-spline priors, respectively.  The dot lines represents the 90\% pointwise credible bands for the latter prior, which consider a first order penalty and \textcolor{red}{adaptive} knots.}
+	\caption{Log-spectral density estimate for the sunspot data. The continuous grey line represents the periodogram.  The continuous and dashed lines stand for the posterior median log psd obtained using the B-spline and P-spline priors, respectively.  The dot lines represents the 90\% pointwise credible bands for the latter prior, which consider a first order penalty and adaptive} knots.
 	\label{fig:sunspot}
 \end{figure}
 
 %REMARK: PLEASE CHANGE THE TICK MARKS ON X-AXIS IF THESE ARE CYCLES/YEAR NOT ANGULAR FREQUENCIES.\smallskip
 
-The results for the BspDP and P-spline prior  with first order penalty and \textcolor{red}{adaptive}  knots are displayed in Figure~\ref{fig:sunspot} \textcolor{red}{(p-spline with equidistant knot approach results are not shown due to their similarity to the adaptive knot estimates)}.  Both methods reveal a large peak at about 0.09. In other words, there is a periodic solar cycle of length $1/ 0.09 \approx 11$ years.  These results are consistent with those obtained via the BDP  prior~\citep{Choudhuri:2004}.
-However, the BspDP estimation takes approximately \textcolor{red}{22} minutes compared to only \textcolor{red}{4.5} minutes for the the P-spline estimation. Thus the P-spline estimation is approximately
+The results for the BspDP and P-spline prior  with first order penalty and adaptive knots are displayed in Figure~\ref{fig:sunspot} (p-spline with equidistant knot approach results are not shown due to their similarity to the adaptive knot estimates).  Both methods reveal a large peak at about 0.09. In other words, there is a periodic solar cycle of length $1/ 0.09 \approx 11$ years.  These results are consistent with those obtained via the BDP  prior~\citep{Choudhuri:2004}.
+However, the BspDP estimation takes approximately 22 minutes compared to only 4.5 minutes for the the P-spline estimation. Thus the P-spline estimation is approximately
 five times more efficient.
 
 %REMARK: I WOULD  DELETE THE NEXT PARAGRAPH AND TABLE AS THIS SUGGESTS THAT THE BSPDP ESTIMATE IS THE GOLD STANDARD. BUT THE AR(4) SIMULATION STUDY HAS SHOWN THAT THIS IS NOT THE CASE. 
@@ -663,28 +661,28 @@ five times more efficient.
 
 \subsection{Variable star S. Carinae data analysis}
 
-This dataset contains 1189 visual observations of the {\it S.\ Carinae}, a variable star in the southern hemisphere sky.  These are daily observations collected by the Royal Astronomical Society of New Zealand, which correspond to 10 day averages of light intensities over several years.  This data set has been analysed in the literature previously (see for instance \cite{Cart:1997,Huerta:1999,Kirch:2018}).  It contains 40 missing observations that in this work have been replaced by the mean, thus not affecting the general features of the data.  In addition, the data has been squared root transformed and mean centred.  \textcolor{red}{ The first 150 observations are displayed in Figure~\ref{fig:carinae_data}, where the missing values are replaced by the mean.}  
+This dataset contains 1189 visual observations of the {\it S.\ Carinae}, a variable star in the southern hemisphere sky.  These are daily observations collected by the Royal Astronomical Society of New Zealand, which correspond to 10 day averages of light intensities over several years.  This data set has been analysed in the literature previously (see for instance \cite{Cart:1997,Huerta:1999,Kirch:2018}).  It contains 40 missing observations that in this work have been replaced by the mean, thus not affecting the general features of the data.  In addition, the data has been squared root transformed and mean centred.  The first 150 observations are displayed in Figure~\ref{fig:carinae_data}, where the missing values are replaced by the mean.  
 
 \begin{figure}[]
 	\centering
 	\includegraphics[scale=0.4,clip=true,angle=0]{carinae_data.pdf}
-	\caption{ \textcolor{red}{First 150 observations of the \textit{S. Carinae} data.}}
+	\caption{First 150 observations of the \textit{S. Carinae} data.}
 	\label{fig:carinae_data}
 \end{figure}
 
 \cite{Kirch:2018} provided a psd estimate via a nonparametrically corrected (NPC) approach, which is able to detect several peaks in the function.  These features make this data set suitable to assess the impact of the knot location on the P-spline estimates. 
 
-Again, the P-spline algorithm is run in two stages.  First, a Markov chain of 5,000 samples with a burn-in period of 1,000 and thinning factor of 10, resulting in 400 points, is used to calibrate the proposals of the final run.  Then, a Markov chain of 10,000 samples with a burn-in period of 2,000 and thinning factor of 10, that is 800 points, is used for the psd estimation.  We use 40 B-spline densities,  based on the rule-of-thumb criterion discussed above, and the first order penalty.  The whole process takes less than \textcolor{red}{1.5} minutes to run and is replicated for equidistant and \textcolor{red}{adaptive} knots. The results are displayed in Figure~\ref{fig:carinae}.
+Again, the P-spline algorithm is run in two stages.  First, a Markov chain of 5,000 samples with a burn-in period of 1,000 and thinning factor of 10, resulting in 400 points, is used to calibrate the proposals of the final run.  Then, a Markov chain of 10,000 samples with a burn-in period of 2,000 and thinning factor of 10, that is 800 points, is used for the psd estimation.  We use 40 B-spline densities,  based on the rule-of-thumb criterion discussed above, and the first order penalty.  The whole process takes less than 1.5 minutes to run and is replicated for equidistant and adaptive knots. The results are displayed in Figure~\ref{fig:carinae}.
 
 \begin{figure}[]
 	\centering
 	\includegraphics[scale=0.4,clip=true,angle=0]{carinae.pdf}
-	\caption{Log-spectral density estimate for the variable star {\it S.\ Carinae} data based on the P-spline prior. The continuous grey line represents the periodogram whereas the continuous and dashed black lines stand for the posterior median log psd obtained using \textcolor{red}{adaptive} and equidistant knots, respectively.}
+	\caption{Log-spectral density estimate for the variable star {\it S.\ Carinae} data based on the P-spline prior. The continuous grey line represents the periodogram whereas the continuous and dashed black lines stand for the posterior median log psd obtained using adaptive and equidistant knots, respectively.}
 	\label{fig:carinae}
 \end{figure}
 
 The periodogram shows several peaks with the main one located at around 0.42.  When the knots are equally spaced, the algorithm is unable to capture the sharpness of this peak,
-in contrast to the \textcolor{red}{adaptive} knots.  This is because the periodogram-based knot allocation puts more knots in those regions which contain significant peaks as indicated by the periodogram.  The rest of peaks, which are smaller in comparison to the main one, are slightly better captured by the equidistant knots, since a large proportion of the \textcolor{red}{adaptive} knots have been allocated around the main peak. However, this can easily  be corrected by increasing the number of knots.  The psd estimate based on \textcolor{red}{adaptive} knots is comparable to the one obtained via the NPC approach \citep{Kirch:2018}.
+in contrast to the adaptive knots.  This is because the periodogram-based knot allocation puts more knots in those regions which contain significant peaks as indicated by the periodogram.  The rest of peaks, which are smaller in comparison to the main one, are slightly better captured by the equidistant knots, since a large proportion of the adaptive knots have been allocated around the main peak. However, this can easily  be corrected by increasing the number of knots.  The psd estimate based on adaptive knots is comparable to the one obtained via the NPC approach \citep{Kirch:2018}.
 
 %REMARK: TO SUPPORT THIS CLAIM, SHOULD WE INCLUDE ANOTHER GRAPH THAT COMPARES THE NPC ESTIMATE WITH P-SPACE P-SPLINES WITH LARGER NUMBER OF KNOTS?
 
@@ -694,35 +692,36 @@ As shown by \cite{Edwards2019}, the BspDP prior outperforms the BDP prior in ter
 
 Although the P-spline prior is very similar to the B-spline prior as both are based on mixtures of B-spline distributions, there is quite a significant difference.  The latter works with a variable number and location of knots, which are driven by the data.  The P-spline prior assumes a fixed number of knots  with fixed locations, thus almost looks like a special case. However, the multivariate prior based on the difference penalty of the basis coefficients controls the smoothness of the spectral density, a feature that cannot be achieved with a univariate Dirichlet process prior. Most importantly, fixing the number and location of knots reduces the computational effort significantly, without sacrificing accuracy as shown in the application section.  To deal with abrupt peaks in the psd, we propose to locate the knots according to the peaks detected via the periodogram.  This approach does not affect the computational time and improves the estimates dramatically. %This also indicates that the BspDP computation time could be reduced by the choice of \textcolor{red}{adaptive} knots as initial values.
 
-In our simulation study, we showed that the equidistant knot scheme for the P-spline method works quite well in the case of simple spectral structures (AR(1) model).  However, its performance is surpassed by the \textcolor{red}{adaptive} knot scheme for complex structures (AR(4) model).  In this scenario particularly, we can highlight the good performance of the \textcolor{red}{adaptive} knot scheme. This method outperforms the BspDP prior in terms of IAE and run-times, particularly for the complex psds.    Regarding uniform coverage,  a {\em first order} penalty P-spline coupled with
-\textcolor{red}{adaptive} knots works best. For this combination, the uniform coverage almost reaches the nominal level.
+In our simulation study, we showed that the equidistant knot scheme for the P-spline method works quite well in the case of simple spectral structures (AR(1) model).  However, its performance is surpassed by the adaptive knot scheme for complex structures (AR(4) model).  In this scenario particularly, we can highlight the good performance of the adaptive knot scheme. This method outperforms the BspDP prior in terms of IAE and run-times, particularly for the complex psds.    Regarding uniform coverage,  a {\em first order} penalty P-spline coupled with
+adaptive knots works best. For this combination, the uniform coverage almost reaches the nominal level.
 
 %In our simulation study, we showed that, in general, the P-spline prior with \textcolor{red}{adaptive} knots outperforms the BspDP prior in terms of IAE and run-times, particularly for the complex psd.  However, the results were not conclusive for coverage probabilities.  From this study, it seems that a {\em first order} penalty P-spline works reasonably well.
 
-We also assessed our proposal in the classic sunspot dataset, in which the \textcolor{red}{posterior distribution based on the BspDP prior }%B-spline prior algorithm
- is able to estimate correctly the solar cycle that occurs every 11.07 years.  The \textcolor{red}{posterior distribution based on the} P-spline prior yields almost identical results, but in  significantly  less computational time.  
+We also assessed our proposal in the classic sunspot dataset, in which the posterior distribution based on the BspDP prior %B-spline prior algorithm
+ is able to estimate correctly the solar cycle that occurs every 11.07 years.  The posterior distribution based on the P-spline prior yields almost identical results, but in  significantly  less computational time.  
 
-Finally, we assess the \textcolor{red}{ fit of the posterior distribution based on the} P-spline prior a under two different knot location schemes: equally spaced and \textcolor{red}{adaptive} knots.  For this, we estimated the psd for the {\it S.\ Carinae} time series which has a spectral density with several sharp peaks.  Equidistant knots failed to capture the peaks of this spectral density whereas  \textcolor{red}{adaptive} knots significantly improved  the results without affecting the computational time.
+Finally, we assess the fit of the posterior distribution based on the P-spline prior a under two different knot location schemes: equally spaced and adaptive knots.  For this, we estimated the psd for the {\it S.\ Carinae} time series which has a spectral density with several sharp peaks.  Equidistant knots failed to capture the peaks of this spectral density whereas adaptive knots significantly improved  the results without affecting the computational time.
 
 The number of B-spline densities was selected according to the criterion proposed by \cite{Ruppert2002}.  It seems to work well for simple spectral densities.  However, more complex functions could require larger number of B-spline densities.  This can be evaluated studying the peaks of the periodogram.  Our knot location proposal is very useful in these situations.  Future research will explore whether the choice of the number of knots can be related to the entropy of the periodogram.
 
-\textcolor{red}{As already reviewed in the introduction, many Bayesian nonparametric approaches to spectral density estimation propose to put a prior on the log-spectral density. This could be easily implemented by modifying (\ref{eq:ps_prior}) to
+As already reviewed in the introduction, many Bayesian nonparametric approaches to spectral density estimation propose to put a prior on the log-spectral density. This could be easily implemented by modifying (\ref{eq:ps_prior}) to
  \[ \log f(\pi \omega)=\sum_{k=1}^K v_k b_{k,r}(\omega,{\bm \xi})\]
-and it could be interesting to examine for what class of spectral densities this prior specification would yield better posterior inference. }
+and it could be interesting to examine for what class of spectral densities this prior specification would yield better posterior inference. 
 
-\textcolor{red}{Another interesting question is whether the P-spline prior can be extended to enable a Bayesian analysis of multivariate time series. In this case, the spectral density is a 
+Another interesting question is whether the P-spline prior can be extended to enable a Bayesian analysis of multivariate time series. In this case, the spectral density is a 
 Hermitian positive definite  matrix-valued function. A novel Bayesain nonparametric approach to multivariate spectral density estimation was proposed by
 \cite{Meier2020} based on a generalization of the Bernstein-Dirchlet process prior where Bernstein polynomials are used to smooth a matrix-Gamma process.
 An avenue for future research will be to explore whether a computational speed-up might be possible by making use of P-splines in smoothing the elements of the
-Cholesky decomposition of the spectral density matrix.}
+Cholesky decomposition of the spectral density matrix.
 
-In conclusion, the P-spline prior with the \textcolor{red}{adaptive} knot scheme offers a more computationally viable alternative to the BspDP prior for spectral density estimation.  As shown in this work, it can handle spectral densities with several peaks in a reasonable run-time.
+In conclusion, the P-spline prior with the adaptive knot scheme offers a more computationally viable alternative to the BspDP prior for spectral density estimation.  As shown in this work, it can handle spectral densities with several peaks in a reasonable run-time.
 
-\textcolor{red}{The \textsf{R} package \texttt{psplinePsd} can be downloaded from \href{https://github.com/pmat747/psplinePsd}{GitHub}.}
+The \textsf{R} package \texttt{psplinePsd} can be downloaded from \href{https://github.com/pmat747/psplinePsd}{GitHub}.
 %The \textsf{R} package \texttt{psplinePsd} will be available on CRAN in due course.  In the meanwhile, it can be downloaded from \href{https://github.com/pmat747/psplinePsd}{GitHub}. 
 
 \begin{acknowledgements}
-	We thank the New Zealand eScience Infrastructure (NeSI) for their high performance computing facilities, and the Centre for eResearch at the University of Auckland for their technical support. PM's and RM's work is supported by Grant 3714568 from the University of Auckland Faculty Research Development Fund and the DFG Grant KI 1443/3-1. RM gratefully acknowledges support by a James Cook Fellowship from Government funding, administered by teh Royal Society Te Ap\={a}rangi.  All analysis was conducted in \textsf{R}, an open-source statistical software available on \textsf{CRAN} (cran.r-project.org).
+We thank Thomas Yee for helpful discussions on p-splines.	
+We also thank the New Zealand eScience Infrastructure (NeSI) for their high performance computing facilities, and the Centre for eResearch at the University of Auckland for their technical support. PM's and RM's work is supported by Grant 3714568 from the University of Auckland Faculty Research Development Fund and the DFG Grant KI 1443/3-1. RM gratefully acknowledges support by a James Cook Fellowship from Government funding, administered by teh Royal Society Te Ap\={a}rangi.  All analysis was conducted in \textsf{R}, an open-source statistical software available on \textsf{CRAN} (cran.r-project.org).
 \end{acknowledgements}
 
 
