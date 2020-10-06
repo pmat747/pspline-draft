@@ -1,0 +1,145 @@
+\documentclass{scrartcl}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage[english]{babel}
+%\usepackage[fixlanguage]{babelbib}
+\usepackage{natbib}
+\usepackage[pdftex]{graphicx}
+\usepackage{dsfont}
+\usepackage{color}
+\usepackage{hyperref}  % Package for hyperlinking
+%\usepackage{a4wide}
+\usepackage[a4paper, left=3cm, right=3cm, top=2cm]{geometry}
+%\usepackage{texititel}
+\title{Bayesian spectral density estimation using P-splines with quantile-based knot placement}
+\subtitle{Response letter to Statistical Papers}
+\author{Patricio Maturana-Russel, Renate Meyer}
+
+\newcommand{\refereeQuote}{\textit }
+\newcommand{\responseDraft}{\textcolor{red}}
+\newcommand{\response}{}
+
+\parindent 0pt
+\parskip 4pt
+
+\setlength{\oddsidemargin}{0cm}
+\setlength{\evensidemargin}{0cm}
+\setlength{\topmargin}{-2cm}
+
+\pagestyle{empty}
+\begin{document}
+\maketitle\thispagestyle{empty}
+
+
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+
+\subsection*{Referee \#1}
+
+\response{We would like to thank the referee for a thorough review of our paper. Below, you find a point-by-point response to your points raised. We have now carefully revised the paper taking all of your -- and the other referees' -- comments into account and hope that you will now find the paper acceptable for publication. For your convenience, all changes made are marked in red in the manuscript.} 
+
+\textbf{Major comment:}
+
+\refereeQuote{p.8, Quantile-based knot placement\\
+I could not understand the meaning of ``calculate its distribution function $F_z = P(z \leq z_i)$" in the second item of the procedure.  The values of the transformed periodogram $z_i$ are regarded as the values of the density $\tilde{f}$, which is non-monotonic, taken at equally-spaced frequencies.  According to item 4, the distribution function $F_z$, and hence the density function $\tilde{f}$, should be defined on the frequency domain. \\
+I had a look at the R codes of the package psplinePsd. I think that the density function $\tilde{f}$ is a linear spline that interpolates as
+\begin{align*}
+\tilde{f} \left(\dfrac{\lambda_k}{2\pi}\right) = \dfrac{z_k}{\sum_{i=1}^{\nu}z_i}, \quad k=1,\dots,\nu.
+\end{align*}
+}
+
+\response{That's correct!  The $\widetilde{f}$ is actually a probability mass function (not a probability density function), which is interpolated.  We have corrected this in the text.  We have also changed the description of the algorithm, following now the exact steps implemented in the \texttt{psplinePsd} package.}\bigskip 
+
+\textbf{Minor comments:}
+\begin{enumerate}
+\item
+\refereeQuote{p.4, line 10\\
+A spline of degree $r+1\implies$ A spline of degree $r$ (or, of order $r+1$)}\smallskip
+
+\response{Fixed.}\bigskip
+
+\item
+\refereeQuote{p.5 line 13\\
+In the definition of $\tau, f(\tau \omega)\implies f(\pi \omega)$}\smallskip
+
+\response{That is correct.  Fixed. }\bigskip
+
+\end{enumerate}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+
+\subsection*{Referee \#2}
+
+
+\response{We would like to thank the referee for a thorough review of our paper. Below, you find a point-by-point response to your points raised. We have now carefully revised the paper taking all of your -- and the other referees' -- comments into account and hope that you will now find the paper acceptable for publication. For your convenience changes are marked in red in the manuscript.
+} \smallskip
+
+\textbf{Specific comments:}
+\begin{enumerate}
+	\item \refereeQuote{ Page 5, how to choose penalty or prior $\phi$?}
+	
+	\response{In a Bayesian setting, the roughness penalty is translated into the prior distribution for the spline parameters via a normal distribution.  See for instance \cite{Bremhorst:2016}.  In order to make the posterior less sensitive to the prior, we suggest to follow their proposal and use their robust specifications for the hierarchical priors on $\phi$, which is also described in our paper. }
+	
+	\item \refereeQuote{To select the number of B-spline densities, the authors employ a heuristic rule of thumb $K^*$ in the application Section, it is of interest to compare it with other criteria such as AIC and BIC.}\smallskip
+	
+	\response{This could be a very interesting avenue for future research, however, we think it is beyond the scope of this paper.  An analysis of those characteristics can be quite extensive and could constitute a paper in itself, see for instance \cite{Likhachev2017}.  We would like to highlight that the number of knots is considered non-important by many, since the penalty parameter plus the penalty order difference penalties specified in the penalty matrix $\textbf{P}$ penalise the inclusion of B-spline densities, controlling the smoothness of the estimate.  This means that we only need to select a minimum value, the penalty terms take care of the rest.}\bigskip
+	
+	Other minor comments: \bigskip
+	
+	\item \refereeQuote{Page 2, line 17, what is $\lambda_i$?}\smallskip
+	
+	\response{$\lambda_i$ represents any angular frequency. Since we only defined the angular frequency $\lambda$ in that paragraph, we deleted its subscript ``$i$" and added $\lambda\in[-\pi,\pi]$. } \bigskip
+	
+	\item \refereeQuote{ Page 4, lines 5-7, ``In particular, the approximation error of the mixture of B-spline distributions can be made arbitrarily small by finding suitable knot locations and increasing the number of knots", what does ``made arbitrarily small" mean? Do you mean the approach with the beta densities the error cannot be made arbitrarily small?}\smallskip
+	
+	\response{Yes, the loss associated to the approximation given by the beta densities with respect to a loss function cannot be made arbitrarily small. This was shown by \cite{Perron:2001} who also showed that if one replaces the beta densities by B-spline densities of fixed order but with variable knots, the loss can be made arbitrarily small by increasing the number of knots.  We have added the corresponding reference to our manuscript.} \bigskip	
+	
+	\item \refereeQuote{Page 4, line 15, ``A spline of degree r + 1 is a function", I think degree" should be order", we use degree for polynomials.}\smallskip
+	
+	\response{Fixed.} \bigskip	
+	
+	\item \refereeQuote{Page 5, line 20, ``If $\tau = \int_0^1f(\tau \omega)d \omega$ is the normalizing constant", it implies $s_r$ is a density, is it correct?}
+	
+	\response{Yes, $s_r$ is a pdf.  Note that it is actually a mixture of B-spline densities.}
+\end{enumerate}
+
+\subsection*{Further Changes}
+Here some extra changes:
+\begin{enumerate}
+	\item We have specified the prior on $\tau$. 
+	\item We have added $s_r(\omega)$ in Eq(3), short notation used in the posterior distribution of~$\tau$.	
+\end{enumerate}
+
+\bibliographystyle{plainnat}
+\bibliography{pSplinesReferences}  % Name of BibTeX file
+
+
+%\begin{thebibliography}{38}
+%	\providecommand{\natexlab}[1]{#1}
+%	\providecommand{\url}[1]{\texttt{#1}}
+%	\expandafter\ifx\csname urlstyle\endcsname\relax
+%	\providecommand{\doi}[1]{doi: #1}\else
+%	\providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+%	\bibitem[Bremhorst and Lambert(2016)]{Bremhorst:2016}
+%	Vincent Bremhorst and Philippe Lambert.
+%	\newblock Flexible estimation in cure survival models using {B}ayesian
+%	p-splines.
+%	\newblock \emph{Computational Statistics \& Data Analysis}, 93:\penalty0 270 --
+%	284, 2016.
+%	\newblock ISSN 0167-9473.
+%	\newblock \doi{https://doi.org/10.1016/j.csda.2014.05.009}.
+%	\newblock URL
+%	\url{http://www.sciencedirect.com/science/article/pii/S0167947314001492}.
+%\end{thebibliography}
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+

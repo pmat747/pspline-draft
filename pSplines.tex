@@ -35,7 +35,7 @@
 \and Renate Meyer  \at Department of Statistics, University of Auckland, Auckland, New Zealand 
 }
 
-\newcommand{\pmr}{ \color{blue}}
+\newcommand{\pmr}{ \color{red}}
 
 %\date{} % Today's date appears if unspecified
 
@@ -70,13 +70,13 @@ As the periodogram fluctuates around the true spectral density, most  nonparamet
 \begin{align*}
 I_n(\lambda) = \dfrac{1}{2 \pi n} \left| \sum_{t=1}^{n} Y_t \exp \left( -i t \lambda\right)\right|^2,
 \end{align*}
-in one way or another, where $-\pi < \lambda \leq \pi$ is the angular frequency and $\bm{Y}=(Y_1,\ldots,Y_n)$ is a stationary time series of length $n$. The periodogram ordinates evaluated at the Fourier frequencies $\lambda_i$  are asymptotically independent and follow an exponential distribution with mean $f(\lambda_i)$.  Thus, they are unbiased estimates of $f(\lambda_i)$  but not consistent \citep{Brockwell:1986}.
+in one way or another, where $-\pi < \lambda \leq \pi$ is the angular frequency and $\bm{Y}=(Y_1,\ldots,Y_n)$ is a stationary time series of length $n$. {\pmr The periodogram ordinates evaluated at the Fourier frequencies $\lambda \in [-\pi,\pi]$  are asymptotically independent and follow exponential distributions with mean $f(\lambda)$.  Thus, they are unbiased estimates of $f(\lambda)$  but not consistent \citep{Brockwell:1986}.}
 
 
 Most Bayesian approaches to psd estimation use the so-called Whittle likelihood, introduced by \cite{Whittle:1957} as an approximation to the likelihood of a Gaussian stationary time series.  Based on the  limiting independent exponential distribution of the periodogram values, the Whittle likelihood for a mean centred weakly stationary time series $\bm{Y}$ of length $n$ is defined as
 \begin{align}
 L(\bm{Y} | f) &= \prod_{l=1}^{\nu}\dfrac{1}{f(\lambda_{l})} e^{-I_n(\lambda_l)/f(\lambda_l)}  \nonumber \\
-&\propto \exp \left( - \sum_{l=1}^{\nu} \log f(\lambda_l) + \dfrac{I_{n}(\lambda_l)}{f(\lambda_l)} \right),\label{eq:whittle_like}
+&\propto \exp \left\{ -\! \sum_{l=1}^{\nu} \Bigg( \log f(\lambda_l) + \dfrac{I_{n}(\lambda_l)}{f(\lambda_l)} \Bigg) \right\},\label{eq:whittle_like}
 \end{align}
 where $\lambda_l = 2\pi l / n$ are the Fourier frequencies, $f(\cdot)$ spectral density of $\bm{Y}$, and $\nu = \left\lfloor (n-1)/2 \right\rfloor$ is the greatest integer value less than or equal to $(n-1)/2$. Advantages of this approximation are that it depends directly on the spectral density, unlike the true Gaussian likelihood function, and gives a good approximation for non-Gaussian time series under certain conditions as shown by \cite{ShaoXiaofeng2007ASTf}.
 
@@ -112,15 +112,14 @@ By an application of the Weierstrass theorem it can be seen that a mixture of be
 converges uniformly to $g(\omega)$, where $G(u,v] = G(v) - G(u)$, $\beta(\omega; a,b)$ is the beta density with parameters $a$ and $b$, and $w_k=G\left((k-1)/K, k/K \right]$ are the weights of the mixture.
 The Bernstein polynomial prior, which is used to describe a nonparametric prior for probability densities in the unit interval, is based on this approximation \citep{Petrone:1999a,Petrone:199b}.  \cite{Choudhuri:2004} proposed it as a prior on the spectral density function.
 
-As shown by \cite{Perron:2001} for distributions on the interval [0,1], the mixture of B-spline distributions has better approximation properties than the mixture of beta distributions for a fixed number of components. In particular, the approximation error of the mixture of B-spline distributions 
-can be made arbitrarily small by finding  suitable knot locations and increasing the number of knots.
+As shown by \cite{Perron:2001} for distributions on the interval [0,1], the mixture of B-spline distributions has better approximation properties than the mixture of beta distributions for a fixed number of components. In particular, the approximation error of the mixture of B-spline distributions can be made arbitrarily small by finding  suitable knot locations and increasing the number of knots {\pmr\citep{Perron:2001}}.
 %the mixture of beta distributions is unable to provide a full coverage of the space of cdfs on $[0,1]$.  They defined a loss function and showed that this cannot be arbitrarily small under this %approach.  Alternatively, they showed that if the beta distributions are replaced by B-spline distributions of fixed order (shown for order~2) with variable knots, the loss function can be %arbitrarily small by increasing the number of knots.  The adequacy of the approximation is a function of the number of knots.  
 This work motivated \cite{Edwards2019} to propose the BspDP prior on the spectral density function which is based on the representation (\ref{eq:Bernstein}) but with
 the beta densities replaced by B-spline densities as defined in the following.
 
 \subsection*{B-splines and BspDP Prior}
 
-A spline of degree $r+1$ is a function defined piecewise by polynomials of degree $\leq r$, which meet at points called \textit{knots} where the function is continuous.  Any of these spline functions can be described by basis functions, known as \textit{B-splines}, in other words, all spline functions can be represented as a unique combination of B-splines with the same order and over the same partition.  Without loss of generality, the global domain of interest is assumed to be the unit interval $[0,1]$.
+A spline of {\pmr order} $r+1$ is a function defined piecewise by polynomials of degree $\leq r$, which meet at points called \textit{knots} where the function is continuous.  Any of these spline functions can be described by basis functions, known as \textit{B-splines}, in other words, all spline functions can be represented as a unique combination of B-splines with the same order and over the same partition.  Without loss of generality, the global domain of interest is assumed to be the unit interval $[0,1]$.
 
 The B-spline basic functions of any order can be recursively defined as
 \begin{align*}
@@ -225,9 +224,9 @@ As the spectral density function $f(\cdot)$ is defined on the interval $[0,\pi]$
 \begin{align*}
 f(\pi \omega) =\tau \times s_r(\omega;\bm{w}, \bm{\xi}), \quad \omega \in [0,1], %\tau \times s_r(\omega;K,G,H), \quad \omega \in [0,1],
 \end{align*}
-where $\tau = \int_{0}^{1}f(\tau \omega)\text{d}\omega$ is the normalizing constant and
+where $\tau = \int_{0}^{1}f(\pi \omega)\text{d}\omega$ is the normalizing constant and
 \begin{align}
-s_r(\omega; \bm{w}, \bm{\xi}) = \sum_{k=1}^{K} w_k b_{k,r}(\omega;\bm{\xi}),
+s_r(\omega; \bm{w}, \bm{\xi}) = {\pmr s_r(\omega)} = \sum_{k=1}^{K} w_k b_{k,r}(\omega;\bm{\xi}),
 \label{eq:ps_prior}	
 \end{align}
 with  {\em fixed} number $K$ of B-spline densities  $b_{k,r}(\cdot)$ of fixed degree $r$, weight vector $\bm{w}=(w_1,\cdots, w_K)$, and knot sequence $\bm{\xi}$.
@@ -306,7 +305,7 @@ The rationale for using discrete second order roughness penalties as an approxim
 in \cite{Eilers:1996}.
 
 The parameter vector for the P-spline prior is $\bm{\theta} = (\bm{v}^\top, \phi, \delta, \tau)^\top$.
-We use a robust specification for the  prior distribution of the penalty parameters as suggested by \cite{Jullion:2007} by choosing small values for $\alpha_{\delta}$ and $\beta_{\delta}$, for instance, $10^{-4}$. The  choice of $\alpha_{\phi}$ and $\beta_{\phi}$ do not affect the spectral density estimate. Here we set $\alpha_{\phi}$ and $\beta_{\phi}$ equal to 1 as used by \cite{Bremhorst:2016}. The scale parameter $\tau$ is given by an inverse Gamma($\alpha_{\tau},\beta_{\tau}$) prior.  These are also the prior specifications used in the simulations and examples in Section \ref{sec:application}.
+We use a robust specification for the  prior distribution of the penalty parameters as suggested by \cite{Jullion:2007} by choosing small values for $\alpha_{\delta}$ and $\beta_{\delta}$, for instance, $10^{-4}$. The  choice of $\alpha_{\phi}$ and $\beta_{\phi}$ do not affect the spectral density estimate. Here we set $\alpha_{\phi}$ and $\beta_{\phi}$ equal to 1 as used by \cite{Bremhorst:2016}. The scale parameter $\tau$ is given by an inverse Gamma($\alpha_{\tau},\beta_{\tau}$) prior, {\pmr which can be considered as a noninformative prior for $\alpha_{\tau} = \beta_{\tau} = 0.001$ \citep{Edwards2019}.}  These are also the prior specifications used in the simulations and examples in Section \ref{sec:application}.
 
 
 
@@ -327,12 +326,12 @@ Sampling from the full conditional posterior distributions of $\phi$, $\delta$, 
 \begin{align*}
 \phi|\bm{Y},\delta,\bm{v} &\sim \text{Gamma}\left(\tfrac{K-1}{2} + \alpha_{\phi},\: \tfrac{1}{2} \bm{v}^\top \textbf{P} \bm{v} + \delta \beta_{\phi} \right), \\
 \delta|\bm{Y},\phi  &\sim \text{Gamma}\left(\alpha_{\phi} + \alpha_{\delta}, \beta_{\phi} \phi + \beta_{\delta}\right),\:\: \text{and}\\
-\tau|\bm{Y},\delta, \phi,\bm{v}   &\sim \text{Inv-Gamma}\!\left(\alpha_{\tau}+ \nu,\:  {\textstyle\sum\limits_{l=1}^{\nu}} \tfrac{I_n(\lambda_l)}{f(\lambda_l)} + \beta_{\tau} \right)\!.
+\tau|\bm{Y},\delta, \phi,\bm{v}   &\sim \text{Inv-Gamma}\!\left(\alpha_{\tau}+ \nu,\:  {\textstyle\sum\limits_{l=1}^{\nu}} \tfrac{I_n(\lambda_l)}{{\pmr s_r(\lambda_l/\pi)}} + \beta_{\tau} \right)\!.
 \end{align*}
 %The posterior distribution of $\tau$ is the same one obtained under the B-spline prior approach.
 
 However, to sample from the full conditional distribution of $\bm{v}$, we use the Metropolis algorithm.
-\textcolor{red}{Since the weights in general are larger in those areas of the frequency domain where the psd has peaks, we specify their starting value proportionally to the periodogram. Applying the corresponding transformation we obtain the starting value for the vector $\bm{v}$.  This strategy speeds up the MCMC process by shorting the burn-in period.}
+Since the weights in general are larger in those areas of the frequency domain where the psd has peaks, we specify their starting value proportionally to the periodogram. Applying the corresponding transformation we obtain the starting value for the vector $\bm{v}$.  This strategy speeds up the MCMC process by shortening the burn-in period.
 
 In order to improve the mixing of the chains, we apply the Metropolis algorithm on a reparametrized posterior distribution \citep{Lambert:2007}.  For this, we need a pilot posterior sample for $\bm{v}$ from which we calculate its mean vector $\bm{\overline{v}}$ and covariance matrix $\textbf{S}$.  Then we define the following re-parametrization
 \begin{align*}
@@ -359,7 +358,7 @@ The $m^{\text{th}}$ cycle of the Gibbs sampler is given by
 	\item Draw $\delta^{m}$ from $\text{Gamma}\left(\alpha_{\phi} + \alpha_{\delta}, \beta_{\phi} \phi^{m} + \beta_{\delta}\right);$ 
 	\item Draw $\tau^{m}$ from 
 	\begin{align*}
-	\text{Inv-Gamma}\!\left(\alpha_{\tau}\!+\!\nu, {\textstyle\sum\limits_{l=1}^{\nu}} \tfrac{I_n(\lambda_l)}{f(\lambda_l)} + \beta_{\tau} \right) .
+	\text{Inv-Gamma}\!\left(\alpha_{\tau}\!+\!\nu, {\textstyle\sum\limits_{l=1}^{\nu}} \tfrac{I_n(\lambda_l)}{{\pmr s_r(\lambda_l/\pi)}} + \beta_{\tau} \right) .
 	\end{align*}
 \end{itemize}
 
@@ -389,17 +388,32 @@ the Bayesian Information Criterion.
 
 The knots are often equally spaced in P-spline methods.  This scheme works quite well  for smooth psds without any abrupt changes.  However, for spectral densities with spikes, the algorithm will require a large number of knots to adequately estimate the peaks.  The B-spline prior method is able to handle abrupt changes because the knot location is variable and  driven by the data.  We propose a new selective method that allocates the knots according to quantiles of a periodogram-related distribution function but once allocated, the knots stay fixed.  The idea is to concentrate more effort in those regions that have potential peaks as detected by the periodogram.  It is similar in spirit to the knot placement of O-splines \citep{WandOrmerod} in the regression context that make use of the empirical quantiles of the covariates. 
 
-Our knot location proposal works as follow.  We calculate the periodogram and apply a square root transformation in order to have more regular magnitudes and eliminate a potential trend.  Second, we standardize these values and apply the absolute value function.  We treat this transformed periodogram as a density function $\widetilde{f}$ and calculate its distribution function $F$.  Finally, the knots are allocated according to the quantiles of the inverse distribution function of $\widetilde{f}$.  Thus, in those areas in which the periodogram has sharp and abrupt changes, our procedure will assign more knots in proportion to their magnitudes. Hereafter, we will refer to this scheme as {\em  quantile-spaced (Q-spaced) knots}.%\textit{periodogram-spaced knots} or short \textit{P-spaced knots}.
+Our knot location proposal works as follow.  We calculate the periodogram and apply a square root transformation in order to have more regular magnitudes and eliminate a potential trend.  Second, we standardize these values, apply the absolute value function, {\pmr and normalise them}.  We treat this transformed periodogram as a {\pmr mass probability} function (pmf) $\widetilde{f}$,{\pmr which is then linearly interpolated in order to define a pmf in a more refined grid.}  Then its distribution function $\widetilde{F}$ is {\pmr approximated by interpolation}.  Finally, the knots are allocated according to the quantiles of the inverse distribution function $\widetilde{F}^{-1}$, {\pmr which is approximated by interpolation.}  Thus, in those areas in which the periodogram has sharp and abrupt changes, our procedure will assign more knots in proportion to their magnitudes. Hereafter, we will refer to this scheme as {\em  quantile-spaced (Q-spaced) knots}.%\textit{periodogram-spaced knots} or short \textit{P-spaced knots}.
 %REMARK: HOW ABOUT "PERIODOGRAM-SPACED KNOTS"	OR 'P-SPACED KNOTS'  INSTEAD OF DISTRIBUTED KNOTS?
 
-The procedure can be summarized as follows:
+%The procedure can be summarized as follows:
+%\begin{enumerate}
+%	\item Let $\bm{x} = \left (\sqrt{I_n(\lambda_1)}, \dots, \sqrt{I_n(\lambda_{\nu})} \right)$ be the square root of the periodogram values for each angular frequency.
+%	\item Define $z_i = \left|\dfrac{x_i - \bar{x}}{S_x} \right|$ where $\bar{x}$ denotes the average and $S_x$ the standard deviation of ${\bm x}$ and calculate its distribution function $F_z = P(z \leq z_i)$.
+%	\item Let $\bm{\xi}^* = \left(\xi_1^*,\dots,\xi_{K^*}^* \right)$ be a vector of $K^*$ quantiles, equally spaced in $[0,1]$.
+%	\item The Q-spaced knot vector is given by $\bm{\xi} = \left(F_{z}^{-1}(\xi^*_1),\dots, F_{z}^{-1}(\xi^*_{K^*}) \right)$.	
+%\end{enumerate}
+
+{\pmr
+The procedure for the frequencies in the unit interval $\omega_l = 2 l/n  \in[0,1]$, which can be easily translated to the frequency domain, can be summarized as follows:	
 \begin{enumerate}
-	\item Let $\bm{x} = \left (\sqrt{I_n(\lambda_1)}, \dots, \sqrt{I_n(\lambda_{\nu})} \right)$ be the square root of the periodogram values for each angular frequency.
-	\item Define $z_i = \left|\dfrac{x_i - \bar{x}}{S_x} \right|$ where $\bar{x}$ denotes the average and $S_x$ the standard deviation of ${\bm x}$ and calculate its distribution function $F_z = P(z \leq z_i)$.
+	\item Let $\bm{x} = \left (\sqrt{I_n(\omega_1)}, \dots, \sqrt{I_n(\omega_{\nu})} \right)$ be the square root of the periodogram values.
+	\item Define $y_l = \left|\dfrac{x_l - \bar{x}}{S_x} \right|$ where $\bar{x}$ denotes the average and $S_x$ the standard deviation of ${\bm x}$.
+	\item Define $z_l = \frac{y_l}{\sum_{l=1}^{\nu} y_l}$, normalised $y_l$ values, and calculate $\widetilde{f}$ by interpolating these values.
+	\item For a large sequence of values $\bm{\varepsilon}\in[0,1]$, calculate $\widetilde{f}(\bm{\varepsilon})$ and normalise them.
+	\item Interpolate the cumulative normalised $\widetilde{f}(\bm{\varepsilon})$ values, which will produce an approximated distribution function $\widetilde{F}$.	
 	\item Let $\bm{\xi}^* = \left(\xi_1^*,\dots,\xi_{K^*}^* \right)$ be a vector of $K^*$ quantiles, equally spaced in $[0,1]$.
-	\item The Q-spaced knot vector is given by $\bm{\xi} = \left(F_{z}^{-1}(\xi^*_1),\dots, F_{z}^{-1}(\xi^*_{K^*}) \right)$.
-	
+	\item The Q-spaced knot vector is given by $\bm{\xi} = \left(\widetilde{F}^{-1}(\xi^*_1),\dots, \widetilde{F}^{-1}(\xi^*_{K^*}) \right)$, where the inverse function is also obtained by interpolation.	
 \end{enumerate}
+
+Note that this knot allocation algorithm is applied only once at the beginning of the MCMC process.  Therefore, its computational cost is negligible.
+
+}
 
 For non-equidistant knots, it does not make sense any longer to base the definition of the covariance matrix of the Gaussian prior  on the  difference matrices as defined in (\ref{eq:D1}) and (\ref{eq:D2}) because this is an adequate approximation of the derivative-based roughness measures -- defined as the integral of the first and second order derivatives of the P-splines -- 
 for equally spaced knots only. The definition of the difference matrices could be adjusted using divided differences, but here we use the derivative-based penalties as described by \cite{WoodSimon2017Pwdb}. We make use of the implementation of the derivative-based penalty matrix  by the function {\tt bsplinepen} in the R-package {\tt fda} \citep{fda}. This penalty matrix contains the inner products of the respective first and second order derivatives of the basis functions. In addition, we normalise this matrix by dividing it by the maximum absolute column sum.
