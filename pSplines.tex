@@ -112,8 +112,8 @@ By an application of the Weierstrass theorem it can be seen that a mixture of be
 converges uniformly to $g(\omega)$, where $G(u,v] = G(v) - G(u)$, $\beta(\omega; a,b)$ is the beta density with parameters $a$ and $b$, and $w_k=G\left((k-1)/K, k/K \right]$ are the weights of the mixture.
 The Bernstein polynomial prior, which is used to describe a nonparametric prior for probability densities in the unit interval, is based on this approximation \citep{Petrone:1999a,Petrone:199b}.  \cite{Choudhuri:2004} proposed it as a prior on the spectral density function.
 
-As shown by \cite{Perron:2001} for distributions on the interval [0,1], the mixture of B-spline distributions has better approximation properties than the mixture of beta distributions for a fixed number of components. In particular, the approximation error of the mixture of B-spline distributions can be made arbitrarily small by finding  suitable knot locations and increasing the number of knots {\pmr\citep{Perron:2001}}.
-%the mixture of beta distributions is unable to provide a full coverage of the space of cdfs on $[0,1]$.  They defined a loss function and showed that this cannot be arbitrarily small under this %approach.  Alternatively, they showed that if the beta distributions are replaced by B-spline distributions of fixed order (shown for order~2) with variable knots, the loss function can be %arbitrarily small by increasing the number of knots.  The adequacy of the approximation is a function of the number of knots.  
+{\pmr As shown by \cite{Perron:2001} for distributions on the interval [0,1], both mixtures of B-spline and beta distributions can approximate these arbitrarily well by increasing the number of mixture components, i.e.\ increasing the polynomial order for the beta distributions and the number of knots for suitable know locations for the B-splines. But the rate of approximation is faster for B-splines than for beta distributions.}
+%As shown by \cite{Perron:2001} for distributions on the interval [0,1], the mixture of B-spline distributions has better approximation properties than the mixture of beta distributions for a fixed number of components. In particular, the approximation error of the mixture of B-spline distributions can be made arbitrarily small by finding  suitable knot locations and increasing the number of knots {\pmr\citep{Perron:2001}}.
 This work motivated \cite{Edwards2019} to propose the BspDP prior on the spectral density function which is based on the representation (\ref{eq:Bernstein}) but with
 the beta densities replaced by B-spline densities as defined in the following.
 
@@ -388,7 +388,7 @@ the Bayesian Information Criterion.
 
 The knots are often equally spaced in P-spline methods.  This scheme works quite well  for smooth psds without any abrupt changes.  However, for spectral densities with spikes, the algorithm will require a large number of knots to adequately estimate the peaks.  The B-spline prior method is able to handle abrupt changes because the knot location is variable and  driven by the data.  We propose a new selective method that allocates the knots according to quantiles of a periodogram-related distribution function but once allocated, the knots stay fixed.  The idea is to concentrate more effort in those regions that have potential peaks as detected by the periodogram.  It is similar in spirit to the knot placement of O-splines \citep{WandOrmerod} in the regression context that make use of the empirical quantiles of the covariates. 
 
-Our knot location proposal works as follow.  We calculate the periodogram and apply a square root transformation in order to have more regular magnitudes and eliminate a potential trend.  Second, we standardize these values, apply the absolute value function, {\pmr and normalise them}.  We treat this transformed periodogram as a {\pmr mass probability} function (pmf) $\widetilde{f}$,{\pmr which is then linearly interpolated in order to define a pmf in a more refined grid.}  Then its distribution function $\widetilde{F}$ is {\pmr approximated by interpolation}.  Finally, the knots are allocated according to the quantiles of the inverse distribution function $\widetilde{F}^{-1}$, {\pmr which is approximated by interpolation.}  Thus, in those areas in which the periodogram has sharp and abrupt changes, our procedure will assign more knots in proportion to their magnitudes. Hereafter, we will refer to this scheme as {\em  quantile-spaced (Q-spaced) knots}.%\textit{periodogram-spaced knots} or short \textit{P-spaced knots}.
+Our knot location proposal works as follow.  We calculate the periodogram and apply a square root transformation in order to have more regular magnitudes and eliminate a potential trend.  Second, we standardize these values, apply the absolute value function,{\pmr and normalise them}.  We treat this transformed periodogram as a {\pmr mass probability} function (pmf) and interpolate its distribution function $\widetilde{F}$.  Finally, the knots are allocated according to the quantiles of the inverse distribution function $\widetilde{F}^{-1}$, {\pmr which is approximated by interpolation.}  Thus, in those areas in which the periodogram has sharp and abrupt changes, our procedure will assign more knots in proportion to their magnitudes. Hereafter, we will refer to this scheme as {\em  quantile-spaced (Q-spaced) knots}.%\textit{periodogram-spaced knots} or short \textit{P-spaced knots}.
 %REMARK: HOW ABOUT "PERIODOGRAM-SPACED KNOTS"	OR 'P-SPACED KNOTS'  INSTEAD OF DISTRIBUTED KNOTS?
 
 %The procedure can be summarized as follows:
@@ -404,11 +404,10 @@ The procedure for the frequencies in the unit interval $\omega_l = 2 l/n  \in[0,
 \begin{enumerate}
 	\item Let $\bm{x} = \left (\sqrt{I_n(\omega_1)}, \dots, \sqrt{I_n(\omega_{\nu})} \right)$ be the square root of the periodogram values.
 	\item Define $y_l = \left|\dfrac{x_l - \bar{x}}{S_x} \right|$ where $\bar{x}$ denotes the average and $S_x$ the standard deviation of ${\bm x}$.
-	\item Define $z_l = \frac{y_l}{\sum_{l=1}^{\nu} y_l}$, normalised $y_l$ values, and calculate $\widetilde{f}$ by interpolating these values.
-	\item For a large sequence of values $\bm{\varepsilon}\in[0,1]$, calculate $\widetilde{f}(\bm{\varepsilon})$ and normalise them.
-	\item Interpolate the cumulative normalised $\widetilde{f}(\bm{\varepsilon})$ values, which will produce an approximated distribution function $\widetilde{F}$.	
+	\item Define $z_l = \frac{y_l}{\sum_{l=1}^{\nu} y_l}$, and calculate its cumulative distribution $\widetilde{F}$.
+	\item Interpolate $\widetilde{F}$.
 	\item Let $\bm{\xi}^* = \left(\xi_1^*,\dots,\xi_{K^*}^* \right)$ be a vector of $K^*$ quantiles, equally spaced in $[0,1]$.
-	\item The Q-spaced knot vector is given by $\bm{\xi} = \left(\widetilde{F}^{-1}(\xi^*_1),\dots, \widetilde{F}^{-1}(\xi^*_{K^*}) \right)$, where the inverse function is also obtained by interpolation.	
+	\item The Q-spaced knot vector is given by $\bm{\xi} = \left(\widetilde{F}^{-1}(\xi^*_1),\dots, \widetilde{F}^{-1}(\xi^*_{K^*}) \right)$. %where the inverse function is obtained by interpolation.	
 \end{enumerate}
 
 Note that this knot allocation algorithm is applied only once at the beginning of the MCMC process.  Therefore, its computational cost is negligible.
@@ -481,19 +480,19 @@ For the AR(4) time series, the fit based on the P-spline prior with Q-spaced kno
 			AR(1)     &  &  &  \\ 
 			B-spline &  0.825 & 0.769 & 0.609  \\
 			\textit{Equidistant knots}& & &   \\
-			\hspace{0.5em}P-spline $d=1$ &  0.772 & 0.644 & 0.527 \\
-			\hspace{0.5em}P-spline $d=2$&  0.708 & 0.604 & 0.629 \\
+			\hspace{0.5em}P-spline $d=1$ &  0.769 & 0.655 & 0.527 \\
+			\hspace{0.5em}P-spline $d=2$&  0.698 & 0.609 & 0.629 \\
 			\textit{Q-spaced knots}& & &   \\
-			\hspace{0.5em}P-spline $d=1$ & 0.874 & 0.783 & 0.610 \\
-			\hspace{0.5em}P-spline $d=2$ & 0.874 & 0.815 & 0.640 \\ \hline
+			\hspace{0.5em}P-spline $d=1$ & 0.848 & 0.771 & 0.614 \\
+			\hspace{0.5em}P-spline $d=2$ & 0.920 & 0.840 & 0.648 \\ \hline
 			AR(4)     &  &  &  \\ 
 			B-spline & 3.019 & 2.250 & 1.832   \\
 			\textit{Equidistant knots}& & &   \\
-			\hspace{0.5em}P-spline $d=1$ &  2.914 & 2.389 & 2.307\\
-			\hspace{0.5em}P-spline $d=2$&  3.150 & 2.569 & 2.388\\
+			\hspace{0.5em}P-spline $d=1$ &  2.905 & 2.389 & 2.306\\
+			\hspace{0.5em}P-spline $d=2$&  3.149 & 2.566 & 2.387\\
 			\textit{Q-spaced knots}& & &   \\
-			\hspace{0.5em}P-spline $d=1$ & 2.495 & 1.830 & 1.489\\
-			\hspace{0.5em}P-spline $d=2$ &  2.696 & 2.003 & 1.677\\
+			\hspace{0.5em}P-spline $d=1$ & 2.517 & 1.843 & 1.486\\
+			\hspace{0.5em}P-spline $d=2$ &  2.750 & 1.989 & 1.673\\
 			\bottomrule
 		\end{tabular}
 %	\end{ruledtabular}
@@ -557,16 +556,16 @@ Table~\ref{table:sim_covPbb_median},  only for a small fraction of the frequenci
 			\hspace{0.5em}P-spline $d=1$&  1.000 & 1.000 & 0.997\\
 			\hspace{0.5em}P-spline $d=2$& 0.993 & 1.000 & 0.993  \\
 			\textit{Q-spaced knots}& & &   \\
-			\hspace{0.5em}P-spline $d=1$ & 0.997 & 1.000 & 0.997 \\
-			\hspace{0.5em}P-spline $d=2$ & 0.973 & 0.740 & 0.770 \\ \hline		       
+			\hspace{0.5em}P-spline $d=1$ & 1.000 & 1.000 & 0.997 \\
+			\hspace{0.5em}P-spline $d=2$ & 0.933 & 0.527 & 0.713 \\ \hline		       
 			AR(4)     &  &  &  \\ 
 			B-spline &  0.933 & 0.967 & 0.897  \\
 			\textit{Equidistant knots}& & &   \\
-			\hspace{0.5em}P-spline $d=1$ &  0.527 & 0.353 & 0.007 \\
-			\hspace{0.5em}P-spline $d=2$ & 0.323 & 0.167 & 0.007\\
+			\hspace{0.5em}P-spline $d=1$ &  0.547 & 0.343 & 0.010 \\
+			\hspace{0.5em}P-spline $d=2$ & 0.320 & 0.170 & 0.007\\
 			\textit{Q-spaced knots}& & &   \\	
-			\hspace{0.5em}P-spline $d=1$ & 0.790 & 0.847 & 0.813 \\
-			\hspace{0.5em}P-spline $d=2$ & 0.337 & 0.387 & 0.270 \\
+			\hspace{0.5em}P-spline $d=1$ & 0.800 & 0.833 & 0.803 \\
+			\hspace{0.5em}P-spline $d=2$ & 0.313 & 0.363 & 0.277 \\
 			\bottomrule
 		\end{tabular}
 %	\end{ruledtabular}

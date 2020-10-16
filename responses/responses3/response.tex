@@ -40,7 +40,7 @@
 
 \subsection*{Referee \#1}
 
-\response{We would like to thank the referee for a thorough review of our paper. Below, you find a point-by-point response to your points raised. We have now carefully revised the paper taking all of your -- and the other referees' -- comments into account and hope that you will now find the paper acceptable for publication. For your convenience, all changes made are marked in red in the manuscript.} 
+\response{We would like to thank the referee for a thorough review of our paper. Below, you find a point-by-point response to your points raised. We have now carefully revised the paper taking all of your -- and the other referee's -- comments into account and hope that you will now find the paper acceptable for publication. For your convenience, all changes made are marked in red in the manuscript.} 
 
 \textbf{Major comment:}
 
@@ -52,7 +52,7 @@ I had a look at the R codes of the package psplinePsd. I think that the density 
 \end{align*}
 }
 
-\response{That's correct!  The $\widetilde{f}$ is actually a probability mass function (not a probability density function), which is interpolated.  We have corrected this in the text.  We have also changed the description of the algorithm, following now the exact steps implemented in the \texttt{psplinePsd} package.}\bigskip 
+\response{That's correct!  The $\widetilde{f}$ is actually a probability mass function (not a probability density function), which is interpolated.  However, we have simplified a bit our knot allocation algorithm avoiding that step.  The new version of the algorithm is described step by step in our manuscript.  This change leads to small changes in our application section, which has been consequently updated.  We have also updated \texttt{psplinePsd} package.}\bigskip 
 
 \textbf{Minor comments:}
 \begin{enumerate}
@@ -77,7 +77,7 @@ In the definition of $\tau, f(\tau \omega)\implies f(\pi \omega)$}\smallskip
 \subsection*{Referee \#2}
 
 
-\response{We would like to thank the referee for a thorough review of our paper. Below, you find a point-by-point response to your points raised. We have now carefully revised the paper taking all of your -- and the other referees' -- comments into account and hope that you will now find the paper acceptable for publication. For your convenience changes are marked in red in the manuscript.
+\response{We would like to thank the referee for a thorough review of our paper. Below, you find a point-by-point response to your points raised. We have now carefully revised the paper taking all of your -- and the other referee's -- comments into account and hope that you will now find the paper acceptable for publication. For your convenience changes are marked in red in the manuscript.
 } \smallskip
 
 \textbf{Specific comments:}
@@ -88,7 +88,13 @@ In the definition of $\tau, f(\tau \omega)\implies f(\pi \omega)$}\smallskip
 	
 	\item \refereeQuote{To select the number of B-spline densities, the authors employ a heuristic rule of thumb $K^*$ in the application Section, it is of interest to compare it with other criteria such as AIC and BIC.}\smallskip
 	
-	\response{This could be a very interesting avenue for future research, however, we think it is beyond the scope of this paper.  An analysis of those characteristics can be quite extensive and could constitute a paper in itself, see for instance \cite{Likhachev2017}.  We would like to highlight that the number of knots is considered non-important by many, since the penalty parameter plus the penalty order difference penalties specified in the penalty matrix $\textbf{P}$ penalise the inclusion of B-spline densities, controlling the smoothness of the estimate.  This means that we only need to select a minimum value, the penalty terms take care of the rest.}\bigskip
+	\response{This could be a potential avenue for future research, however, we think it is beyond the scope of this paper.  An analysis of those characteristics can be quite extensive and could constitute a paper in itself, see for instance \cite{Likhachev2017}.  We would like to highlight that the number of knots is considered non-important by many, since the penalty parameter plus the penalty order difference penalties specified in the penalty matrix $\textbf{P}$ penalise the inclusion of B-spline densities, controlling the smoothness of the estimate.  This means that we only need to select a minimum value, the penalty terms take care of the rest. To quote \cite{Eilers2015}: ``With the number of B-splines in the basis we can tune the smoothness of a curve to
+the data at hand. A smaller number of splines gives a smoother result. However, this is not the only possibility. We can also use a large basis and additionally constrain the
+coefficients of the B-splines, to achieve as much smoothness as desired. A properly
+chosen penalty achieves this"; and also ``The number of B-splines can be (much) larger than the number of observations. The
+penalty makes the fitting procedure well-conditioned. This should be taken literally:
+even a thousand splines will fit ten observations without problems. Such is the power
+of the penalty."}\bigskip
 	
 	Other minor comments: \bigskip
 	
@@ -98,7 +104,11 @@ In the definition of $\tau, f(\tau \omega)\implies f(\pi \omega)$}\smallskip
 	
 	\item \refereeQuote{ Page 4, lines 5-7, ``In particular, the approximation error of the mixture of B-spline distributions can be made arbitrarily small by finding suitable knot locations and increasing the number of knots", what does ``made arbitrarily small" mean? Do you mean the approach with the beta densities the error cannot be made arbitrarily small?}\smallskip
 	
-	\response{Yes, the loss associated to the approximation given by the beta densities with respect to a loss function cannot be made arbitrarily small. This was shown by \cite{Perron:2001} who also showed that if one replaces the beta densities by B-spline densities of fixed order but with variable knots, the loss can be made arbitrarily small by increasing the number of knots.  We have added the corresponding reference to our manuscript.} \bigskip	
+	\response{Arbitrarily small means that the approximation error converges to zero with increasing number of knots. We have  cited the paper by \cite{Perron:2001} that make this statement precise. But we do not mean to imply that this is not the case for the mixture of beta densities. Of course, according to the well-known Weierstrass approximation theorem, any continuous function can be approximated in the supnorm by a linear combination of Bernstein polynomials. If the continuous function is a density, the approximant becomes a mixture of beta distributions. By increasing the number of beta distributions, the approximation error can be made arbitrarily small. But as shown in Perron and Mengersen (2001) the rate of approximation is faster for Bsplines than for Bernstein polynomials. We have changed this paragraph in the manuscript accordingly.}
+
+%\textcolor{red}{I would change the text in the paper to:
+%" As shown by Perron and Mengersen (2001) for distributions on the interval [0,1], both mixtures of B-spline and beta distributions can approximate these arbitrarily well by increasing the number of mixture components, i.e.\ increasing the polynomial order for the beta distributions and the number of knots for suitable know locations for the B-splines. But the rate of approximation is faster for B-splines than for beta distributions.}
+%	\response{Yes, the loss associated to the approximation given by the beta densities with respect to a loss function cannot be made arbitrarily small. This was shown by %\cite{Perron:2001} who also showed that if one replaces the beta densities by B-spline densities of fixed order but with variable knots, the loss can be made arbitrarily small by increasing %the number of knots.  We have added the corresponding reference to our manuscript.} \bigskip	
 	
 	\item \refereeQuote{Page 4, line 15, ``A spline of degree r + 1 is a function", I think degree" should be order", we use degree for polynomials.}\smallskip
 	
