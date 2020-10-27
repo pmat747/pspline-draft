@@ -112,7 +112,7 @@ By an application of the Weierstrass theorem it can be seen that a mixture of be
 converges uniformly to $g(\omega)$, where $G(u,v] = G(v) - G(u)$, $\beta(\omega; a,b)$ is the beta density with parameters $a$ and $b$, and $w_k=G\left((k-1)/K, k/K \right]$ are the weights of the mixture.
 The Bernstein polynomial prior, which is used to describe a nonparametric prior for probability densities in the unit interval, is based on this approximation \citep{Petrone:1999a,Petrone:199b}.  \cite{Choudhuri:2004} proposed it as a prior on the spectral density function.
 
-{\pmr As shown by \cite{Perron:2001} for distributions on the interval [0,1], both mixtures of B-spline and beta distributions can approximate these arbitrarily well by increasing the number of mixture components, i.e.\ increasing the polynomial order for the beta distributions and the number of knots for suitable know locations for the B-splines. But the rate of approximation is faster for B-splines than for beta distributions.}
+{\pmr As shown by \cite{Perron:2001} for distributions on the interval [0,1], both mixtures of B-spline and beta distributions can approximate these arbitrarily well by increasing the number of mixture components, i.e.\ increasing the polynomial order for the beta distributions and the number of knots for suitable knot locations for the B-splines. But the rate of approximation is faster for B-splines than for beta distributions.}
 %As shown by \cite{Perron:2001} for distributions on the interval [0,1], the mixture of B-spline distributions has better approximation properties than the mixture of beta distributions for a fixed number of components. In particular, the approximation error of the mixture of B-spline distributions can be made arbitrarily small by finding  suitable knot locations and increasing the number of knots {\pmr\citep{Perron:2001}}.
 This work motivated \cite{Edwards2019} to propose the BspDP prior on the spectral density function which is based on the representation (\ref{eq:Bernstein}) but with
 the beta densities replaced by B-spline densities as defined in the following.
@@ -147,7 +147,7 @@ and
 \begin{align*}
 \bm{\xi} = \{0 = \xi_0 = \xi_1 = \cdots = \xi_r \leq \xi_{r+1} \leq \cdots \leq \xi_{K}\\ = \xi_{K+1} = \cdots = \xi_{K+r} = 1 \}
 \end{align*}
-is the knot vector.  This vector is a non-decreasing sequence that contains $K+r+1$ knots, which can be divided in $2r$ external and $K-r+1$ internal knots.  The latter must be $\geq r$.
+is the knot vector.  This vector is a non-decreasing sequence that contains $K+r+1$ knots, which can be divided in $2r$ external and ${\pmr K^*}=K-r+1$ internal knots.  The latter must be $\geq r$.
 % external and internal knots as in Edwards et al (2018)
 
 %This vector is a non-decreasing sequence that contains $K+r+1$ knots, which can be divided in $2(r+1)$ external and $K-r-1$ internal knots.  The latter must be $\geq r$.
@@ -376,10 +376,10 @@ The number of B-spline densities plays a critical role in the model fit and may 
 %Too few could cause an underfitting whereas too many an overfitting.  
 Even though the penalty parameter controls the smoothness of the fit, a large number of B-splines yields rougher and  a low number  smoother spectral density estimates.  There is a smallest sufficient number which results in a psd estimate that fits the features of the data whereas choosing a larger number will have an insignificant effect on the fit.   Unexpectedly, \cite{Ruppert2002} found some cases in which too many B-splines degrades the fitting in terms of mean square error.  Unfortunately, there is no  consensus in how to find the optimal value of the number of B-splines.  
 
-\cite{Eilers2015} consider the use of $K=100$ B-splines a wise choice, unless computational constraints are evident.  Some algorithms that explore different number of knots $K^*$ in a trial sequence and find an optimal value with respect to a certain goodness-of-fit criterion have been proposed. \cite{Ruppert2002} suggested a full-search and myopic algorithms which are based on the generalized cross-validation statistic.  However, their results are not conclusive and this criterion only applies if the penalty parameter is treated as a tuning constant~\citep{Kauermann2011}.  \cite{Likhachev2017} also considered a knot sequence and proposed the selection of the number of knots based on  Akaike's, corrected Akaike's and
+\cite{Eilers2015} consider the use of $K=100$ B-splines a wise choice, unless computational constraints are evident.  Some algorithms that explore different number of knots in a trial sequence and find an optimal value with respect to a certain goodness-of-fit criterion have been proposed. \cite{Ruppert2002} suggested a full-search and myopic algorithms which are based on the generalized cross-validation statistic.  However, their results are not conclusive and this criterion only applies if the penalty parameter is treated as a tuning constant~\citep{Kauermann2011}.  \cite{Likhachev2017} also considered a knot sequence and proposed the selection of the number of knots based on  Akaike's, corrected Akaike's and
 the Bayesian Information Criterion.
 
-\cite{Ruppert2002} discussed a heuristic rule of thumb $K^* = \min\left\{n/4, 40\right\}$, which is simpler and, in our experience, seems to work very well in general.  This criterion allocates a knot between $\max\left\{ 4, \lfloor n/40 \rfloor \right\}$ observations, where $\lfloor \cdot \rfloor$ stands for the floor function.  We employ this approach in the application Section for selecting the number of B-spline densities.
+\cite{Ruppert2002} discussed a heuristic rule of thumb $\min\left\{n/4, 40\right\}$, which is simpler and, in our experience, seems to work very well in general.  This criterion allocates a knot between $\max\left\{ 4, \lfloor n/40 \rfloor \right\}$ observations, where $\lfloor \cdot \rfloor$ stands for the floor function.  We employ this approach in the application Section for selecting the number of B-spline densities.
 
 % comment: in psd estimation the knots are alocated in the frequency domain. The knots are not allocated among the observations.  Maybe it should be commented.
 
@@ -404,10 +404,9 @@ The procedure for the frequencies in the unit interval $\omega_l = 2 l/n  \in[0,
 \begin{enumerate}
 	\item Let $\bm{x} = \left (\sqrt{I_n(\omega_1)}, \dots, \sqrt{I_n(\omega_{\nu})} \right)$ be the square root of the periodogram values.
 	\item Define $y_l = \left|\dfrac{x_l - \bar{x}}{S_x} \right|$ where $\bar{x}$ denotes the average and $S_x$ the standard deviation of ${\bm x}$.
-	\item Define $z_l = \frac{y_l}{\sum_{l=1}^{\nu} y_l}$, and calculate its cumulative distribution $\widetilde{F}$.
-	\item Interpolate $\widetilde{F}$.
-	\item Let $\bm{\xi}^* = \left(\xi_1^*,\dots,\xi_{K^*}^* \right)$ be a vector of $K^*$ quantiles, equally spaced in $[0,1]$.
-	\item The Q-spaced knot vector is given by $\bm{\xi} = \left(\widetilde{F}^{-1}(\xi^*_1),\dots, \widetilde{F}^{-1}(\xi^*_{K^*}) \right)$. %where the inverse function is obtained by interpolation.	
+	\item Define $z_l = \frac{y_l}{\sum_{l=1}^{\nu} y_l}$, calculate its cumulative distribution $\widetilde{F}$, and interpolate it.
+	\item Let $\bm{q} = \left(q_1,\dots,q_{K^*} \right)$ be a vector of $K^*$ quantiles, equally spaced in $[0,1]$.
+	\item The Q-spaced internal knot vector is given by $\bm{\xi}^* = \left(\widetilde{F}^{-1}(q_1),\dots, \widetilde{F}^{-1}(q_{K^*}) \right)$. %where the inverse function is obtained by interpolation.	
 \end{enumerate}
 
 Note that this knot allocation algorithm is applied only once at the beginning of the MCMC process.  Therefore, its computational cost is negligible.
@@ -435,7 +434,7 @@ The setup of our simulation study mirrors that  in \cite{Edwards2019} who  compa
 We generated  300  autoregressive time series of order 1 and 4 with unit variance Gaussian innovations of length $n = \{128, 256, 512\}$.
 For the AR(1) model, the  first  order autocorrelation $\rho_1 = 0.9$ was chosen, which has a relatively simple spectral density (see Figure~\ref{fig:ar1}).  The AR(4) time series with $\rho_1~=~0.9$, $\rho_2~=~-~0.9$, $\rho_3~=~0.9$ and $\rho_4~=~-~0.9$ have a spectral density with two large peaks (see Figure~\ref{fig:ar4}).  
 
-We estimated the spectral density functions using the BspDP and P-spline priors.  The BspDP-based  analysis was performed via the \texttt{gibbs\_bspline} function in the \textsf{R} package \texttt{bsplinePsd} \cite{Edwards:bsplinePsd:2018}.  The algorithm was executed for 100,000 iterations with a burn-in period of 25,000 and thinning factor of 10, resulting in 7,500 samples used for posterior inference.  Pilot analyses showed that these specifications are suitable in these examples in terms of convergence (results not shown).  
+We estimated the spectral density functions using the BspDP and P-spline priors.  The BspDP-based  analysis was performed via the \texttt{gibbs\_bspline} function in the \textsf{R} package \texttt{bsplinePsd{\pmr 0.6.0}} \citep{Edwards:bsplinePsd:2018}.  The algorithm was executed for 100,000 iterations with a burn-in period of 25,000 and thinning factor of 10, resulting in 7,500 samples used for posterior inference.  Pilot analyses showed that these specifications are suitable in these examples in terms of convergence (results not shown).  
 
 The P-spline analysis was performed using the \texttt{gibbs\_pspline} function implemented in the \textsf{R} package \texttt{psplinePsd} \citep{psplinepackage}.  A total of 100,000 MCMC samples were generated
 using  a pilot run of 20,000 iterations with a burn-in period of 5,000 and thinning factor of 10 to calibrate the proposals.  The final sample consisted of 80,000 samples with a burn-in period of 5,000 and thinning factor of 10, resulting in 7,500 samples used for posterior inferences.  
@@ -478,7 +477,7 @@ For the AR(4) time series, the fit based on the P-spline prior with Q-spaced kno
 			\toprule
 			& $n=128$ & $n=256$ & $n=512$ \\ \hline
 			AR(1)     &  &  &  \\ 
-			B-spline &  0.825 & 0.769 & 0.609  \\
+			B-spline &  0.870 & 0.714 & 0.594  \\
 			\textit{Equidistant knots}& & &   \\
 			\hspace{0.5em}P-spline $d=1$ &  0.769 & 0.655 & 0.527 \\
 			\hspace{0.5em}P-spline $d=2$&  0.698 & 0.609 & 0.629 \\
@@ -486,7 +485,7 @@ For the AR(4) time series, the fit based on the P-spline prior with Q-spaced kno
 			\hspace{0.5em}P-spline $d=1$ & 0.848 & 0.771 & 0.614 \\
 			\hspace{0.5em}P-spline $d=2$ & 0.920 & 0.840 & 0.648 \\ \hline
 			AR(4)     &  &  &  \\ 
-			B-spline & 3.019 & 2.250 & 1.832   \\
+			B-spline & 2.990 & 2.202 & 1.800   \\
 			\textit{Equidistant knots}& & &   \\
 			\hspace{0.5em}P-spline $d=1$ &  2.905 & 2.389 & 2.306\\
 			\hspace{0.5em}P-spline $d=2$&  3.149 & 2.566 & 2.387\\
@@ -551,7 +550,7 @@ Table~\ref{table:sim_covPbb_median},  only for a small fraction of the frequenci
 			\toprule
 			& $n=128$ & $n=256$ & $n=512$ \\ \hline
 			AR(1)     &  &  &  \\ 
-			B-spline &  1.000 & 1.000 & 1.000 \\
+			B-spline &  1.000 & 1.000 & 0.997 \\
 			\textit{Equidistant}& & &   \\
 			\hspace{0.5em}P-spline $d=1$&  1.000 & 1.000 & 0.997\\
 			\hspace{0.5em}P-spline $d=2$& 0.993 & 1.000 & 0.993  \\
@@ -559,7 +558,7 @@ Table~\ref{table:sim_covPbb_median},  only for a small fraction of the frequenci
 			\hspace{0.5em}P-spline $d=1$ & 1.000 & 1.000 & 0.997 \\
 			\hspace{0.5em}P-spline $d=2$ & 0.933 & 0.527 & 0.713 \\ \hline		       
 			AR(4)     &  &  &  \\ 
-			B-spline &  0.933 & 0.967 & 0.897  \\
+			B-spline &  0.907 & 0.970 & 0.897  \\
 			\textit{Equidistant knots}& & &   \\
 			\hspace{0.5em}P-spline $d=1$ &  0.547 & 0.343 & 0.010 \\
 			\hspace{0.5em}P-spline $d=2$ & 0.320 & 0.170 & 0.007\\
@@ -602,7 +601,7 @@ Table~\ref{table:sim_covPbb_median},  only for a small fraction of the frequenci
 %%% TIME %%%
 %%%%%%%%%%%%
 
-As \cite{Edwards2019} noted, one of the drawbacks of the BspDP prior  is its computational complexity relative to the BDP.  This is directly reflected in the run-time, which is approximately 2-3 times higher in this example (see Table~3 in \cite{Edwards2019}).  The median run-time in our analyses for the BspDP prior and the P-spline with Q-spaced knots are displayed in Table~\ref{table:sim_time}.  Note that the P-spline method based on equidistant knots has similar run-times to the Q-spaced knots.  The P-spline method is approximately 4-7 times faster than BspDP approach in these examples.  This is due to a reduced number of calculations  per iteration because the B-spline densities are calculated only  once at the start of the algorithm and there are no Dirichlet process approximations via the stick-breaking method.  
+As \cite{Edwards2019} noted, one of the drawbacks of the BspDP prior  is its computational complexity relative to the BDP.  This is directly reflected in the run-time, which is approximately 2-3 times higher in this example (see Table~3 in \cite{Edwards2019}).  The median run-time in our analyses for the BspDP prior and the P-spline with Q-spaced knots are displayed in Table~\ref{table:sim_time}.  Note that the P-spline method based on equidistant knots has similar run-times to the Q-spaced knots.  The P-spline method is approximately 4-6 times faster than BspDP approach in these examples.  This is due to a reduced number of calculations  per iteration because the B-spline densities are calculated only  once at the start of the algorithm and there are no Dirichlet process approximations via the stick-breaking method.  
 
 % TIME Table
 \begin{table}
@@ -612,17 +611,17 @@ As \cite{Edwards2019} noted, one of the drawbacks of the BspDP prior  is its com
 			\toprule
 			& $n=128$ & $n=256$ & $n=512$ \\ \hline
 			AR(1)     &  &  &  \\ 
-			B-spline &   29.497 & 32.423 & 37.896 \\
+			B-spline &   24.323 & 28.258 & 34.093 \\
 			\textit{Q-spaced knots}& & &   \\
 			\hspace{0.5em}P-spline $d=1$&  4.859 & 7.450 & 9.606\\
 			\hspace{0.5em}P-spline $d=2$&  4.538 & 6.863 & 8.783\\
-			B-spline/P-spline &  6.278 & 4.531 & 4.122 \\ \hline
+			B-spline/P-spline &  6.090 & 4.368 & 4.493 \\ \hline
 			AR(4)     &  &  & \\ 
-			B-spline & 30.111 & 34.126 & 40.875  \\
+			B-spline & 24.983 & 29.796 & 36.913  \\
 			\textit{Q-spaced knots}& & &   \\
 			\hspace{0.5em}P-spline $d=1$ & 4.883 & 7.453 & 9.665 \\
 			\hspace{0.5em}P-spline $d=2$& 4.543 & 6.887 & 8.827 \\
-			B-spline/P-spline & 6.389 & 4.760 & 4.421 \\	
+			B-spline/P-spline & 6.062 & 4.591 & 5.523 \\	
 			\bottomrule
 		\end{tabular}
 %	\end{ruledtabular}
