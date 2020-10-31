@@ -100,7 +100,7 @@ of the penalty."}\bigskip
 	
 	\item \refereeQuote{Page 2, line 17, what is $\lambda_i$?}\smallskip
 	
-	\response{$\lambda_i$ represents any angular frequency. Since we only defined the angular frequency $\lambda$ in that paragraph, we deleted its subscript ``$i$" and added $\lambda\in[-\pi,\pi]$. } \bigskip
+	\response{$\lambda_i$ denote the Fourier frequencies. These have now been defined just after the first equation on page 2.} \bigskip
 	
 	\item \refereeQuote{ Page 4, lines 5-7, ``In particular, the approximation error of the mixture of B-spline distributions can be made arbitrarily small by finding suitable knot locations and increasing the number of knots", what does ``made arbitrarily small" mean? Do you mean the approach with the beta densities the error cannot be made arbitrarily small?}\smallskip
 	
@@ -122,10 +122,10 @@ of the penalty."}\bigskip
 \subsection*{Further Changes}
 Here some extra changes:
 \begin{enumerate}
-	\item We have defined $K^*$ as the number of internal knots (B-splines and BspCP prior section).
-	\item We have specified the prior on $\tau$ (P-spline prior section). 
+	\item We have defined $K^*$ as the number of internal knots (B-splines and BspDP prior section).
+	\item We have specified the prior on $\tau$ (P-spline prior subsection of section 2). 
 	\item We have added $s_r(\omega)$ in Eq(3), short notation used in the posterior distribution of~$\tau$ (Posterior computation section).	
-	\item We have simplified a bit our knot location approach.  This has led to minor variations in the results shown in the application section, which has been updated.  This change has not impacted the conclusions.  This version of the knot location algorithm is described step by step in the Quantile-based knot placement section.
+	\item We have slightly simplified our knot location approach.  This has led to minor variations in the results shown in the application section, which has been updated.  This change has not impacted the conclusions.  This version of the knot location algorithm is described step by step in the Quantile-based knot placement section.
 \end{enumerate}
 
 \bibliographystyle{plainnat}
