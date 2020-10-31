@@ -68,17 +68,18 @@ Bayesian nonparametric approaches, on the other hand, put a prior distribution o
 
 As the periodogram fluctuates around the true spectral density, most  nonparametric methods for spectral density estimation hinge on  smoothing the periodogram
 \begin{align*}
-I_n(\lambda) = \dfrac{1}{2 \pi n} \left| \sum_{t=1}^{n} Y_t \exp \left( -i t \lambda\right)\right|^2,
+I_n(\lambda_l) = \dfrac{1}{2 \pi n} \left| \sum_{t=1}^{n} Y_t \exp \left( -i t \lambda_l\right)\right|^2,
 \end{align*}
-in one way or another, where $-\pi < \lambda \leq \pi$ is the angular frequency and $\bm{Y}=(Y_1,\ldots,Y_n)$ is a stationary time series of length $n$. {\pmr The periodogram ordinates evaluated at the Fourier frequencies $\lambda \in [-\pi,\pi]$  are asymptotically independent and follow exponential distributions with mean $f(\lambda)$.  Thus, they are unbiased estimates of $f(\lambda)$  but not consistent \citep{Brockwell:1986}.}
+in one way or another, where $ \lambda_l=2\pi/n$ for $l=0,\ldots,\nu = \left\lfloor (n-1)/2 \right\rfloor$ are the Fourier frequencies and $\bm{Y}=(Y_1,\ldots,Y_n)$ is a stationary time series of length $n$. {\pmr The periodogram ordinates evaluated at the Fourier frequencies  are asymptotically independent and follow exponential distributions with mean $f(\lambda_l)$.  Thus, they are asymptotically  unbiased estimates of $f(\lambda_l)$  but not consistent \citep{Brockwell:1986}.}
 
 
 Most Bayesian approaches to psd estimation use the so-called Whittle likelihood, introduced by \cite{Whittle:1957} as an approximation to the likelihood of a Gaussian stationary time series.  Based on the  limiting independent exponential distribution of the periodogram values, the Whittle likelihood for a mean centred weakly stationary time series $\bm{Y}$ of length $n$ is defined as
 \begin{align}
 L(\bm{Y} | f) &= \prod_{l=1}^{\nu}\dfrac{1}{f(\lambda_{l})} e^{-I_n(\lambda_l)/f(\lambda_l)}  \nonumber \\
-&\propto \exp \left\{ -\! \sum_{l=1}^{\nu} \Bigg( \log f(\lambda_l) + \dfrac{I_{n}(\lambda_l)}{f(\lambda_l)} \Bigg) \right\},\label{eq:whittle_like}
+&\propto \exp \left\{ -\! \sum_{l=1}^{\nu} \Bigg( \log f(\lambda_l) + \dfrac{I_{n}(\lambda_l)}{f(\lambda_l)} \Bigg) \right\}.\label{eq:whittle_like}
 \end{align}
-where $\lambda_l = 2\pi l / n$ are the Fourier frequencies, $f(\cdot)$ spectral density of $\bm{Y}$, and $\nu = \left\lfloor (n-1)/2 \right\rfloor$ is the greatest integer value less than or equal to $(n-1)/2$. Advantages of this approximation are that it depends directly on the spectral density, unlike the true Gaussian likelihood function, and gives a good approximation for non-Gaussian time series under certain conditions as shown by \cite{ShaoXiaofeng2007ASTf}.
+%where $\lambda_l = 2\pi l / n$ are the Fourier frequencies, $f(\cdot)$ spectral density of $\bm{Y}$, and $\nu = \left\lfloor (n-1)/2 \right\rfloor$ is the %greatest integer value less than or equal to $(n-1)/2$.
+ Advantages of this approximation are that it depends directly on the spectral density, unlike the true Gaussian likelihood function, and gives a good approximation for non-Gaussian time series under certain conditions as shown by \cite{ShaoXiaofeng2007ASTf}.
 
 
 Bayesian nonparametric prior specifications for the psd include \cite{Cart:1997}
@@ -388,7 +389,10 @@ the Bayesian Information Criterion.
 
 The knots are often equally spaced in P-spline methods.  This scheme works quite well  for smooth psds without any abrupt changes.  However, for spectral densities with spikes, the algorithm will require a large number of knots to adequately estimate the peaks.  The B-spline prior method is able to handle abrupt changes because the knot location is variable and  driven by the data.  We propose a new selective method that allocates the knots according to quantiles of a periodogram-related distribution function but once allocated, the knots stay fixed.  The idea is to concentrate more effort in those regions that have potential peaks as detected by the periodogram.  It is similar in spirit to the knot placement of O-splines \citep{WandOrmerod} in the regression context that make use of the empirical quantiles of the covariates. 
 
-Our knot location proposal works as follow.  We calculate the periodogram and apply a square root transformation in order to have more regular magnitudes and eliminate a potential trend.  Second, we standardize these values, apply the absolute value function,{\pmr and normalise them}.  We treat this transformed periodogram as a {\pmr mass probability} function (pmf) and interpolate its distribution function $\widetilde{F}$.  Finally, the knots are allocated according to the quantiles of the inverse distribution function $\widetilde{F}^{-1}$, {\pmr which is approximated by interpolation.}  Thus, in those areas in which the periodogram has sharp and abrupt changes, our procedure will assign more knots in proportion to their magnitudes. Hereafter, we will refer to this scheme as {\em  quantile-spaced (Q-spaced) knots}.%\textit{periodogram-spaced knots} or short \textit{P-spaced knots}.
+Our knot location proposal works as follow.  We calculate the periodogram and apply a square root transformation in order to have more regular magnitudes and eliminate a potential trend.  Second, we standardize these values, apply the absolute value function,{\pmr and normalise them}.  
+We treat this transformed periodogram as a {\pmr probability mass} function (pmf) and interpolate its distribution function \textcolor{red}{ by the continuous cumulative distribution function} $\widetilde{F}$.
+Finally, the knots are allocated according to quantiles of $\widetilde{F}$.
+ Thus, in those areas in which the periodogram has sharp and abrupt changes, our procedure will assign more knots in proportion to their magnitudes. Hereafter, we will refer to this scheme as {\em  quantile-spaced (Q-spaced) knots}.%\textit{periodogram-spaced knots} or short \textit{P-spaced knots}.
 %REMARK: HOW ABOUT "PERIODOGRAM-SPACED KNOTS"	OR 'P-SPACED KNOTS'  INSTEAD OF DISTRIBUTED KNOTS?
 
 %The procedure can be summarized as follows:
@@ -402,11 +406,11 @@ Our knot location proposal works as follow.  We calculate the periodogram and ap
 {\pmr
 The procedure for the frequencies in the unit interval $\omega_l = 2 l/n  \in[0,1]$, which can be easily translated to the frequency domain, can be summarized as follows:	
 \begin{enumerate}
-	\item Let $\bm{x} = \left (\sqrt{I_n(\omega_1)}, \dots, \sqrt{I_n(\omega_{\nu})} \right)$ be the square root of the periodogram values.
+	\item Let $\bm{x} = \left (\sqrt{I_n(\pi\omega_1)}, \dots, \sqrt{I_n(\pi\omega_{\nu})} \right)$ be the square root of the periodogram values.
 	\item Define $y_l = \left|\dfrac{x_l - \bar{x}}{S_x} \right|$ where $\bar{x}$ denotes the average and $S_x$ the standard deviation of ${\bm x}$.
-	\item Define $z_l = \frac{y_l}{\sum_{l=1}^{\nu} y_l}$, calculate its cumulative distribution $\widetilde{F}$, and interpolate it.
-	\item Let $\bm{q} = \left(q_1,\dots,q_{K^*} \right)$ be a vector of $K^*$ quantiles, equally spaced in $[0,1]$.
-	\item The Q-spaced internal knot vector is given by $\bm{\xi}^* = \left(\widetilde{F}^{-1}(q_1),\dots, \widetilde{F}^{-1}(q_{K^*}) \right)$. %where the inverse function is obtained by interpolation.	
+	\item Define $z_l = \frac{y_l}{\sum_{l=1}^{\nu} y_l}$, $Z_l= \sum_{j\leq l} z_j$, and let $\widetilde{F}$ denote the continuous cdf that interpolates the $Z_l$, $l=1,\ldots,\nu$.
+	\item Let $\bm{q} =\left( \frac{1}{K^*+1}, \frac{2}{K^*+1}\dots, \frac{K^*}{K^*+1} \right)$ be a vector of $K^*$ equally spaced points  in  $[0,1]$.
+	\item The Q-spaced internal knot vector is given by the corresponding quantiles $\bm{\xi}^* = \left(\widetilde{F}^{-1}(q_1),\dots, \widetilde{F}^{-1}(q_{K^*}) \right)$. %where the inverse function is obtained by interpolation.	
 \end{enumerate}
 
 Note that this knot allocation algorithm is applied only once at the beginning of the MCMC process.  Therefore, its computational cost is negligible.
@@ -447,7 +451,7 @@ f(\lambda) = \dfrac{\sigma^2}{2 \pi} \dfrac{1}{|1-\sum_{j=1}^{p}\rho_j \exp(-i \
 \end{align*}
 where $\sigma^2$ is the variance of the white noise innovations and ($\rho_1, \dots, \rho_p$) are the model parameters.  In order to compare the psd estimates  to the true function, we use the integrated absolute error (IAE) or $L_1$-error which is defined as
 \begin{align*}
-\text{IAE} = || \widehat{f} - f ||_1 = \int_{0}^{\pi} |\widehat{f}(\omega)-f(\omega)|\text{d}\omega,
+\text{IAE} = || \widehat{f} - f ||_1 = \int_{0}^{\pi} |\widehat{f}(\textcolor{red}{\lambda})-f(\textcolor{red}{\lambda})|\text{d}\textcolor{red}{\lambda},
 \end{align*}
 where $\widehat{f}(\cdot)$ is the pointwise posterior median of the spectral density $f(\cdot)$.   The IAE is computed for each of the 300 replications and its median is calculated.  
 The results are displayed in Table~\ref{table:sim_IAE}.
