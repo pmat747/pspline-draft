@@ -404,11 +404,11 @@ Finally, the knots are allocated according to the quantiles of $F$.
 %\end{enumerate}
 
 {\pmr
-The procedure for the frequencies in the unit interval $\omega_l = 2 l/n  \in[0,1]$, which can be easily translated to the frequency domain, can be summarized as follows:	
+The procedure can be summarized as follows:	%for the frequencies in the unit interval $\omega_l = 2 l/n  \in[0,1]$, which can be easily translated to the frequency domain, can be summarized as follows:	
 \begin{enumerate}
-	\item Let $\bm{x} = \left (\sqrt{I_n(\pi\omega_1)}, \dots, \sqrt{I_n(\pi\omega_{\nu})} \right)$ be the square root of the periodogram values.
-	\item Define $y_l = \left|\dfrac{x_l - \bar{x}}{S_x} \right|$ where $\bar{x}$ denotes the average and $S_x$ the standard deviation of ${\bm x}$.
-	\item Define $z_l = \frac{y_l}{\sum_{l=1}^{\nu} y_l}$, $Z_l= \sum_{j\leq l} z_j$, and let $F$ denote the continuous cdf that interpolates the $Z_l$, $l=1,\ldots,\nu$.
+	\item Let $\bm{x} = \left (\sqrt{I_n(\lambda_1)}, \dots, \sqrt{I_n(\lambda_{\nu})} \right)$ be the square root of the periodogram values.
+	\item Define $y_l = \left|\dfrac{x_l - \bar{x}}{S_x} \right|$, for $l=1,\ldots,\nu$, where $\bar{x}$ denotes the average and $S_x$ the standard deviation of ${\bm x}$.
+	\item Define $z_l = \frac{y_l}{\sum_{l=1}^{\nu} y_l}$, $Z_l= \sum_{j\leq l} z_j$, and let $F$ denote the continuous cdf that interpolates the $Z_l$.
 	\item Let $\bm{q} =\left( q_1, \dots, q_{K^*} \right)$ be a vector of $K^*$ equally spaced points  in  $[0,1]$, that is $q_j = \frac{j-1}{K^*-1}$, for $j=1,\dots,K^*$.
 	\item The Q-spaced internal knot vector is given by the corresponding quantiles $\bm{\xi}^* = \left(F^{-1}(q_1),\dots, F^{-1}(q_{K^*}) \right)$. %where the inverse function is obtained by interpolation.	
 \end{enumerate}

@@ -52,7 +52,10 @@ I had a look at the R codes of the package psplinePsd. I think that the density 
 \end{align*}
 }
 
-\response{That's correct!  The $\widetilde{f}$ is actually a probability mass function (not a probability density function), which is interpolated.  However, we have simplified a bit our knot allocation algorithm avoiding that step.  The new version of the algorithm is described step by step in our manuscript.  This change leads to small changes in our application section, which has been consequently updated.  We have also updated the \texttt{psplinePsd} package.}\bigskip 
+\response{That's correct!  The $\widetilde{f}$ is actually a probability mass function (not a probability density function), which is interpolated.  However, we have simplified a bit our knot allocation algorithm avoiding that step.  The new version of the algorithm is described step by step in our manuscript.  This change led to small changes in our application section, which has been consequently updated.  We have also updated the \texttt{psplinePsd} package on GitHub.
+
+We'd like to clarify that the knot allocation procedure is described in the frequency domain in our manuscript.  However, the functions in our R implementation are defined in the interval [0,1] for convenience.
+}\bigskip 
 
 \textbf{Minor comments:}
 \begin{enumerate}
